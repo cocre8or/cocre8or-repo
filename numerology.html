@@ -538,56 +538,6 @@
         };
     }
     
-    // Example usage
-    //console.log(getNorthNode(11, 26, 2024));
-    function printNumerologyTable() {
-        // Define the Pythagorean numerology mapping
-        const numerologyMap = {
-            1: ['A', 'J', 'S'],
-            2: ['B', 'K', 'T'],
-            3: ['C', 'L', 'U'],
-            4: ['D', 'M', 'V'],
-            5: ['E', 'N', 'W'],
-            6: ['F', 'O', 'X'],
-            7: ['G', 'P', 'Y'],
-            8: ['H', 'Q', 'Z'],
-            9: ['I', 'R']
-        };
-        
-        // Determine the width of the columns
-        const columnWidth = 4;
-    
-        // Print the top row with numbers 1 through 9
-        let topRow = '';
-        for (let num = 1; num <= 9; num++) {
-            topRow += `${num.toString().padEnd(columnWidth)}`
-        }
-        let result = topRow;
-        
-        // Print the rows corresponding to each number
-        let maxRows = Math.max(...Object.values(numerologyMap).map(letters => letters.length));
-        for (let row = 0; row < maxRows; row++) {
-            let currentRow = '';
-            for (let num = 1; num <= 9; num++) {
-                // Print each letter if it exists in the current row, otherwise print blank
-                if (row < numerologyMap[num].length) {
-                    currentRow += `${numerologyMap[num][row].padEnd(columnWidth)}`;
-                } else {
-                    currentRow += `${' '.padEnd(columnWidth)}`;
-                }
-            }
-            result += "\n"+ currentRow;
-        }
-        return result;
-    }
-    
-
-    // Your code here
-    // Call the function to print the numerology table
-    results = printNumerologyTable();
-    // Update the textarea with the result
-     document.getElementById('pythagorean').value = results;
-
 
     // Function to handle the form submission
     function handleFormSubmission(event) {
@@ -706,7 +656,12 @@
 
   <!-- Textarea to display the results -->
   <h3>Pythagorean Table:</h3>
-  <textarea id="pythagorean" rows="4" cols="35" readonly></textarea>
+  <textarea id="pythagorean" rows="4" cols="35" readonly>
+  1   2   3   4   5   6   7   8   9   
+  A   B   C   D   E   F   G   H   I   
+  J   K   L   M   N   O   P   Q   R   
+  S   T   U   V   W   X   Y   Z   
+  </textarea>
 
   <!-- Form with Name and Age input fields -->
   <form onsubmit="handleFormSubmission(event)">
