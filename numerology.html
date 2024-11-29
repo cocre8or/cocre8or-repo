@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Numerology</title>
+  <script>
+
+    const vowels = 'AEIOU';
+    const consonants = 'BCDFGHJKLMNPQRSTVWXYZ';
+
+    const pythagorean_mapping = {
+        'A': 1, 'B': 2, 'C': 3, 'D': 4, 'E': 5, 'F': 6, 'G': 7, 'H': 8, 'I': 9,
+        'J': 1, 'K': 2, 'L': 3, 'M': 4, 'N': 5, 'O': 6, 'P': 7, 'Q': 8, 'R': 9,
+        'S': 1, 'T': 2, 'U': 3, 'V': 4, 'W': 5, 'X': 6, 'Y': 7, 'Z': 8
+    };
+
+    const numerology_map = {
+        1: ['A', 'J', 'S'],
+        2: ['B', 'K', 'T'],
+        3: ['C', 'L', 'U'],
+        4: ['D', 'M', 'V'],
+        5: ['E', 'N', 'W'],
+        6: ['F', 'O', 'X'],
+        7: ['G', 'P', 'Y'],
+        8: ['H', 'Q', 'Z'],
+        9: ['I', 'R']
+    };
+    const personal_day_advice = {
+        1: "Embrace new beginnings and take initiative. Focus on your personal goals and assert your independence.",
+        2: "Cultivate harmony and cooperation. Focus on building relationships and practicing patience with others.",
+        3: "Express your creativity and enjoy social interactions. Use this time for self-expression and joy.",
+        4: "Focus on building a solid foundation. Organize your tasks and pay attention to details for long-term success.",
+        5: "Embrace change and flexibility. Be open to new experiences and adventures, and avoid being stagnant.",
+        6: "Nurture your home and relationships. Focus on family, love, and creating a supportive environment.",
+        7: "Take time for introspection and spiritual growth. Engage in self-reflection and seek deeper understanding.",
+        8: "Focus on your ambitions and financial goals. Take decisive action towards your career and material success.",
+        9: "Let go of what no longer serves you. Focus on closure, forgiveness, and preparing for new chapters in your life.",
+        11: "Trust your intuition and spiritual insights. This is a powerful time for inspiration and awakening.",
+        22: "Harness your abilities to manifest your dreams on a large scale. Focus on practical steps towards your vision.",
+        33: "Embrace your role as a healer and teacher. Focus on compassion, service, and uplifting others."
+    }
+    const number_description = {
+        0: "Before time and space, ultimate potential, source before manifestation, zero amplifies any number i.e. 4 to 40, without this amplification of 0 you can’t get to 49",
+        1: "The Pioneer, God, starter, independent nature, life force, leader, ego, self, confidence",
+        2: "The Mediator, sensitivity, balance, harmony, peacemaker, kindness, partnerships",
+        3: "The Entertainer, triangle (Spirit), creativity, art, music, communication, recharge in quiet, reasoning, lucky",
+        4: "The Builder, square (order, earth, seasons), organize, build a solid foundation, physical world, practical, task oriented, responsibility, strong work ethic, rational, methodical",
+        5: "The Explorer, human, unending talent, free-thinking, adaptable, brave, resilient, critical thinking, skeptic, network, work toward trusting one’s self",
+        6: "The Healer, nurturing, supportive, problem-solving emotions and physical, family, security, controlling",
+        7: "The Scientist/Meditator, solitude, self-care, detective, keen eye, wisdom, inventive, perfectionist, good luck, introspection, inner wisdom, inner spirituality",
+        8: "The Banker, wealth, workaholic, abundance, karma, destiny, order, promotion, good managers",
+        9: "The Life-coach, spiritual awareness, transformative, social ethics, old soul, completion, release, forgive, humanitarian, minister, philanthropy, 360 circle 3+6+0 = 9 it represents Alpha & Omega",
+        11: "The Guru, heal of self and others, balanced spiritually and philosophically",
+        22: "The Architect, master builder, dependable",
+        33: "The Savior, self sacrifice"
+    }
+
+    const destiny_numbers = {
+        1: {
+            "meaning": "Leadership and Independence",
+            "traits": "Individuals with Destiny Number 1 are natural leaders who are ambitious and self-reliant. They have a strong desire to achieve and are often seen as pioneers in their field. They are confident, determined, and have a clear vision of their goals."
+        },
+        2: {
+            "meaning": "Cooperation and Sensitivity",
+            "traits": "Those with Destiny Number 2 are diplomatic, sensitive, and have a strong ability to connect with others. They value harmony and are often seen as peacemakers. Their ability to work well in teams and their intuitive nature make them excellent collaborators."
+        },
+        3: {
+            "meaning": "Creativity and Expression",
+            "traits": "People with Destiny Number 3 are creative, expressive, and enjoy engaging with others. They are often artistic and have a talent for communication. They bring joy and enthusiasm to their interactions and are known for their optimism and charisma."
+        },
+        4: {
+            "meaning": "Practicality and Stability",
+            "traits": "Individuals with Destiny Number 4 are hardworking, reliable, and grounded. They have a strong sense of responsibility and are adept at managing details and ensuring stability. They value structure and are often seen as dependable and practical."
+        },
+        5: {
+            "meaning": "Adventure and Freedom",
+            "traits": "Those with Destiny Number 5 are adventurous, energetic, and thrive on change. They value freedom and dislike routine. Their dynamic nature often leads them to explore new opportunities and experiences. They are versatile and adaptable, with a love for excitement."
+        },
+        6: {
+            "meaning": "Nurturing and Responsibility",
+            "traits": "People with Destiny Number 6 are caring, responsible, and have a strong sense of duty. They are often drawn to roles where they can help others and create harmony in their environment. Their nurturing nature makes them excellent caregivers and support systems."
+        },
+        7: {
+            "meaning": "Introspection and Wisdom",
+            "traits": "Individuals with Destiny Number 7 are introspective, analytical, and seek deeper understanding. They are often drawn to spiritual or intellectual pursuits and value solitude and reflection. Their wisdom and insight are valuable assets in their quest for knowledge."
+        },
+        8: {
+            "meaning": "Power and Achievement",
+            "traits": "Those with Destiny Number 8 are ambitious, determined, and focused on achieving their goals. They have strong leadership qualities and are often drawn to positions of power and authority. Their drive for success and financial stability is a key aspect of their personality."
+        },
+        9: {
+            "meaning": "Compassion and Idealism",
+            "traits": "People with Destiny Number 9 are compassionate, idealistic, and have a strong sense of purpose. They are often involved in humanitarian efforts and are driven by a desire to make the world a better place. Their empathy and vision for the greater good are central to their identity."
+        }
+    }
+    
+    const life_path_numbers = {
+        1: {
+            "meaning": "Leadership and Independence",
+            "traits": "Individuals with Life Path Number 1 are natural leaders who are ambitious and self-reliant. They are driven to achieve and often have a pioneering spirit. Their confidence, determination, and originality are key attributes."
+        },
+        2: {
+            "meaning": "Cooperation and Sensitivity",
+            "traits": "Those with Life Path Number 2 are diplomatic, sensitive, and have a talent for creating harmony in their relationships. They are cooperative and have a natural ability to work well with others. Their intuitive and empathetic nature often guides them."
+        },
+        3: {
+            "meaning": "Creativity and Expression",
+            "traits": "Your Life Path 3 needs you to be seen!Life Path Number 3s are the entertainers of the world and most of these people are truly gifted musicians, writers, actors, dancers, public speakers, and politicians. The Life Path 3 is one that is characterised by beauty, excitement, eccentricity, and fame. Its very important for those living out this vibration to find authentic ways to express their inner essence and be truly seen (behind the mask, and beyond the stage) and for many, this is the real challenge. Some threes stray from their path, giving up their dreams and talents and some even escape into drug abuse or promiscuity in a bid to silence their inner calling. For this reason, 3s must retain their sense of childlike wonder, play and relentlessly fuel their creativity."
+        },
+        4: {
+            "meaning": "Practicality and Stability",
+            "traits": "Your Life Path 4 needs you to find stability. Life Path Number 4s are often the pillars of their communities. These individuals are hard-working, practical and trustworthy, and as such, make fantastic marriage and business partners, teachers, mentors and advisors. Their resourceful nature means that they are able to create something out of nothing and are often called upon in a crisis! However, self-sacrificing fours often demand too much both of themselves and others and can develop reputations as martyrs or tyrants: Their will-power and tenacity being misinterpreted as greed and stubbornness. This completely baffles the confused Number 4 whose intentions are usually to benefit the good of all, so it is important for those living through this vibration to regularly release some of their perfectionist tendencies and practice kindness and compassion for both themselves and others."
+        },
+        5: {
+            "meaning": "Adventure and Freedom, unending talent",
+            "traits": "Your Life Path 5 needs you to find freedom! Life Path Number 5s are highly inquisitive individuals who consider the hands-on experience to be the best teacher in life. Many people living out this vibration are deeply intelligent, philosophical and spiritually-minded, as well as being great communicators that make excellent social anthropologists, archaeologists, teachers, writers, and historians. However, Number 5s can tend towards being self-absorbed and unaware of the more widespread effects of their footloose and seemingly reckless actions. The avoidance of commitment of many fives can also prevent deep and loyal bonds forming between them and the people in their lives, so it is really important for these folk to find ways of experiencing freedom and variety, without running away from responsibility and hurting their families."
+        },
+        6: {
+            "meaning": "Nurturing and Responsibility",
+            "traits": "People with Life Path Number 6 are nurturing, responsible, and deeply concerned with their families and communities. They are natural caregivers and often find fulfillment in roles that involve supporting and helping others."
+        },
+        7: {
+            "meaning": "Introspection and Wisdom",
+            "traits": "Individuals with Life Path Number 7 are introspective, analytical, and seek deeper understanding. They are often drawn to spiritual or intellectual pursuits and value solitude and contemplation. Their wisdom and insight are central to their personality."
+        },
+        8: {
+            "meaning": "Power and Achievement",
+            "traits": "Those with Life Path Number 8 are ambitious, determined, and focused on achieving their goals. They are often drawn to positions of authority and have strong leadership qualities. Their drive for success and financial stability is a defining aspect."
+        },
+        9: {
+            "meaning": "Compassion and Idealism",
+            "traits": "People with Life Path Number 9 are compassionate, idealistic, and driven by a desire to make a positive impact on the world. They are often involved in humanitarian efforts and possess a deep sense of empathy and vision."
+        },
+        11: {
+            "meaning": "Inspiration and Illumination",
+            "traits": "Individuals with Life Path Number 11 are highly intuitive, inspirational, and have a strong sense of purpose. They often possess a heightened spiritual awareness and a deep connection to their inner selves, guiding others through their wisdom and vision."
+        },
+        22: {
+            "meaning": "Master Builder and Visionary",
+            "traits": "Those with Life Path Number 22 are powerful visionaries with the ability to turn dreams into reality. They are practical and ambitious, with a strong drive to achieve great things. Their leadership and organizational skills enable them to create lasting impact."
+        },
+        33: {
+            "meaning": "Master Teacher and Compassion",
+            "traits": "People with Life Path Number 33 are often seen as master teachers and healers. They possess a deep sense of compassion and a strong desire to help others. Their ability to inspire and uplift those around them is a key aspect of their path."
+        }
+    }
+    
+    const soul_urge_numbers = {
+        1: {
+            "meaning": "Independence and Ambition",
+            "traits": "Individuals with Soul Urge Number 1 have a deep desire for independence and self-expression. They are ambitious, driven, and often seek to assert their individuality. Their inner motivation is to lead and make their own path in life."
+        },
+        2: {
+            "meaning": "Harmony and Partnership",
+            "traits": "Those with Soul Urge Number 2 are driven by a need for harmony and balance in their relationships. They have a strong desire for partnership and are motivated by the need to create peace and cooperation with others. Their inner self craves connection and collaboration."
+        },
+        3: {
+            "meaning": "Creativity and Self-Expression",
+            "traits": "People with Soul Urge Number 3 are motivated by a desire for creative expression and joy. They seek to bring their artistic talents and vibrant energy into the world. Their inner urge is to communicate, inspire, and connect with others through their creativity."
+        },
+        4: {
+            "meaning": "Stability and Security",
+            "traits": "Individuals with Soul Urge Number 4 are driven by a need for stability, security, and order. They are motivated by the desire to build a solid foundation and create lasting structures in their lives. Their inner self seeks reliability and a sense of accomplishment through hard work."
+        },
+        5: {
+            "meaning": "Adventure and Freedom",
+            "traits": "Those with Soul Urge Number 5 have a deep inner desire for freedom and new experiences. They are motivated by the need for adventure, change, and exploration. Their soul craves excitement and variety, and they often seek to break free from routine and limitations."
+        },
+        6: {
+            "meaning": "Nurturing and Service",
+            "traits": "People with Soul Urge Number 6 are driven by a deep desire to nurture and care for others. They are motivated by a need to serve and create harmony within their family and community. Their inner self is focused on providing support and love, often finding fulfillment in caregiving roles."
+        },
+        7: {
+            "meaning": "Spiritual Growth and Wisdom",
+            "traits": "Individuals with Soul Urge Number 7 are motivated by a quest for spiritual growth and understanding. They seek wisdom and deeper knowledge, often valuing introspection and solitude. Their inner desire is to explore the mysteries of life and gain profound insights."
+        },
+        8: {
+            "meaning": "Achievement and Power",
+            "traits": "Those with Soul Urge Number 8 have a strong inner drive for achievement and success. They are motivated by the desire to attain power, authority, and financial security. Their soul urges them to take control and make a significant impact in their chosen field."
+        },
+        9: {
+            "meaning": "Compassion and Idealism",
+            "traits": "People with Soul Urge Number 9 are motivated by a deep sense of compassion and idealism. They are driven by the desire to make a positive difference in the world and help others. Their inner self is focused on humanitarian efforts and creating a better future for all."
+        },
+        11: {
+            "meaning": "Inspiration and Spiritual Insight",
+            "traits": "Individuals with Soul Urge Number 11 are driven by a profound sense of inspiration and spiritual insight. They are motivated by a desire to uplift and guide others through their wisdom and vision. Their inner self seeks to connect with higher realms and inspire change."
+        },
+        22: {
+            "meaning": "Mastery and Visionary Leadership",
+            "traits": "Those with Soul Urge Number 22 are motivated by a desire to achieve great things and manifest their visionary ideas. They have a strong drive for mastery and leadership, aiming to make a significant impact on the world. Their inner urge is to build and create lasting change."
+        },
+        33: {
+            "meaning": "Compassionate Teaching and Healing",
+            "traits": "People with Soul Urge Number 33 are driven by a deep desire to teach and heal. They are motivated by compassion and the need to serve others on a profound level. Their inner self is focused on uplifting and guiding others through their nurturing and transformative presence."
+        }
+    }
+    
+    const growth_numbers = {
+        1: {
+            "meaning": "Leadership and Innovation",
+            "traits": "Individuals with Growth Number 1 are often driven to lead and innovate. They have a strong sense of individuality and are inclined to take initiative. Their path involves developing confidence and pursuing their unique vision with courage and creativity."
+        },
+        2: {
+            "meaning": "Collaboration and Sensitivity",
+            "traits": "Those with Growth Number 2 are focused on building strong relationships and fostering collaboration. They are naturally diplomatic and sensitive, thriving in environments where cooperation and understanding are key. Their growth involves mastering the art of partnership and empathy."
+        },
+        3: {
+            "meaning": "Creativity and Expression",
+            "traits": "People with Growth Number 3 are encouraged to embrace their creativity and express themselves. They are often drawn to artistic pursuits and have a natural ability to inspire others. Their growth involves using their talents to communicate and uplift those around them."
+        },
+        4: {
+            "meaning": "Stability and Practicality",
+            "traits": "Individuals with Growth Number 4 focus on creating stability and order in their lives. They are practical, reliable, and hardworking, with a strong drive to build solid foundations. Their growth involves developing discipline and embracing responsibility to achieve long-term goals."
+        },
+        5: {
+            "meaning": "Freedom and Adventure",
+            "traits": "Those with Growth Number 5 are driven by a desire for freedom and new experiences. They thrive on change and variety, seeking to explore different aspects of life. Their growth involves learning to balance their need for adventure with stability and responsibility."
+        },
+        6: {
+            "meaning": "Nurturing and Responsibility",
+            "traits": "People with Growth Number 6 are guided by a strong sense of duty and nurturing. They often find fulfillment in roles that involve caring for others and creating harmony. Their growth involves embracing their role as a caregiver while maintaining their own well-being."
+        },
+        7: {
+            "meaning": "Introspection and Wisdom",
+            "traits": "Individuals with Growth Number 7 are on a path of introspection and seeking wisdom. They are often drawn to spiritual or intellectual pursuits and value solitude. Their growth involves deepening their understanding and applying their insights in meaningful ways."
+        },
+        8: {
+            "meaning": "Achievement and Power",
+            "traits": "Those with Growth Number 8 are focused on achieving success and mastering their ambitions. They are often drawn to leadership and positions of power. Their growth involves learning to balance their drive for success with ethical considerations and personal relationships."
+        },
+        9: {
+            "meaning": "Compassion and Idealism",
+            "traits": "People with Growth Number 9 are motivated by a desire to make a positive impact on the world. They are compassionate, idealistic, and drawn to humanitarian efforts. Their growth involves channeling their ideals into practical actions and embracing their role in creating change."
+        },
+        11: {
+            "meaning": "Inspiration and Spiritual Awareness",
+            "traits": "Individuals with Growth Number 11 are guided by a profound sense of inspiration and spiritual awareness. They often have a strong desire to uplift and enlighten others. Their growth involves harnessing their intuitive and visionary abilities to inspire and lead with integrity."
+        },
+        22: {
+            "meaning": "Mastery and Visionary Achievement",
+            "traits": "Those with Growth Number 22 are focused on achieving mastery and realizing their visionary goals. They have the potential to make a significant impact through their leadership and organizational skills. Their growth involves applying their grand vision with practical and strategic actions."
+        },
+        33: {
+            "meaning": "Healing and Compassionate Leadership",
+            "traits": "People with Growth Number 33 are driven by a deep desire to heal and lead compassionately. They are often involved in teaching or healing professions and have a profound impact on others. Their growth involves embracing their role as a healer and guiding others with empathy and wisdom."
+        }
+    }
+    // https://www.numerology.com/articles/your-numerology-chart/birth-day-number/
+    
+    const birthday_numbers = {
+        1: {
+            "meaning": "The Pioneer/Leader",
+            "traits": "You have a great ambition and a strong drive for success. You are highly independent and dislike the restrictions of having to work with others. You easily become frustrated with the routine."
+        },
+        2: {
+            "meaning": "The Peacemaker",
+            "traits": "You are warm and affectionate and need the same from your close friends and loved ones. You want to be hugged and cuddled. There is a tendency to fall into childhood patterns when giving and receiving affection."
+        },
+        3: {
+            "meaning": "The Creative Child",
+            "traits": "You have a fine sense of harmony and art in everything that you do - from your dress to the way you decorate your home. You have a gift with plants and flower arranging."
+        },
+        4: {
+            "meaning": "The Salt of the Earth",
+            "traits": "You are precise and take great care in what you do. You are highly principled, disciplined, and responsible. You take your obligations very seriously."
+        },
+        5: {
+            "meaning": "The Freedom Lover",
+            "traits": "You are highly adaptable and need excitement. You relate well to others and have an easy way with words. In fact, you have a talent for promotion, public relations, and, for some, writing."
+        },
+        6: {
+            "meaning": "Love and Sacrifice",
+            "traits": "Your focus is on relationships. You want to help others and have a talent as a healer and could make a profession of the healing arts, either as a nutritionist, alternative health therapist (acupuncture, massage, for example) or doctor."
+        },
+        7: {
+            "meaning": "Seeker of Wisdom",
+            "traits": "You should meditate and do some type of spiritual exercise in order to develop your intuitive talents. Once you have begun to trust your intuition, you will develop a sound faith."
+        },
+        8: {
+            "meaning": "Balance & Power",
+            "traits": "Your approach to business is original, creative, and daring. You have sound judgment and need the freedom to exercise it, lest you become bitter and tyrannical elsewhere in your life."
+        },
+        9: {
+            "meaning": "Global Awareness",
+            "traits": "You have a greater social role to play that will require a blend of the practical and the humanitarian. You must have a keen sense of what will work, but at the same time direct those efforts toward some greater good."
+        },
+        10: {
+            "meaning": "Taking Charge",
+            "traits": "Your test in life is to live according to your dream - that is, to have the courage and the stamina to overcome obstacles and win the independence you so deeply want."
+        },
+        11: {
+            "meaning": "The Intuitive",
+            "traits": "Your intuition is so keen, in fact, that you would make a fine counselor and/or healer. You seem to understand people before they reveal their inner being themselves."
+        },
+        12: {
+            "meaning": "Self Expression",
+            "traits": "Your artistic talent emerges in virtually everything you take seriously, your home, your cooking, the way you express yourself, and any artistic endeavor you commit to."
+        },
+        13: {
+            "meaning": "The Rock",
+            "traits": "You love things that are solid and grounded in the practical. Yet, you possess a considerable amount of artistic talent that is searching for concrete forms of expression."
+        },
+        14: {
+            "meaning": "The Adventurer",
+            "traits": "You are highly social and work well with others as long as there are not too many restrictions to bind you. You get restless easily, a characteristic that can make you change vocations or relationships much too quickly."
+        },
+        15: {
+            "meaning": "Mother-/Fatherhood",
+            "traits": "There is a yearning within you to ground within the family or community structure, but there is a hint of wanderlust, too, which makes grounding difficult. You want the best in your life, and you strive for it."
+        },
+        16: {
+            "meaning": "Phoenix Rising",
+            "traits": "You have a fine analytical mind that is capable of penetrating beneath the surface of the subject at hand. You also have the capacity for excellent concentration."
+        },
+        17: {
+            "meaning": "Success Through Detachment",
+            "traits": "Your approach to business is original, creative, and daring. You are an excellent manager and organizer. You are gifted with the ability to see the larger picture, and, remarkably, how the details come into play."
+        },
+        18: {
+            "meaning": "The World is Your Oyster",
+            "traits": "You are broadminded and should be educated in several different fields, particularly the arts. Many great artists are found under this number."
+        },
+        19: {
+            "meaning": "The Individualist",
+            "traits": "As the poet John Donne said: 'No man is an Island unto himself... We are all bits of the main.' This is a central lesson in your life: to learn the difference between the dream of independence and the reality of interdependence."
+        },
+        20: {
+            "meaning": "Bringer of Harmony",
+            "traits": "You possess great awareness and can sense the feelings of others, even when they try to hide their inner thoughts. Consequently, you are easily influenced by your environment."
+        },
+        21: {
+            "meaning": "Express & Create",
+            "traits": "Your imagination is highly charged. It reveals itself in everything you do, from your sparkling conversation to your most prized projects. You are quick-witted and can think on your feet."
+        },
+        22: {
+            "meaning": "The Master Builder",
+            "traits": "You are an organizer, or builder of an institution or business. You have a vision and the capability to realize it. You possess the capacity for great strength, but conversely you can be deeply afraid of the dimensions of your ambitions."
+        },
+        23: {
+            "meaning": "Adaptable & Versatile",
+            "traits": "You are highly adaptable, which makes change a great deal easier for you than for others. You have an easy way with relationships and generally get along well with most people you meet."
+        },
+        24: {
+            "meaning": "Teacher & Healer",
+            "traits": "You are energetic, responsible, and helpful, but your sympathetic nature may cause you to interfere in relationships and get you into trouble. Know your limits."
+        },
+        25: {
+            "meaning": "Spiritual Growth",
+            "traits": "You are capable of investigating and researching subjects deeply. Your analytical skills force you to avoid taking anything at face value."
+        },
+        26: {
+            "meaning": "Between Matter & Spirit",
+            "traits": "Your challenge is to maintain a balance between your material goals and the fundamental human qualities of understanding, compassion, and love."
+        },
+        27: {
+            "meaning": "The People's Spirit",
+            "traits": "You are a bit of a late-bloomer. You need exposure to many different types of people before you find the area in which you will specialize. This is also the reason many change careers more than once."
+        },
+        28: {
+            "meaning": "Self Empowerment",
+            "traits": "You are unconventional, idealistic, and independent. You are extremely ambitious. You possess much self-confidence but need much encouragement."
+        },
+        29: {
+            "meaning": "The Psychic",
+            "traits": "You are so driven by spiritual pursuits that no matter what you do in life, the world of spirit and philosophy will be central to your daily behavior. You feel linked with the larger universal forces, and nothing will change that."
+        },
+        30: {
+            "meaning": "Perform & Express",
+            "traits": "You are an artist at heart. You could excel in writing, visual, or performing arts. If you are not professionally involved in one of these areas, you should consider taking up art as a hobby."
+        },
+        31: {
+            "meaning": "Power of Work",
+            "traits": "You are the foundation of any enterprise you commit to, doing your work with determination and precision."
+        }
+    };
+    function reduceNumber(number) {
+        // Check if the number is in the set {11, 22, 33}
+        if (number === 11 || number === 22 || number === 33) {
+            return number;  // Return the number itself if it's in the set
+        }
+        // or && ![11, 22, 33].includes(number)
+        while (number > 9)  {
+            // Convert the number to a string, split it into digits, map them to integers, and sum them
+            number = String(number)
+                .split('')                     // Split the number into its digits as strings
+                .map(digit => parseInt(digit))  // Convert each digit to a number
+                .reduce((sum, digit) => sum + digit, 0);  // Sum the digits
+        }
+        return number;
+    }
+
+    function getPythagoreanValue(char) {
+        // Define the Pythagorean numerology mapping
+        const pythagoreanMapping = {
+            'A': 1, 'B': 2, 'C': 3, 'D': 4, 'E': 5, 'F': 6, 'G': 7, 'H': 8, 'I': 9,
+            'J': 1, 'K': 2, 'L': 3, 'M': 4, 'N': 5, 'O': 6, 'P': 7, 'Q': 8, 'R': 9,
+            'S': 1, 'T': 2, 'U': 3, 'V': 4, 'W': 5, 'X': 6, 'Y': 7, 'Z': 8
+        };
+    
+        // Convert the character to uppercase and return the corresponding value, or 0 if not found
+        return pythagoreanMapping[char.toUpperCase()] || 0;
+    }
+
+    function calculateEssenceNumbers(firstName, middleName, lastName, age = 90) {
+        // Combine first, middle, and last names
+        const fullName = firstName + middleName + lastName;
+        
+        // Array to store the essence numbers
+        const essenceNumbers = [];
+        
+        // Loop through each year from 0 to age
+        for (let year = 0; year <= age; year++) {
+            // Find the essence number for the current year
+            let nameSum = 0;
+            
+            // Sum the Pythagorean values for each letter in the full name (only alphabetic characters)
+            for (let i = 0; i < fullName.length; i++) {
+                const letter = fullName[i];
+                if (/[a-zA-Z]/.test(letter)) {  // Check if the character is an alphabet letter
+                    nameSum += getPythagoreanValue(letter);  // Get the Pythagorean value for the letter
+                }
+            }
+            
+            // Calculate the essence number by adding the current year
+            let essenceNumber = nameSum + year;
+    
+            // Reduce the essence number to a single digit (except for 11, 22, or 33)
+            while (essenceNumber > 9 && ![11, 22, 33].includes(essenceNumber)) {
+                essenceNumber = essenceNumber.toString().split('').reduce((sum, digit) => sum + parseInt(digit), 0);
+            }
+    
+            // Append the essence number to the array
+            essenceNumbers.push(essenceNumber);
+        }
+    
+        return essenceNumbers;
+    }
+
+    // Function to calculate numerology
+    function calculateNumerology(firstName, middleName, lastName) {
+        let destinyNumber = 0;
+        let soulUrgeNumber = 0;
+        let growthNumber = 0;
+        
+        // Combine full name and remove spaces
+        const fullName = (firstName + " " + (middleName || "") + " " + lastName).replace(/\s+/g, '');
+
+        // Loop through each character of the full name
+        for (let i = 0; i < fullName.length; i++) {
+            const char = fullName[i].toUpperCase();
+            
+            if (/[A-Z]/.test(char)) {  // Only consider alphabetic characters
+                const value = getPythagoreanValue(char);
+                destinyNumber += value;
+
+                if (vowels.includes(char)) {
+                    soulUrgeNumber += value;
+                } else if (consonants.includes(char)) {
+                    growthNumber += value;
+                }
+            }
+        }
+
+        // Reduce the numbers to single digits
+        destinyNumber = reduceNumber(destinyNumber);
+        soulUrgeNumber = reduceNumber(soulUrgeNumber);
+        growthNumber = reduceNumber(growthNumber);
+
+        return {
+            destinyNumber,
+            soulUrgeNumber,
+            growthNumber
+        };
+    }
+
+    function calculateNumerologyFromBirthdate(currentdate, birthdate) {
+        // Split the birthdate into month, day, and year
+        // Parse the birthdate (YYYY-MM-DD) into month, day, year
+        let birthDateParts = birthdate.split('-');
+        let year = parseInt(birthDateParts[0]); // Year
+        let month = parseInt(birthDateParts[1]); // Month (1-12)
+        let day = parseInt(birthDateParts[2]); // Day (1-31)
+    
+        // Calculate the Life Path Number
+        let lifePathSum = reduceNumber(month) + reduceNumber(day) + reduceNumber(year);
+        let attitudeNumber = reduceNumber(reduceNumber(month) + reduceNumber(day));
+        let lifePathNumber = reduceNumber(lifePathSum);
+    
+        // Get the current date, or default to the current date if not provided
+        if (!currentdate) {
+            currentdate = new Date();
+        }
+    
+        // Extract the current date's month, day, and year
+        // Parse the current date (YYYY-MM-DD) into month, day, year
+        let currentDateParts = currentdate.split('-');
+        let currentYear = parseInt(currentDateParts[0]); // Year
+        let currentMonth = parseInt(currentDateParts[1]); // Month (1-12)
+        let currentDay = parseInt(currentDateParts[2]); // Day (1-31)
+    
+        // Step 1: Sum the current year, month, and day
+        let personalYear = currentYear + month + day;
+    
+        // Step 2: Reduce to a single digit or master number
+        while (personalYear > 9 && ![11, 22, 33].includes(personalYear)) {
+            personalYear = reduceNumber(personalYear);
+        }
+    
+        // Step 2: Add the current month to get the personal month
+        let personalMonth = personalYear + currentMonth;
+    
+        // Step 3: Reduce to a single digit or master number
+        while (personalMonth > 9 && ![11, 22, 33].includes(personalMonth)) {
+            personalMonth = reduceNumber(personalMonth);
+        }
+    
+        // Step 3: Add the current day to get the personal day
+        let personalDay = personalMonth + currentDay;
+    
+        // Step 4: Reduce to a single digit or master number
+        while (personalDay > 9 && ![11, 22, 33].includes(personalDay)) {
+            personalDay = reduceNumber(personalDay);
+        }
+    
+        // Calculate the Birthday Number (simply the day of birth)
+        let birthdayNumber = day;
+    
+        // Return all the calculated values
+        return {
+            lifePathNumber,
+            attitudeNumber,
+            birthdayNumber,
+            personalYear,
+            personalMonth,
+            personalDay
+        };
+    }
+    
+    // Example usage
+    //console.log(getNorthNode(11, 26, 2024));
+    function printNumerologyTable() {
+        // Define the Pythagorean numerology mapping
+        const numerologyMap = {
+            1: ['A', 'J', 'S'],
+            2: ['B', 'K', 'T'],
+            3: ['C', 'L', 'U'],
+            4: ['D', 'M', 'V'],
+            5: ['E', 'N', 'W'],
+            6: ['F', 'O', 'X'],
+            7: ['G', 'P', 'Y'],
+            8: ['H', 'Q', 'Z'],
+            9: ['I', 'R']
+        };
+        
+        // Determine the width of the columns
+        const columnWidth = 4;
+    
+        // Print the top row with numbers 1 through 9
+        let topRow = '';
+        for (let num = 1; num <= 9; num++) {
+            topRow += `${num.toString().padEnd(columnWidth)}`
+        }
+        let result = topRow;
+        
+        // Print the rows corresponding to each number
+        let maxRows = Math.max(...Object.values(numerologyMap).map(letters => letters.length));
+        for (let row = 0; row < maxRows; row++) {
+            let currentRow = '';
+            for (let num = 1; num <= 9; num++) {
+                // Print each letter if it exists in the current row, otherwise print blank
+                if (row < numerologyMap[num].length) {
+                    currentRow += `${numerologyMap[num][row].padEnd(columnWidth)}`;
+                } else {
+                    currentRow += `${' '.padEnd(columnWidth)}`;
+                }
+            }
+            result += "\n"+ currentRow;
+        }
+        return result;
+    }
+    
+    
+    
+    window.onload = function() {
+        // Your code here
+        // Call the function to print the numerology table
+        results = printNumerologyTable();
+        // Update the textarea with the result
+         document.getElementById('pythagorean').value = results;
+
+      };
+
+    // Function to handle the form submission
+    function handleFormSubmission(event) {
+      // Prevent the form from submitting normally (page reload)
+      event.preventDefault();
+
+      // Get the value from the input field
+      const first_name = document.getElementById('first-name').value;
+      const middle_name = document.getElementById('middle-name').value;
+      const last_name = document.getElementById('last-name').value;
+      
+      
+      // Get current date value
+      let currentDate = document.getElementById('current-date').value;
+      let birthDate = document.getElementById('birthdate').value;
+
+      
+      // Create the result to display
+      // const result = `Name: ${name}\nAge: ${age}\nThank you for submitting!`;
+
+      //json output
+      let name_numbers = calculateNumerology(first_name, middle_name, last_name);
+      let essence_numbers = calculateEssenceNumbers(first_name, middle_name, last_name);
+      let numerologyValues = calculateNumerologyFromBirthdate(currentDate, birthDate);
+      
+      let destinyNumber = name_numbers['destinyNumber'];
+      let soulUrgeNumber = name_numbers['soulUrgeNumber'];
+      let maturityNumber = name_numbers['growthNumber'];
+
+      let lifePathNumber = numerologyValues['lifePathNumber'];
+      let attitudeNumber = numerologyValues['attitudeNumber'];
+      let birthdayNumber = numerologyValues['birthdayNumber'];
+      let personalYear = numerologyValues['personalYear'];
+      let personalMonth = numerologyValues['personalMonth'];
+      let personalDay = numerologyValues['personalDay'];
+
+      let result = `<strong>The Life Path Number is believed to reveal the person's life purpose, characteristics, and the path they are destined to follow.</strong>`;
+      result += `<br/><strong>The Life Path Number ${lifePathNumber}</strong>.<br/> ${life_path_numbers[lifePathNumber]['traits']}`;
+      
+      result += `<br/><br/><strong>The Birthday Number describes your natural abilities.</strong>`;
+      result += `<br/><strong>The Birthday Number ${birthdayNumber}</strong>.<br/> ${birthday_numbers[birthdayNumber]['traits']}`;
+
+      result += `<br/><br/><strong>The Attitude Number is believe to reveal the way you present yourself to the world.</strong>`;
+      result += `<br/><strong>The Attitude Number ${attitudeNumber}</strong>.<br/> ${number_description[attitudeNumber]}`;
+
+     // Parse the current date (YYYY-MM-DD) into month, day, year
+     let currentDateParts = currentDate.split('-');
+     let currentYear = parseInt(currentDateParts[0]); // Year
+     let currentMonth = parseInt(currentDateParts[1]); // Month (1-12)
+     let currentDay = parseInt(currentDateParts[2]); // Day (1-31)
+
+     // Parse the birthdate (YYYY-MM-DD) into month, day, year
+     let birthDateParts = birthDate.split('-');
+     let birthYear = parseInt(birthDateParts[0]); // Year
+     let birthMonth = parseInt(birthDateParts[1]); // Month (1-12)
+     let birthDay = parseInt(birthDateParts[2]); // Day (1-31)
+
+     //pinnacle numbers todo
+     let age_py1 = 36 - lifePathNumber;
+     let age_py2 = 9 + age_py1;
+     let age_py3 = age_py2 + 9; // pattern of 9 is a cycle
+     
+     result += `<br/><br/><strong>Pinnacle cycle 1 Number: ${reduceNumber(birthMonth + birthDay)} and age: 0 - ${age_py1}.</strong>`;
+     result += `<br/><strong>Pinnacle cycle 2 Number: ${reduceNumber(birthDay + birthYear)} and age: ${age_py1} - ${age_py2}.</strong>`;
+     result += `<br/><strong>Pinnacle cycle 3 Number: ${reduceNumber(birthMonth + birthDay + birthDay + birthYear)} and age: ${age_py2} - ${age_py3}.</strong>`;
+     result += `<br/><strong>Pinnacle cycle 4 Number: ${reduceNumber(birthMonth + birthYear)} and age: ${age_py3}+.</strong>`;
+
+     result += `<br/><br/><strong>The Essence Number inner vibration number for the year ${currentYear}.</strong>`;
+     index = currentYear - birthYear + 1;
+     result += `<br/><strong>Essence Number: ${essence_numbers[index]}.</strong>`;
+
+      result += `<br/><br/><strong>The Destiny/Expression Name Number describes how you will fulfill your life path.</strong>`;
+      result += `<br/><strong>The Desinty Number ${destinyNumber}</strong>.<br/> ${destiny_numbers[destinyNumber]['traits']}`;
+
+      result += `<br/><br/><strong>The Soul Urge Number describes your drive, motivation, inner most desires.</strong>`;
+      result += `<br/><strong>The Soul Urge Number ${soulUrgeNumber}</strong>.<br/> ${soul_urge_numbers[soulUrgeNumber]['traits']}`;
+
+      result += `<br/><br/><strong>The Maturity Number describes your maturity traits as you grow older.</strong>`;
+      result += `<br/><strong>The Maturity Number ${maturityNumber}</strong>.<br/> ${growth_numbers[maturityNumber]['traits']}`;
+
+
+      result += `<br/><br/><strong>This personal year's theme & external vibration number ${personalYear}.</strong>`;
+      result += `<br/>The theme of the year is ${personal_day_advice[personalYear]}`;
+
+      result += `<br/><br/><strong>This personal month's theme & external vibration number ${personalMonth}.</strong>`;
+      result += `<br/>The theme of the month is ${personal_day_advice[personalMonth]}`;
+
+      result += `<br/><br/><strong>This personal day theme & external vibration number ${personalDay}.</strong>`;
+      result += `<br/>The theme of the day is ${personal_day_advice[personalDay]}<br/><br/>`;
+
+
+      // Update the textarea with the result
+      document.getElementById('result').innerHTML = result;
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        // Event listener for the clear form button
+        document.getElementById("clearFormBtn").addEventListener("click", function() {
+            // Clear the input fields
+            document.getElementById('first-name').value = "";
+            document.getElementById('middle-name').value = "";
+            document.getElementById('last-name').value = "";
+            document.getElementById('current-date').value = "";
+            document.getElementById('birthdate').value = "";
+            
+            // Clear the result display
+            document.getElementById("result").innerHTML = ""; 
+        });
+    });
+
+  </script>
+</head>
+<body>
+
+  <h1>Numerology</h1>
+
+  <!-- Textarea to display the results -->
+  <h3>Pythagorean Table:</h3>
+  <textarea id="pythagorean" rows="4" cols="35" readonly></textarea>
+
+  <!-- Form with Name and Age input fields -->
+  <form onsubmit="handleFormSubmission(event)">
+     <!-- First Name -->
+     <label for="first-name">First Name:</label>
+     <input type="text" id="first-name" name="first-name" required><br><br>
+
+     <!-- Middle Name (Optional) -->
+     <label for="middle-name">Middle Name (Optional):</label>
+     <input type="text" id="middle-name" name="middle-name"><br><br>
+
+     <!-- Last Name -->
+     <label for="last-name">Last Name:</label>
+     <input type="text" id="last-name" name="last-name" required><br><br>
+
+     <!-- Current Date -->
+     <label for="current-date">Current Date:</label>
+     <input type="date" id="current-date" name="current-date" required><br><br>
+
+     <!-- Birthdate -->
+     <label for="birthdate">Birthdate:</label>
+     <input type="date" id="birthdate" name="birthdate" required><br><br>
+
+    <button type="submit">Reveal</button>
+  </form>
+
+  <button id="clearFormBtn">Clear Form</button>
+  <!-- Textarea to display the results -->
+  <h3>Results:</h3>
+  <div id="result"></div>
+  <!--<textarea id="result" rows="6" cols="30" readonly></textarea>-->
+
+</body>
+</html>
