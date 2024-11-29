@@ -581,19 +581,13 @@
         return result;
     }
     
-    
-    document.addEventListener('DOMContentLoaded', function() {
-    alert("Ready!");
-}, false);
-    
-    window.onload = function() {
-        // Your code here
-        // Call the function to print the numerology table
-        results = printNumerologyTable();
-        // Update the textarea with the result
-         document.getElementById('pythagorean').value = results;
 
-      };
+    // Your code here
+    // Call the function to print the numerology table
+    results = printNumerologyTable();
+    // Update the textarea with the result
+     document.getElementById('pythagorean').value = results;
+
 
     // Function to handle the form submission
     function handleFormSubmission(event) {
