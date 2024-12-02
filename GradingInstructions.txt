@@ -1,0 +1,72 @@
+Steps for Grading Project 4
+
+
+
+1. Make sure you have valid certificates on the VM for clients and user keys as well.
+
+        // The clientX.key, clientX.crt, and  clientX.csr goes in  clientX\certs directory
+
+	openssl genrsa -out client1.key 2048
+	openssl genrsa -out client2.key 2048
+	openssl genrsa -out secure-shared-store.key 2048
+
+
+
+	openssl req -new -key client1.key -out client1.csr
+	openssl req -new -key client2.key -out client2.csr
+	openssl req -new -key secure-shared-store.key -out secure-shared-store.csr
+
+
+
+	Then use this one:
+
+
+
+	openssl x509 -req -in /home/cs6238/Desktop/Project4/server/certs/secure-shared-store.csr -CA CA.crt -CAkey CA.key -CAcreateserial -out /home/cs6238/Desktop/Project4/server/certs/secure-shared-store.crt -days 825 -sha256 
+	openssl x509 -req -in /home/cs6238/Desktop/Project4/client1/certs/client1.csr -CA CA.crt -CAkey CA.key -CAcreateserial -out /home/cs6238/Desktop/Project4/client1/certs/client1.crt -days 825 -sha256
+	openssl x509 -req -in client2.csr -CA CA.crt -CAkey CA.key -CAcreateserial -out client2.crt -days 825 -sha256
+
+
+
+	(Instead of CA.pem use CA.crt which you have and you can get rid of the .ext)
+
+
+
+	Then this is also correct:
+
+
+
+	openssl x509 -pubkey -noout -in client1.crt > client1.pub
+	openssl x509 -pubkey -noout -in secure-shared-store.crt > secure-shared-store.pub
+
+
+
+	//For USER keys user key goes in clientX\userKeys and userX.pub goes in server\application\userpubickeys
+
+	openssl genrsa -out user1.key 2048
+	openssl genrsa -out user2.key 2048
+
+
+
+	openssl rsa -in user1.key -pubout -out user1.pub
+	openssl rsa -in user2.key -pubout -out user2.pub
+
+
+
+2. Download the student's files: client.py, server.py and requirements.txt to the VM
+
+
+
+3. Run the gradingScript.py from the Project4 directory to add/replace the files to the correct location
+
+
+
+4. Update the GT_USERNAME value in the test_harness.py to the GT_ID of the student you're grading. 
+
+
+
+5. Open a terminal and run pip3 install -r requirements.txt
+
+
+
+6. Open an terminal and run python test_harness.py
