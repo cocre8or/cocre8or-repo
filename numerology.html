@@ -40,6 +40,20 @@
         22: "Harness your abilities to manifest your dreams on a large scale. Focus on practical steps towards your vision.",
         33: "Embrace your role as a healer and teacher. Focus on compassion, service, and uplifting others."
     }
+    const personal_year_advice = {
+        1: "Focus on beginning a new cycle with fresh energy and exhilaration. This is a time to focus on yourself.",
+        2: "This is a time to create emotional balance in your life and tend to your relationships.",
+        3: "Year 3 is a time to get into your creativity and expression, experimenting with communicating your inner feelings to the outer world.",
+        4: "In Year 4, you begin to stabilize what you've learned over the past few years and build something that will last in the future.",
+        5: "Having begun your foundation, Year 5 is a good opportunity to see what is working and what isn't, by making changes and resetting your goals.",
+        6: "In Year 6, you continue to grow and nurture what you've been creating.",
+        7: "In order to deepen and stabilize everything you've been learning and creating in your life, it's time to go within and listen to the whispers of your soul.",
+        8: "Now is the time to externalize everything you've downloaded, solidified, nurtured, and built.",
+        9: "At the end of the cycle, you receive and appreciate everything you've done in these cycle as you prepare for the next one.",
+        11: "This is a time to create emotional balance in your life and tend to your relationships.",
+        22: "In Year 22/4, you begin to stabilize what you've learned over the past few years and build something that will last in the future.",
+        33: "In Year 33/6, you continue to grow and nurture what you've been creating."
+    }
     const number_description = {
         0: "Before time and space, ultimate potential, source before manifestation, zero amplifies any number i.e. 4 to 40, without this amplification of 0 you can’t get to 49",
         1: "The Pioneer, God, starter, independent nature, life force, leader, ego, self, confidence",
@@ -502,6 +516,10 @@
     
         // Step 1: Sum the current year, month, and day
         let personalYear = currentYear + month + day;
+        // birthday month vs current Month
+        if (currentMonth < month){
+            personalYear = personalYear - 1;
+        }
     
         // Step 2: Reduce to a single digit or master number
         while (personalYear > 9 && ![11, 22, 33].includes(personalYear)) {
@@ -620,7 +638,7 @@
 
 
       result += `<br/><br/><strong>This personal year's theme & external vibration number ${personalYear}.</strong>`;
-      result += `<br/>The theme of the year is ${personal_day_advice[personalYear]}`;
+      result += `<br/>The theme of the year is ${personal_year_advice[personalYear]}`;
 
       result += `<br/><br/><strong>This personal month's theme & external vibration number ${personalMonth}.</strong>`;
       result += `<br/>The theme of the month is ${personal_day_advice[personalMonth]}`;
