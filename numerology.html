@@ -261,7 +261,44 @@
             "traits": "People with Growth Number 33 are driven by a deep desire to heal and lead compassionately. They are often involved in teaching or healing professions and have a profound impact on others. Their growth involves embracing their role as a healer and guiding others with empathy and wisdom."
         }
     }
-    // https://www.numerology.com/articles/your-numerology-chart/birth-day-number/
+    const personality_numbers = {
+        1: {
+            "traits": "You radiate with a dynamic and efficient energy. You appear controlled and capable. You value courage and effort in the face of difficulties and these qualities show. Others can sense that you will not be pushed around."
+        },
+        2: {
+            "traits": "You appear friendly and unpretentious. You have a soft and warm exterior. Others perceive you as gentle, safe harbor. People are drawn to you because, among other reasons, you appear warm and unthreatening."
+        },
+        3: {
+            "traits": "Your vibration is full of life. You are uplifting, inspiring, and charming. You are a fun person to be around. Your wit and sparkling personality make you the life of a party."
+        },
+        4: {
+            "traits": "You are a family person. You love the intimacy, consistency, and the security a family provides. You are a good provider and protector. But family members may take your efforts for granted."
+        },
+        5: {
+            "traits": "You are a stimulating person. You brighten social gatherings with your fresh and original ideas. Your conversation tends to be sprinkled with novelty and wit. You have a quick tongue and charisma."
+        },
+        6: {
+            "traits": "You radiate understanding and compassion. People sense your warmth and fairness. For this reason, you attract many people who are in need of comfort, including the disadvantaged.."
+        },
+        7: {
+            "traits": "You seem mysterious and different. People see you as serious and studious. You are highly independent and self- sufficient. Your accept ional intelligence and wisdom are quickly noticed, people respect you."
+        },
+        8: {
+            "traits": "You appear strong and powerful. You have an impressive personality and can influence and even intimidate through sheer force. You have natural authority. Your competence and enthusiasm attract people with resources."
+        },
+        9: {
+            "traits": "You have an impressive and aristocratic bearing. No matter how tall you are, you appear noble and upright. You are very much in control of the image you send out to others."
+        },
+        11: {
+            "traits": "You have worked hard to gain confidence and overcome, at least to some extend, an in-born shyness. As a child, and into your early twenties, nervous energy may have caused you to bite your nails or express your nervousness in other ways."
+        },
+        22: {
+            "traits": "You radiate reliability and consistency. People trust you and feel secure with your judgment. You are seen as a cornerstone of a business and are relied upon to do your work efficiently and expertly."
+        },
+        33: {
+            "traits": "You inspire confidence. You have a fine sense of justice. You do everything in your power to keep the harmony and are even willing to sacrifice your personal desires for the good of others. You can take this too far, however, sometimes playing the role of the martyr."
+        }
+    };
     
     const birthday_numbers = {
         1: {
@@ -456,7 +493,7 @@
     function calculateNumerology(firstName, middleName, lastName) {
         let destinyNumber = 0;
         let soulUrgeNumber = 0;
-        let growthNumber = 0;
+        let personalityNumber = 0;
         
         // Combine full name and remove spaces
         const fullName = (firstName + " " + (middleName || "") + " " + lastName).replace(/\s+/g, '');
@@ -472,7 +509,7 @@
                 if (vowels.includes(char)) {
                     soulUrgeNumber += value;
                 } else if (consonants.includes(char)) {
-                    growthNumber += value;
+                    personalityNumber += value;
                 }
             }
         }
@@ -480,12 +517,12 @@
         // Reduce the numbers to single digits
         destinyNumber = reduceNumber(destinyNumber);
         soulUrgeNumber = reduceNumber(soulUrgeNumber);
-        growthNumber = reduceNumber(growthNumber);
+        personalityNumber = reduceNumber(personalityNumber);
 
         return {
             destinyNumber,
             soulUrgeNumber,
-            growthNumber
+            personalityNumber
         };
     }
 
@@ -583,7 +620,7 @@
       
       let destinyNumber = name_numbers['destinyNumber'];
       let soulUrgeNumber = name_numbers['soulUrgeNumber'];
-      let maturityNumber = name_numbers['growthNumber'];
+      let personalityNumber = name_numbers['personalityNumber'];
 
       let lifePathNumber = numerologyValues['lifePathNumber'];
       let attitudeNumber = numerologyValues['attitudeNumber'];
@@ -591,6 +628,7 @@
       let personalYear = numerologyValues['personalYear'];
       let personalMonth = numerologyValues['personalMonth'];
       let personalDay = numerologyValues['personalDay'];
+      let maturityNumber = reduceNumber(lifePathNumber + destinyNumber);
 
       let result = `<strong>The Life Path Number is believed to reveal the person's life purpose, characteristics, and the path they are destined to follow.</strong>`;
       result += `<br/><strong>The Life Path Number ${lifePathNumber}</strong>.<br/> ${life_path_numbers[lifePathNumber]['traits']}`;
@@ -627,15 +665,17 @@
      index = currentYear - birthYear + 1;
      result += `<br/><strong>Essence Number: ${essence_numbers[index]}.</strong>`;
 
-      result += `<br/><br/><strong>The Destiny/Expression Name Number describes strength to redevelop and how you will fulfill your life path.</strong>`;
+      result += `<br/><br/><strong>The Destiny/Expression Name Number describes how you will fulfill your life path.</strong>`;
       result += `<br/><strong>The Desinty Number ${destinyNumber}</strong>.<br/> ${destiny_numbers[destinyNumber]['traits']}`;
 
       result += `<br/><br/><strong>The Soul Urge Number describes your drive, motivation, inner most desires.</strong>`;
       result += `<br/><strong>The Soul Urge Number ${soulUrgeNumber}</strong>.<br/> ${soul_urge_numbers[soulUrgeNumber]['traits']}`;
 
-      result += `<br/><br/><strong>The Maturity Number describes your maturity traits as you grow older.</strong>`;
+      result += `<br/><br/><strong>The Peronality Number describes your outer presence.</strong>`;
+      result += `<br/><strong>The Peronality Number ${personalityNumber}</strong>.<br/> ${personality_numbers[personalityNumber]['traits']}`;
+      
+      result += `<br/><br/><strong>The Maturity Number describes the traits you should develop as you grow older.</strong>`;
       result += `<br/><strong>The Maturity Number ${maturityNumber}</strong>.<br/> ${growth_numbers[maturityNumber]['traits']}`;
-
 
       result += `<br/><br/><strong>This personal year's theme & external vibration number ${personalYear}.</strong>`;
       result += `<br/>The theme of the year is ${personal_year_advice[personalYear]}`;
