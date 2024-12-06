@@ -629,8 +629,17 @@
       let personalMonth = numerologyValues['personalMonth'];
       let personalDay = numerologyValues['personalDay'];
       let maturityNumber = reduceNumber(lifePathNumber + destinyNumber);
+      
+      let result = `<br/><br/><strong>This personal year's theme & external vibration number ${personalYear}.</strong>`;
+      result += `<br/>The theme of the year is ${personal_year_advice[personalYear]}`;
 
-      let result = `<strong>The Life Lesson Number is believed to reveal the person's life purpose, characteristics, and the path they are destined to follow.</strong>`;
+      result += `<br/><br/><strong>This personal month's theme & external vibration number ${personalMonth}.</strong>`;
+      result += `<br/>The theme of the month is ${personal_day_advice[personalMonth]}`;
+
+      result += `<br/><br/><strong>This personal day theme & external vibration number ${personalDay}.</strong>`;
+      result += `<br/>The theme of the day is ${personal_day_advice[personalDay]}<br/><br/>`;
+
+      result += `<strong>The Life Lesson Number is believed to reveal the person's life purpose, characteristics, and the path they are destined to follow.</strong>`;
       result += `<br/><strong>The Life Lesson Number ${lifePathNumber}</strong>.<br/> ${life_path_numbers[lifePathNumber]['traits']}`;
       
       result += `<br/><br/><strong>The Birthday Number describes your natural abilities.</strong>`;
@@ -676,16 +685,6 @@
       
       result += `<br/><br/><strong>The Maturity Number describes the traits you should develop as you grow older.</strong>`;
       result += `<br/><strong>The Maturity Number ${maturityNumber}</strong>.<br/> ${growth_numbers[maturityNumber]['traits']}`;
-
-      result += `<br/><br/><strong>This personal year's theme & external vibration number ${personalYear}.</strong>`;
-      result += `<br/>The theme of the year is ${personal_year_advice[personalYear]}`;
-
-      result += `<br/><br/><strong>This personal month's theme & external vibration number ${personalMonth}.</strong>`;
-      result += `<br/>The theme of the month is ${personal_day_advice[personalMonth]}`;
-
-      result += `<br/><br/><strong>This personal day theme & external vibration number ${personalDay}.</strong>`;
-      result += `<br/>The theme of the day is ${personal_day_advice[personalDay]}<br/><br/>`;
-
 
       // Update the textarea with the result
       document.getElementById('result').innerHTML = result;
