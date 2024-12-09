@@ -32,7 +32,7 @@
         3: "Be Proud Of Yourself. Express your creativity and enjoy social interactions. Use this time for self-expression and joy.",
         4: "Be Productive. Planning day. Focus on building a solid foundation. Organize your tasks and pay attention to details for long-term success.",
         5: "Be Bold and beautify your environment. Embrace change and flexibility.",
-        6: "Be open to letting go. Your main concern should be about your familial and domestic matters.",
+        6: "Be responsible. Your main concern should be about your familial and domestic matters.",
         7: "Be Calm. Follow your intuition. Know thyself. Make an extra effort to stay calm and composed throughout the day. Take time for introspection and spiritual growth. Engage in self-reflection and seek deeper understanding.",
         8: "Be Business-minded in a relaxed manner. It is a day to make some essential professional decisions in life. Business and financial decisions taken on this day would reap good results. Focus on your ambitions and financial goals. Take decisive action towards your career and material success.",
         9: "Be Gennerous and be willing to make big goals. Share your experience and achievements with others. Let go of what no longer serves you. Focus on closure, forgiveness, and preparing for new chapters in your life.",
@@ -46,10 +46,10 @@
         3: "Year 3 is a time to get into your creativity and expression, experimenting with communicating your inner feelings to the outer world.",
         4: "In Year 4, you begin to stabilize what you've learned over the past few years and build something that will last in the future.",
         5: "Having begun your foundation, Year 5 is a good opportunity to see what is working and what isn't, by making changes and resetting your goals.",
-        6: "In Year 6, you continue to grow and nurture what you've been creating.",
+        6: "In Year 6, responsibilities added around family and home.",
         7: "In order to deepen and stabilize everything you've been learning and creating in your life, it's time to go within and listen to the whispers of your soul.",
-        8: "Now is the time to externalize everything you've downloaded, solidified, nurtured, and built.",
-        9: "At the end of the cycle, you receive and appreciate everything you've done in these cycle as you prepare for the next one.",
+        8: "Time of reaping what you've sown. Now is the time to externalize everything you've downloaded, solidified, nurtured, and built.",
+        9: "At the end of the cycle, you receive and appreciate everything you've done in these cycle as you prepare for the next one. Let go of attachments that no longer serve you.",
         11: "In Year 11/2,This is a time to create emotional balance in your life and tend to your relationships.",
         22: "In Year 22/4, you begin to stabilize what you've learned over the past few years and build something that will last in the future.",
         33: "In Year 33/6, you continue to grow and nurture what you've been creating."
@@ -630,13 +630,13 @@
       let maturityNumber = reduceNumber(lifePathNumber + destinyNumber);
       
       let result = `<strong>This personal year's theme & external vibration number ${personalYear}.</strong>`;
-      result += `<br/>The theme of the year is ${personal_year_advice[personalYear]}`;
+      result += `<br/>${personal_year_advice[personalYear]}`;
 
       result += `<br/><br/><strong>This personal month's theme & external vibration number ${personalMonth}.</strong>`;
-      result += `<br/>The theme of the month is ${personal_day_advice[personalMonth]}`;
+      result += `<br/>${personal_day_advice[personalMonth]}`;
 
       result += `<br/><br/><strong>This personal day theme & external vibration number ${personalDay}.</strong>`;
-      result += `<br/>The theme of the day is ${personal_day_advice[personalDay]}<br/><br/>`;
+      result += `<br/>${personal_day_advice[personalDay]}<br/><br/>`;
 
       result += `<strong>The Life Path Number is believed to reveal the person's life purpose, characteristics, and the path they are destined to follow.</strong>`;
       result += `<br/><strong>The Life Path Number ${lifePathNumber}</strong>.<br/> ${life_path_numbers[lifePathNumber]['traits']}`;
