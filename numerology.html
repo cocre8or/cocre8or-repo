@@ -35,7 +35,7 @@
         6: "Be responsible. Your main concern should be about your familial and domestic matters.",
         7: "Be Calm. Follow your intuition. Know thyself. Make an extra effort to stay calm and composed throughout the day. Take time for introspection and spiritual growth. Engage in self-reflection and seek deeper understanding.",
         8: "Be Business-minded in a relaxed manner. It is a day to make some essential professional decisions in life. Business and financial decisions taken on this day would reap good results. Focus on your ambitions and financial goals. Take decisive action towards your career and material success.",
-        9: "Be Gennerous and be willing to make big goals. Share your experience and achievements with others. Let go of what no longer serves you. Focus on closure, forgiveness, and preparing for new chapters in your life.",
+        9: "Be generous and be willing to make big goals. Share your experience and achievements with others. Let go of what no longer serves you. Focus on closure, forgiveness, and preparing for new chapters in your life.",
         11: "Cultivate harmony and cooperation. Focus on building relationships and practicing patience with others.",
         22: "Be Productive. Focus on building a solid foundation. Organize your tasks and pay attention to details for long-term success.",
         33: "Be Supportive. Your main concern should be about your familial and domestic matters."
@@ -64,7 +64,7 @@
         6: "The Healer, nurturing, supportive, problem-solving emotions and physical, family, security, controlling",
         7: "The Scientist/Meditator, solitude, self-care, detective, keen eye, wisdom, inventive, perfectionist, good luck, introspection, inner wisdom, inner spirituality",
         8: "The Banker, wealth, workaholic, abundance, karma, destiny, order, promotion, good managers",
-        9: "The Life-coach, spiritual awareness, transformative, social ethics, old soul, completion, release, forgive, humanitarian, minister, philanthropy, 360 circle 3+6+0 = 9 it represents Alpha & Omega",
+        9: "The Life-coach, Warrior, spiritual awareness, transformative, social ethics, old soul, completion, release, forgive, humanitarian, minister, philanthropy, 360 circle 3+6+0 = 9 it represents Alpha & Omega",
         11: "The Guru, heal of self and others, balanced spiritually and philosophically",
         22: "The Architect, master builder, dependable",
         33: "The Savior, self sacrifice"
@@ -73,15 +73,15 @@
     const destiny_numbers = {
         1: {
             "meaning": "Leadership and Independence",
-            "traits": "Individuals with Destiny Number 1 are natural leaders who are ambitious and self-reliant. They have a strong desire to achieve and are often seen as pioneers in their field. They are confident, determined, and have a clear vision of their goals."
+            "traits": "The leader. Individuals with Destiny Number 1 are natural leaders who are ambitious and self-reliant. They have a strong desire to achieve and are often seen as pioneers in their field. They are confident, determined, and have a clear vision of their goals."
         },
         2: {
             "meaning": "Cooperation and Sensitivity",
-            "traits": "Those with Destiny Number 2 are diplomatic, sensitive, and have a strong ability to connect with others. They value harmony and are often seen as peacemakers. Their ability to work well in teams and their intuitive nature make them excellent collaborators."
+            "traits": "The diplomat. Those with Destiny Number 2 are diplomatic, sensitive, and have a strong ability to connect with others. They value harmony and are often seen as peacemakers. Their ability to work well in teams and their intuitive nature make them excellent collaborators."
         },
         3: {
             "meaning": "Creativity and Expression",
-            "traits": "People with Destiny Number 3 are creative, expressive, and enjoy engaging with others. They are often artistic and have a talent for communication. They bring joy and enthusiasm to their interactions and are known for their optimism and charisma."
+            "traits": "The inspirer. People with Destiny Number 3 are creative, expressive, and enjoy engaging with others. You are multi-talented and shoud develop your communication/expression skills to inspire others. They are often artistic and have a talent for communication. They bring joy and enthusiasm to their interactions and are known for their optimism and charisma."
         },
         4: {
             "meaning": "Practicality and Stability",
@@ -89,7 +89,7 @@
         },
         5: {
             "meaning": "Adventure and Freedom",
-            "traits": "Those with Destiny Number 5 are adventurous, energetic, and thrive on change. They value freedom and dislike routine. Their dynamic nature often leads them to explore new opportunities and experiences. They are versatile and adaptable, with a love for excitement."
+            "traits": "The change promoter or maker. Those with Destiny Number 5 are adventurous, energetic, and thrive on change. They value freedom and dislike routine. Their dynamic nature often leads them to explore new opportunities and experiences. They are versatile and adaptable, with a love for excitement."
         },
         6: {
             "meaning": "Nurturing and Responsibility",
@@ -281,7 +281,7 @@
             "traits": "You radiate understanding and compassion. People sense your warmth and fairness. For this reason, you attract many people who are in need of comfort, including the disadvantaged.."
         },
         7: {
-            "traits": "You seem mysterious and different. People see you as serious and studious. You are highly independent and self- sufficient. Your accept ional intelligence and wisdom are quickly noticed, people respect you."
+            "traits": "You seem mysterious and different. People see you as serious and studious. You are highly independent and self-sufficient. Your acceptional intelligence and wisdom are quickly noticed, people respect you."
         },
         8: {
             "traits": "You appear strong and powerful. You have an impressive personality and can influence and even intimidate through sheer force. You have natural authority. Your competence and enthusiasm attract people with resources."
@@ -639,14 +639,32 @@
       result += `<br/><br/><strong>This personal day theme & external vibration number ${personalDay}.</strong>`;
       result += `<br/>${personal_day_advice[personalDay]}<br/><br/>`;
 
-      result += `<strong>The Life Path Number is believed to reveal the person's life purpose, characteristics, and the path they are destined to follow.</strong>`;
-      result += `<br/><strong>The Life Path Number ${lifePathNumber}</strong>.<br/> ${life_path_numbers[lifePathNumber]['traits']}`;
-      
-      result += `<br/><br/><strong>The Birthday Number describes your natural abilities.</strong>`;
-      result += `<br/><strong>The Birthday Number ${birthdayNumber}</strong>.<br/> ${birthday_numbers[birthdayNumber]['traits']}`;
+      result += `<h2>Below are various numbers in your numerology chart.</h2>`;
+      result += `The core 5 numbers are the most impactful, which are the life path number, destiny number, soul urge, personality, and birthday number.<br/><br/>`;
 
-      result += `<br/><br/><strong>The Attitude Number is believe to reveal the way you present yourself to the world.</strong>`;
-      result += `<br/><strong>The Attitude Number ${attitudeNumber}</strong>.<br/> ${number_description[attitudeNumber]}`;
+      result += `<br/><strong>The Life Path Number ${lifePathNumber}</strong>.<br/>`;
+      result += `<strong>The Life Path Number is believed to reveal the person's life purpose.</strong><br/>`;
+      result += `${life_path_numbers[lifePathNumber]['traits']}`;
+      
+      result += `<br/><br/><strong>The Destiny Number ${destinyNumber}</strong>.<br/>`;
+      result += `<strong>The Destiny/Expression Name Number describes how you will fulfill your life purpose.</strong><br/>`;
+      result += `${destiny_numbers[destinyNumber]['traits']}`;
+
+      result += `<br/><br/><strong>The Soul Urge Number ${soulUrgeNumber}</strong>.<br/> `;
+      result += `<strong>The Soul Urge Number describes your drive, motivation, inner most desires.</strong><br/>`;
+      result += `${soul_urge_numbers[soulUrgeNumber]['traits']}`;
+
+      result += `<br/><br/><strong>The Personality Number ${personalityNumber}</strong>.<br/> `;
+      result += `<strong>The Personality Number describes your outer presence.</strong><br/>`;
+      result += `${personality_numbers[personalityNumber]['traits']}`;
+
+      result += `<br/><br/><strong>The Birthday Number ${birthdayNumber}</strong>.<br/> `;
+      result += `<strong>The Birthday Number describes your natural abilities.</strong><br/>`;
+      result += `${birthday_numbers[birthdayNumber]['traits']}`;
+
+      result += `<br/><br/><strong>The Attitude Number is believe to reveal the way you present yourself to the world.</strong><br/>`;
+      result += `<strong>The Attitude Number ${attitudeNumber}</strong>.<br/> `;
+      result += `${number_description[attitudeNumber]}`;
 
      // Parse the current date (YYYY-MM-DD) into month, day, year
      let currentDateParts = currentDate.split('-');
@@ -672,19 +690,10 @@
 
      result += `<br/><br/><strong>The Essence Number inner vibration number for the year ${currentYear}.</strong>`;
      index = currentYear - birthYear + 1;
-     result += `<br/><strong>Essence Number: ${essence_numbers[index]}.</strong>`;
-
-      result += `<br/><br/><strong>The Destiny/Expression Name Number describes how you will fulfill your life path.</strong>`;
-      result += `<br/><strong>The Destiny Number ${destinyNumber}</strong>.<br/> ${destiny_numbers[destinyNumber]['traits']}`;
-
-      result += `<br/><br/><strong>The Soul Urge Number describes your drive, motivation, inner most desires.</strong>`;
-      result += `<br/><strong>The Soul Urge Number ${soulUrgeNumber}</strong>.<br/> ${soul_urge_numbers[soulUrgeNumber]['traits']}`;
-
-      result += `<br/><br/><strong>The Personality Number describes your outer presence.</strong>`;
-      result += `<br/><strong>The Personality Number ${personalityNumber}</strong>.<br/> ${personality_numbers[personalityNumber]['traits']}`;
-      
-      result += `<br/><br/><strong>The Maturity Number describes the traits you should develop as you grow older.</strong>`;
-      result += `<br/><strong>The Maturity Number ${maturityNumber}</strong>.<br/> ${growth_numbers[maturityNumber]['traits']}`;
+     result += `<br/><strong>Essence Number: ${essence_numbers[index]}.</strong>`;      
+     result += `<br/><br/><strong>The Maturity Number describes the traits you should develop as you grow older.</strong>`;
+     result += `<br/><strong>The Maturity Number ${maturityNumber}</strong>.<br/>`;
+      result += ` ${growth_numbers[maturityNumber]['traits']}`;
 
       // Update the textarea with the result
       document.getElementById('result').innerHTML = result;
