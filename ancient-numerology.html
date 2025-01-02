@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chaldean Numerology</title>
+  <style>
+    /* Basic Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+
+    /* Header Styling */
+    header {
+      background-color: #4CAF50;
+      color: white;
+      text-align: center;
+      padding: 50px 0;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    header h1 {
+      font-size: 3em;
+      font-weight: bold;
+      letter-spacing: 2px;
+    }
+
+    header p {
+      font-size: 1.2em;
+      margin-top: 10px;
+    }
+
+    /* Main Content Styling */
+    .content {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .content h2 {
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+
+    .content p {
+      font-size: 1.1em;
+      line-height: 1.6;
+    }
+  </style>
+  <script>
+
+    const vowels = 'AEIOU';
+    const consonants = 'BCDFGHJKLMNPQRSTVWXYZ';
+
+    const chaldean_mapping = {
+        'A': 1, 'I': 1, 'J': 1, 'Q': 1, 'Y': 1,
+        'B': 2, 'K': 2, 'R': 2, 'S': 2,
+        'C': 3, 'G': 3, 'L': 3, 'X': 3,
+        'D': 4, 'M': 4, 'T': 4,
+        'E': 5, 'H': 5, 'N': 5,
+        'U': 6, 'V': 6, 'W': 6,
+        'O': 7, 'Z': 7,
+        'F': 8, 'P': 8
+      };
+      
+
+    const numerology_map = {
+        1: ['A', 'I', 'J', 'Q', 'Y'],
+        2: ['B', 'K', 'R', 'S'],
+        3: ['C', 'G', 'L', 'X'],
+        4: ['D', 'M', 'T'],
+        5: ['E', 'H', 'N'],
+        6: ['U', 'V', 'W'],
+        7: ['O', 'Z'],
+        8: ['F', 'P']
+      };
+      
+
+    const personal_day_advice = {
+        1: "Take controller of your destiny. It is also a time when you are vulnerable to the negative influences of others. You should be confident in your abilities and work independently to succeed. Embrace new beginnings and take initiative. Focus on your personal goals and assert your independence.",
+        2: "Be nurturing to self and other. Cultivate harmony and cooperation. Focus on building relationships and practicing patience with others.",
+        3: "Be Proud Of Yourself. Express your creativity and enjoy social interactions. Use this time for self-expression and joy.",
+        4: "Be Productive. Planning day. Focus on building a solid foundation. Organize your tasks and pay attention to details for long-term success.",
+        5: "Be Bold and beautify your environment. Embrace change and flexibility.",
+        6: "Be responsible. Your main concern should be about your familial and domestic matters.",
+        7: "Be Calm. Follow your intuition. Know thyself. Make an extra effort to stay calm and composed throughout the day. Take time for introspection and spiritual growth. Engage in self-reflection and seek deeper understanding.",
+        8: "Be Business-minded in a relaxed manner. It is a day to make some essential professional decisions in life. Business and financial decisions taken on this day would reap good results. Focus on your ambitions and financial goals. Take decisive action towards your career and material success.",
+        9: "Be generous and be willing to make big goals. Share your experience and achievements with others. Let go of what no longer serves you. Focus on closure, forgiveness, and preparing for new chapters in your life.",
+        11: "Cultivate harmony and cooperation. Focus on building relationships and practicing patience with others.",
+        22: "Be Productive. Focus on building a solid foundation. Organize your tasks and pay attention to details for long-term success.",
+        33: "Be Supportive. Your main concern should be about your familial and domestic matters."
+    }
+    const personal_year_advice = {
+        1: "Focus on beginning a new cycle with fresh energy and exhilaration. This is a time to focus on yourself.",
+        2: "This is a time to create emotional balance in your life and tend to your relationships.",
+        3: "Year 3 is a time to get into your creativity and expression, experimenting with communicating your inner feelings to the outer world.",
+        4: "In Year 4, you begin to stabilize what you've learned over the past few years and build something that will last in the future.",
+        5: "Having begun your foundation, Year 5 is a good opportunity to see what is working and what isn't, by making changes and resetting your goals.",
+        6: "In Year 6, responsibilities added around family and home.",
+        7: "In order to deepen and stabilize everything you've been learning and creating in your life, it's time to go within and listen to the whispers of your soul.",
+        8: "Time of reaping what you've sown. Now is the time to externalize everything you've downloaded, solidified, nurtured, and built.",
+        9: "At the end of the cycle, you receive and appreciate everything you've done in these cycle as you prepare for the next one. Let go of attachments that no longer serve you.",
+        11: "In Year 11/2,This is a time to create emotional balance in your life and tend to your relationships.",
+        22: "In Year 22/4, you begin to stabilize what you've learned over the past few years and build something that will last in the future.",
+        33: "In Year 33/6, you continue to grow and nurture what you've been creating."
+    }
+    const number_description = {
+        0: "Before time and space, ultimate potential, source before manifestation, zero amplifies any number i.e. 4 to 40, without this amplification of 0 you can’t get to 49",
+        1: "The Pioneer, God, starter, independent nature, life force, leader, ego, self, confidence",
+        2: "The Mediator, sensitivity, balance, harmony, peacemaker, kindness, partnerships",
+        3: "The Entertainer, triangle (Spirit), creativity, art, music, communication, recharge in quiet, reasoning, lucky",
+        4: "The Builder, square (order, earth, seasons), organize, build a solid foundation, physical world, practical, task oriented, responsibility, strong work ethic, rational, methodical",
+        5: "The Explorer, human, unending talent, free-thinking, adaptable, brave, resilient, critical thinking, skeptic, network, work toward trusting one's self",
+        6: "The Healer, nurturing, supportive, problem-solving emotions and physical, family, security, controlling",
+        7: "The Scientist/Meditator, solitude, self-care, detective, keen eye, wisdom, inventive, perfectionist, good luck, introspection, inner wisdom, inner spirituality",
+        8: "The Banker, wealth, workaholic, abundance, karma, destiny, order, promotion, good managers",
+        9: "The Life-coach, Warrior, spiritual awareness, transformative, social ethics, old soul, completion, release, forgive, humanitarian, minister, philanthropy, 360 circle 3+6+0 = 9 it represents Alpha & Omega",
+        11: "The Guru, heal of self and others, balanced spiritually and philosophically",
+        22: "The Architect, master builder, dependable",
+        33: "The Savior, self sacrifice"
+    }
+
+    const destiny_numbers = {
+        1: {
+            "meaning": "Leadership and Independence",
+            "traits": "The leader. Individuals with Destiny Number 1 are natural leaders who are ambitious and self-reliant. They have a strong desire to achieve and are often seen as pioneers in their field. They are confident, determined, and have a clear vision of their goals."
+        },
+        2: {
+            "meaning": "Cooperation and Sensitivity",
+            "traits": "The diplomat. Those with Destiny Number 2 are diplomatic, sensitive, and have a strong ability to connect with others. They value harmony and are often seen as peacemakers. Their ability to work well in teams and their intuitive nature make them excellent collaborators."
+        },
+        3: {
+            "meaning": "Creativity and Expression",
+            "traits": "The inspirer. People with Destiny Number 3 are creative, expressive, and enjoy engaging with others. You are multi-talented and shoud develop your communication/expression skills to inspire others. They are often artistic and have a talent for communication. They bring joy and enthusiasm to their interactions and are known for their optimism and charisma."
+        },
+        4: {
+            "meaning": "Practicality and Stability",
+            "traits": "Individuals with Destiny Number 4 are hardworking, reliable, and grounded. They have a strong sense of responsibility and are adept at managing details and ensuring stability. They value structure and are often seen as dependable and practical."
+        },
+        5: {
+            "meaning": "Adventure and Freedom",
+            "traits": "The change promoter or maker. Those with Destiny Number 5 are adventurous, energetic, and thrive on change. They value freedom and dislike routine. Their dynamic nature often leads them to explore new opportunities and experiences. They are versatile and adaptable, with a love for excitement."
+        },
+        6: {
+            "meaning": "Nurturing and Responsibility",
+            "traits": "People with Destiny Number 6 are caring, responsible, and have a strong sense of duty. They are often drawn to roles where they can help others and create harmony in their environment. Their nurturing nature makes them excellent caregivers and support systems."
+        },
+        7: {
+            "meaning": "Introspection and Wisdom",
+            "traits": "Individuals with Destiny Number 7 are introspective, analytical, and seek deeper understanding. They are often drawn to spiritual or intellectual pursuits and value solitude and reflection. Their wisdom and insight are valuable assets in their quest for knowledge."
+        },
+        8: {
+            "meaning": "Power and Achievement",
+            "traits": "Those with Destiny Number 8 are ambitious, determined, and focused on achieving their goals. They have strong leadership qualities and are often drawn to positions of power and authority. Their drive for success and financial stability is a key aspect of their personality."
+        },
+        9: {
+            "meaning": "Compassion and Idealism",
+            "traits": "People with Destiny Number 9 are compassionate, idealistic, and have a strong sense of purpose. They are often involved in humanitarian efforts and are driven by a desire to make the world a better place. Their empathy and vision for the greater good are central to their identity."
+        }
+    }
+    
+    const life_path_numbers = {
+        1: {
+            "meaning": "Leadership and Independence",
+            "traits": "Individuals with Life Path Number 1 are natural leaders who are confident, ambitious, and self-reliant. They are driven to achieve and often have a pioneering spirit. Their confidence, determination, and originality are key attributes."
+        },
+        2: {
+            "meaning": "Cooperation and Sensitivity",
+            "traits": "Those with Life Path Number 2 are diplomatic, sensitive, and have a talent for creating harmony in their relationships. They are cooperative and have a natural ability to work well with others. Their intuitive and empathetic nature often guides them."
+        },
+        3: {
+            "meaning": "Creativity and Expression",
+            "traits": "Your Life Path 3 needs you to be seen! The great communicators. Life Path Number 3s are the entertainers of the world and most of these people are truly gifted musicians, writers, actors, dancers, public speakers, and politicians. The Life Path 3 is one that is characterised by beauty, excitement, eccentricity, and fame. Its very important for those living out this vibration to find authentic ways to express their inner essence and be truly seen (behind the mask, and beyond the stage) and for many, this is the real challenge. Some threes stray from their path, giving up their dreams and talents and some even escape into drug abuse or promiscuity in a bid to silence their inner calling. For this reason, 3s must retain their sense of childlike wonder, play and relentlessly fuel their creativity."
+        },
+        4: {
+            "meaning": "Practicality and Stability",
+            "traits": "Their purpose in life is to think positively, develop flexibility both mentally and physically, and break away from the trap of conventional thinking. They dislike idleness. They came into this lifetime to learn about limitations. Life Path Number 4s are often the pillars of their communities. These individuals are hard-working, practical and trustworthy, and as such, make fantastic marriage and business partners, teachers, mentors and advisors. Their resourceful nature means that they are able to create something out of nothing and are often called upon in a crisis! However, self-sacrificing fours often demand too much both of themselves and others and can develop reputations as martyrs or tyrants: Their will-power and tenacity being misinterpreted as greed and stubbornness. This completely baffles the confused Number 4 whose intentions are usually to benefit the good of all, so it is important for those living through this vibration to regularly release some of their perfectionist tendencies and practice kindness and compassion for both themselves and others."
+        },
+        5: {
+            "meaning": "Adventure and Freedom, unending talent",
+            "traits": "Your Life Path 5 needs you to be fearless and find freedom! Life Path Number 5s are highly inquisitive individuals who consider the hands-on experience to be the best teacher in life. Many people living out this vibration are deeply intelligent, philosophical and spiritually-minded, as well as being great communicators that make excellent social anthropologists, archaeologists, teachers, writers, and historians. However, Number 5s can tend towards being self-absorbed and unaware of the more widespread effects of their footloose and seemingly reckless actions. The avoidance of commitment of many fives can also prevent deep and loyal bonds forming between them and the people in their lives, so it is really important for these folk to find ways of experiencing freedom and variety, without running away from responsibility and hurting their families."
+        },
+        6: {
+            "meaning": "Nurturing and Responsibility",
+            "traits": "People with Life Path Number 6 are nurturing, responsible, and deeply concerned with their families and communities. They are natural caregivers and often find fulfillment in roles that involve supporting and helping others."
+        },
+        7: {
+            "meaning": "Introspection and Wisdom",
+            "traits": "Individuals with Life Path Number 7 are introspective, analytical, and seek deeper understanding. Here to seek the truth. They are often drawn to spiritual or intellectual pursuits and value solitude and contemplation. Their wisdom and insight are central to their personality."
+        },
+        8: {
+            "meaning": "Power and Achievement",
+            "traits": "Those with Life Path Number 8 are ambitious, determined, and focused on achieving their goals. Here to master the art of success in the material world through patient endures and hard-work. They are often drawn to positions of authority and have strong leadership qualities. Their drive for success and financial stability is a defining aspect."
+        },
+        9: {
+            "meaning": "Compassion and Idealism",
+            "traits": "People with Life Path Number 9 are compassionate, idealistic, and driven by a desire to make a positive impact on the world. They are often involved in humanitarian efforts and possess a deep sense of empathy and vision. Challenges they must overcome are - Lack of concentration, they don't ask for support in their learning, struggling alone, Holding on to the past, not letting go, Too much attachment, which, in the end, gives misery."
+        },
+        11: {
+            "meaning": "Inspiration and Illumination",
+            "traits": "Individuals with Life Path Number 11 are highly intuitive, inspirational, and have a strong sense of purpose. They often possess a heightened spiritual awareness and a deep connection to their inner selves, guiding others through their wisdom and vision."
+        },
+        22: {
+            "meaning": "Master Builder and Visionary",
+            "traits": "Those with Life Path Number 22 are powerful visionaries with the ability to turn dreams into reality. They are practical and ambitious, with a strong drive to achieve great things. Their leadership and organizational skills enable them to create lasting impact."
+        },
+        33: {
+            "meaning": "Master Teacher and Compassion",
+            "traits": "People with Life Path Number 33 are often seen as master teachers and healers. They possess a deep sense of compassion and a strong desire to help others. Their ability to inspire and uplift those around them is a key aspect of their path."
+        }
+    }
+    
+    const soul_urge_numbers = {
+        1: {
+            "meaning": "Independence and Ambition",
+            "traits": "Individuals with Soul Urge Number 1 have a deep desire for independence and self-expression. They are ambitious, driven, and often seek to assert their individuality. Their inner motivation is to lead and make their own path in life."
+        },
+        2: {
+            "meaning": "Harmony and Partnership",
+            "traits": "Those with Soul Urge Number 2 are driven by a need for harmony and balance in their relationships. They have a strong desire for partnership and are motivated by the need to create peace and cooperation with others. Their inner self craves connection and collaboration."
+        },
+        3: {
+            "meaning": "Creativity and Self-Expression",
+            "traits": "People with Soul Urge Number 3 are motivated by a desire for creative expression and joy. They seek to bring their artistic talents and vibrant energy into the world. Their inner urge is to communicate, inspire, and connect with others through their creativity."
+        },
+        4: {
+            "meaning": "Stability and Security",
+            "traits": "Individuals with Soul Urge Number 4 are driven by a need for stability, security, and order. They are motivated by the desire to build a solid foundation and create lasting structures in their lives. Their inner self seeks reliability and a sense of accomplishment through hard work."
+        },
+        5: {
+            "meaning": "Adventure and Freedom",
+            "traits": "Those with Soul Urge Number 5 have a deep inner desire for freedom and new experiences. They are motivated by the need for adventure, change, and exploration. Their soul craves excitement and variety, and they often seek to break free from routine and limitations."
+        },
+        6: {
+            "meaning": "Nurturing and Service",
+            "traits": "People with Soul Urge Number 6 are driven by a deep desire to nurture and care for others. They are motivated by a need to serve and create harmony within their family and community. Their inner self is focused on providing support and love, often finding fulfillment in caregiving roles."
+        },
+        7: {
+            "meaning": "Spiritual Growth and Wisdom",
+            "traits": "Individuals with Soul Urge Number 7 are motivated by a quest for spiritual growth and understanding. They seek wisdom and deeper knowledge, often valuing introspection and solitude. Their inner desire is to explore the mysteries of life and gain profound insights."
+        },
+        8: {
+            "meaning": "Achievement and Power",
+            "traits": "Those with Soul Urge Number 8 have a strong inner drive for achievement and success. They are motivated by the desire to attain power, authority, and financial security. Their soul urges them to take control and make a significant impact in their chosen field."
+        },
+        9: {
+            "meaning": "Compassion and Idealism",
+            "traits": "People with Soul Urge Number 9 are motivated by a deep sense of compassion and idealism. They are driven by the desire to make a positive difference in the world and help others. Their inner self is focused on humanitarian efforts and creating a better future for all."
+        },
+        11: {
+            "meaning": "Inspiration and Spiritual Insight",
+            "traits": "Individuals with Soul Urge Number 11 are driven by a profound sense of inspiration and spiritual insight. They are motivated by a desire to uplift and guide others through their wisdom and vision. Their inner self seeks to connect with higher realms and inspire change."
+        },
+        22: {
+            "meaning": "Mastery and Visionary Leadership",
+            "traits": "Those with Soul Urge Number 22 are motivated by a desire to achieve great things and manifest their visionary ideas. They have a strong drive for mastery and leadership, aiming to make a significant impact on the world. Their inner urge is to build and create lasting change."
+        },
+        33: {
+            "meaning": "Compassionate Teaching and Healing",
+            "traits": "People with Soul Urge Number 33 are driven by a deep desire to teach and heal. They are motivated by compassion and the need to serve others on a profound level. Their inner self is focused on uplifting and guiding others through their nurturing and transformative presence."
+        }
+    };
+
+    const personality_numbers = {
+        1: {
+            "traits": "You radiate with a dynamic and efficient energy. You appear controlled and capable. You value courage and effort in the face of difficulties and these qualities show. Others can sense that you will not be pushed around."
+        },
+        2: {
+            "traits": "You appear friendly and unpretentious. You have a soft and warm exterior. Others perceive you as gentle, safe harbor. People are drawn to you because, among other reasons, you appear warm and unthreatening."
+        },
+        3: {
+            "traits": "Your vibration is full of life. You are uplifting, inspiring, and charming. You are a fun person to be around. Your wit and sparkling personality make you the life of a party."
+        },
+        4: {
+            "traits": "You are a family person. You love the intimacy, consistency, and the security a family provides. You are a good provider and protector. But family members may take your efforts for granted."
+        },
+        5: {
+            "traits": "You are a stimulating person. You brighten social gatherings with your fresh and original ideas. Your conversation tends to be sprinkled with novelty and wit. You have a quick tongue and charisma."
+        },
+        6: {
+            "traits": "You radiate understanding and compassion. People sense your warmth and fairness. For this reason, you attract many people who are in need of comfort, including the disadvantaged.."
+        },
+        7: {
+            "traits": "You seem mysterious and different. People see you as serious and studious. You are highly independent and self-sufficient. Your acceptional intelligence and wisdom are quickly noticed, people respect you."
+        },
+        8: {
+            "traits": "You appear strong and powerful. You have an impressive personality and can influence and even intimidate through sheer force. You have natural authority. Your competence and enthusiasm attract people with resources."
+        },
+        9: {
+            "traits": "You have an impressive and aristocratic bearing. No matter how tall you are, you appear noble and upright. You are very much in control of the image you send out to others."
+        },
+        11: {
+            "traits": "You have worked hard to gain confidence and overcome, at least to some extend, an in-born shyness. As a child, and into your early twenties, nervous energy may have caused you to bite your nails or express your nervousness in other ways."
+        },
+        22: {
+            "traits": "You radiate reliability and consistency. People trust you and feel secure with your judgment. You are seen as a cornerstone of a business and are relied upon to do your work efficiently and expertly."
+        },
+        33: {
+            "traits": "You inspire confidence. You have a fine sense of justice. You do everything in your power to keep the harmony and are even willing to sacrifice your personal desires for the good of others. You can take this too far, however, sometimes playing the role of the martyr."
+        }
+    };
+    
+    const birthday_numbers = {
+        1: {
+            "meaning": "The Pioneer/Leader",
+            "traits": "You have a great ambition and a strong drive for success. You are highly independent and dislike the restrictions of having to work with others. You easily become frustrated with the routine."
+        },
+        2: {
+            "meaning": "The Peacemaker",
+            "traits": "You are warm and affectionate and need the same from your close friends and loved ones. You want to be hugged and cuddled. There is a tendency to fall into childhood patterns when giving and receiving affection."
+        },
+        3: {
+            "meaning": "The Creative Child",
+            "traits": "The leader and original thinker who values independence. Ones represent self consciousness, creativeness, and original thought. As a number of strength, they are always the first in the series, dominant, and very confident. On the positive side they are active and innovative. On the negative side they are bossy, hasty, and tactless. Ones have a unique style with outstanding will."
+        },
+        4: {
+            "meaning": "The Salt of the Earth",
+            "traits": "You are precise and take great care in what you do. You are highly principled, disciplined, and responsible. You take your obligations very seriously."
+        },
+        5: {
+            "meaning": "The Freedom Lover",
+            "traits": "You are highly adaptable and need excitement. You relate well to others and have an easy way with words. In fact, you have a talent for promotion, public relations, and, for some, writing."
+        },
+        6: {
+            "meaning": "Love and Sacrifice",
+            "traits": "Your focus is on relationships. You want to help others and have a talent as a healer and could make a profession of the healing arts, either as a nutritionist, alternative health therapist (acupuncture, massage, for example) or doctor."
+        },
+        7: {
+            "meaning": "Seeker of Wisdom",
+            "traits": "You should meditate and do some type of spiritual exercise in order to develop your intuitive talents. Once you have begun to trust your intuition, you will develop a sound faith."
+        },
+        8: {
+            "meaning": "Balance & Power",
+            "traits": "Your approach to business is original, creative, and daring. You have sound judgment and need the freedom to exercise it, lest you become bitter and tyrannical elsewhere in your life."
+        },
+        9: {
+            "meaning": "Global Awareness",
+            "traits": "You have a greater social role to play that will require a blend of the practical and the humanitarian. You must have a keen sense of what will work, but at the same time direct those efforts toward some greater good."
+        },
+        10: {
+            "meaning": "Taking Charge",
+            "traits": "Your test in life is to live according to your dream - that is, to have the courage and the stamina to overcome obstacles and win the independence you so deeply want."
+        },
+        11: {
+            "meaning": "The Intuitive",
+            "traits": "Your intuition is so keen, in fact, that you would make a fine counselor and/or healer. You seem to understand people before they reveal their inner being themselves."
+        },
+        12: {
+            "meaning": "Self Expression",
+            "traits": "Your artistic talent emerges in virtually everything you take seriously, your home, your cooking, the way you express yourself, and any artistic endeavor you commit to."
+        },
+        13: {
+            "meaning": "The Rock",
+            "traits": "You love things that are solid and grounded in the practical. Yet, you possess a considerable amount of artistic talent that is searching for concrete forms of expression."
+        },
+        14: {
+            "meaning": "The Adventurer",
+            "traits": "You are highly social and work well with others as long as there are not too many restrictions to bind you. You get restless easily, a characteristic that can make you change vocations or relationships much too quickly."
+        },
+        15: {
+            "meaning": "Mother-/Fatherhood",
+            "traits": "There is a yearning within you to ground within the family or community structure, but there is a hint of wanderlust, too, which makes grounding difficult. You want the best in your life, and you strive for it."
+        },
+        16: {
+            "meaning": "Phoenix Rising",
+            "traits": "You have a fine analytical mind that is capable of penetrating beneath the surface of the subject at hand. You also have the capacity for excellent concentration."
+        },
+        17: {
+            "meaning": "Success Through Detachment",
+            "traits": "Your approach to business is original, creative, and daring. You are an excellent manager and organizer. You are gifted with the ability to see the larger picture, and, remarkably, how the details come into play."
+        },
+        18: {
+            "meaning": "The World is Your Oyster",
+            "traits": "You are broadminded and should be educated in several different fields, particularly the arts. Many great artists are found under this number."
+        },
+        19: {
+            "meaning": "The Individualist",
+            "traits": "As the poet John Donne said: 'No man is an Island unto himself... We are all bits of the main.' This is a central lesson in your life: to learn the difference between the dream of independence and the reality of interdependence."
+        },
+        20: {
+            "meaning": "Bringer of Harmony",
+            "traits": "You possess great awareness and can sense the feelings of others, even when they try to hide their inner thoughts. Consequently, you are easily influenced by your environment."
+        },
+        21: {
+            "meaning": "Express & Create",
+            "traits": "Your imagination is highly charged. It reveals itself in everything you do, from your sparkling conversation to your most prized projects. You are quick-witted and can think on your feet."
+        },
+        22: {
+            "meaning": "The Master Builder",
+            "traits": "You are an organizer, or builder of an institution or business. You have a vision and the capability to realize it. You possess the capacity for great strength, but conversely you can be deeply afraid of the dimensions of your ambitions."
+        },
+        23: {
+            "meaning": "Adaptable & Versatile",
+            "traits": "You are highly adaptable, which makes change a great deal easier for you than for others. You have an easy way with relationships and generally get along well with most people you meet."
+        },
+        24: {
+            "meaning": "Teacher & Healer",
+            "traits": "You are energetic, responsible, and helpful, but your sympathetic nature may cause you to interfere in relationships and get you into trouble. Know your limits."
+        },
+        25: {
+            "meaning": "Spiritual Growth",
+            "traits": "You are capable of investigating and researching subjects deeply. Your analytical skills force you to avoid taking anything at face value."
+        },
+        26: {
+            "meaning": "Between Matter & Spirit",
+            "traits": "Your challenge is to maintain a balance between your material goals and the fundamental human qualities of understanding, compassion, and love."
+        },
+        27: {
+            "meaning": "The People's Spirit",
+            "traits": "You are a bit of a late-bloomer. You need exposure to many different types of people before you find the area in which you will specialize. This is also the reason many change careers more than once."
+        },
+        28: {
+            "meaning": "Self Empowerment",
+            "traits": "You are unconventional, idealistic, and independent. You are extremely ambitious. You possess much self-confidence but need much encouragement."
+        },
+        29: {
+            "meaning": "The Psychic",
+            "traits": "You are so driven by spiritual pursuits that no matter what you do in life, the world of spirit and philosophy will be central to your daily behavior. You feel linked with the larger universal forces, and nothing will change that."
+        },
+        30: {
+            "meaning": "Perform & Express",
+            "traits": "You are an artist at heart. You could excel in writing, visual, or performing arts. If you are not professionally involved in one of these areas, you should consider taking up art as a hobby."
+        },
+        31: {
+            "meaning": "Power of Work",
+            "traits": "You are the foundation of any enterprise you commit to, doing your work with determination and precision."
+        }
+    };
+// chaldean
+const expressionNumber = {
+    1: "The leader and original thinker who values independence. Ones represent self consciousness, creativeness, and original thought. As a number of strength, they are always the first in the series, dominant, and very confident. On the positive side they are active and innovative. On the negative side they are bossy, hasty, and tactless. Ones have a unique style with outstanding will.",
+    2: "The partner and diplomat who values cooperativeness. Twos represent a pair or duo, the principle of receptivity, and tactfulness. They prefer to be a follower though they seek inner balance and unity. Two’s seek unity between two distinct entities, like good and evil, true or false, positive and negative. They are cautious but flexible. On the positive side they are creative and sensitive. On the negative side they are moody, shy, and irrational. Twos are modest with a desire for collaboration.",
+    3: "The entrepreneur and entertainer who values creativeness. Threes represent the performer who appreciates pleasure, romance, and beauty. They love to be sociable. This number is all about changing and developing. There are a lot of ups and downs with this number. Their optimism allows for all things to be possible as it impacts the three key components (mind, body, and spirit). On the positive side they are witty and charming. On the negative side they are narcissistic, moody, and undisciplined. Threes have a keen imagination with various expressions.",
+    4: "The builder and practical person who values details. Fours represent law, order, security, and stability. They prefer conventional routine with a focused state of mind. They develop a practical nature through self discipline and concentration. On the positive side they are tenacious and loyal. On the negative side they are stubborn, confrontational, and a workaholic. Fours are masters of management with a well built sense of order.",
+    5: "The writer and communicator who values freedom. Fives represent versatility, resourcefulness, and adaptability. They love adventure, journeys, and travel. They are the energy and movement between the five elements (earth, air, fire, water, and ether). They possess an irresistible magnetism to the opposite sex. On the positive side they are curious and intellectual. On the negative side they are selfish, impatient, and irresponsible. Fives are action oriented with ambitious plans.",
+    6: "The healer and lover who values teaching. Sixes represent compassion, counseling, and social responsibility. They love service and a life filled with important activities. They desire harmony in all things and always have a look to make an impact. On the positive side they are nurturing and attractive. On the negative side they are obsessive, outspoken, and self-righteous. Sixes are artistic with a desire for balance.",
+    7: "The mediator and investigator who values the metaphysical. Sevens represent analytical, philosophical, and mystical. They love solitude and have high moral values. They want to understand the mystery behind existence and are always full of questions. They are clever and respectful. On the positive side they are analytical and strategic. On the negative side they are distant, sarcastic, and reserved. Sevens are charismatic truth seekers.",
+    8: "The manager and supervisor who values power. Eights represent financial rewards, good judgment, and recognition. They love control and have quite the robust personality. They are a constant for the universe. On the positive side they are driven and generous. On the negative side they are aggressive, dictatorial, and extreme. Eights are materialistic and strive for success.",
+    9: "The sibling and people person who values humanitarianism. Nines represent selflessness, compassion, and patience. They love happy endings and are purposeful in their pursuit of a result. They contain forces of all the other numbers and have a certain spiritual intuition. On the positive side they are compassionate and non-judgmental. On the negative side they are defensive, careless, and emotional. Nines are sympathetic, altruistic givers.",
+    10: "The wheel of fortune. Ten represents honor, faith, and self-confidence. Their plans are likely to be carried out. This can be a fruitful number with positive backing of their ventures.",
+    11: "The clenched hand. Eleven is ominous to occultists and is a warning of hidden dangers or treachery from others. This is considered a master number. They are powerful and have potent, creative ideas.",
+    12: "The victim. Twelve takes too much too seriously and therefore experience an anxiety of the mind. They have deeply rooted concerns for the less fortunate.",
+    13: "The power. Thirteen indicates a change of plans and place. It is not always unlucky, but if used wrongly can wreak self-destruction. This number usually signifies a fresh start.",
+    14: "The lucky money. Fourteen has a lot of movement that can result in fortunate dealings with money. Unfortunately, there is also a strong element of risk and danger attached, especially dependent on foolhardy actions. This is an entrepreneurial number with moderate confidence.",
+    15: "The lucky gift receiver. Fifteen has occult significance with magic and mystery. Usually means the person represented by it will use every art of magic they can to carry out their purpose. This number has charismatic leadership that is well respected.",
+    16: "The cautious. Sixteen has a certain danger of accidents and defeat of one's plans. They will create a great empire that eventually falls into obscurity.",
+    17: "The spiritual. Seventeen has the ability to rise superior in spirit to the trials and difficulties faced in life or career. This number holds a will and desire to overcome obstacles. As long as they remain humble, they will see fame.",
+    18: "The materialistic. Eighteen is generally associated with bitter quarrels and warnings of treachery. They experience ill will and corruption due to greed.",
+    19: "The fortunate. Nineteen is usually regarded as fortunate and extremely favorable. It promises success in a person’s plans for the future. This number experiences bright success and good progress.",
+    20: "The judgment number. Twenty is the awakening with a call to action for great purpose, cause, or duty. This is an opportunity to direct one’s life to inner fulfillment, though it will be difficult.",
+    21: "The successful. Twenty-one is a number of advancement and elevation in life. Applying true grit will result in the due promotion to a higher position.",
+    22: "The warning. Twenty-two is a good person living in a fool's paradise. Also a master number, this one will be on the rise but as they go they become crooked.",
+    23: "The receiver of help. Twenty-three has the promise of success because they get help from their superiors. This number has an aptitude to draw the right sort of people around.",
+    24: "The favorable. Twenty-four gains through love and affection from family and friends. This is an energetic number that does things today with tireless focus.",
+    25: "The strong. Twenty-five gains strength through experience. Though they are successful, it is after many earlier trials. This number learns from all mistakes and sees what works for others.",
+    26: "The disaster. Twenty-six is full of the gravest warnings for the future. Without proper mitigation, there will be problems on the horizons based on earlier decisions.",
+    27: "The command. Twenty-seven is a promise of authority and command. It indicates reward will come from productive intellect. This number is creatively influential and needs to steer their own ship.",
+    28: "The contradiction. Twenty-eight indicates a person of great promise and possibilities that they will lose if they do not carefully provide for the future. Though this number has profitable aspects, they apply them poorly.",
+    29: "The deception. Twenty-nine indicates uncertainties and foreshadows trials. This number is easy to annoy and provoke, they also easily overreact.",
+    30: "The thoughtful. Thirty is about thoughtful dedication, retrospection, and a positive outlook. They are a master of their craft and are great educators.",
+    31: "The isolated. Thirty-one is lonely and not fortunate from a material standpoint. They are a force to be reckoned with, fight for their cause, and know how to enjoy themselves.",
+    32: "The planner. Thirty-two is successful if they work on their planning versus others. They have a firm ear to the ground and capitalize on new incentives as early as possible.",
+    33: "The possibly fortunate. Thirty-three has no potency on its own but has similar meanings to twenty-four or six. This is also a master number, but with a more positive bias. They are wise and ethical.",
+    34: "Same as twenty-five. They are well regarded and generous, with a good work-life balance.",
+    35: "Same as twenty-six. They have strong inner needs to fill and will move mountains to do it.",
+    36: "Same as twenty-seven. They put a lot of effort into being a success. Their niche is to find the easy way to rise to the top.",
+    37: "The friend. Thirty-seven has a distinct potency of its own, that has fortunate friendships and good partnerships. They are a charming, ambitious, and clear communicator.",
+    38: "Same as twenty-nine. They are cheerful and satisfied.",
+    39: "Same as thirty. They keep a lot of projects going so that life works out.",
+    40: "Same as thirty-one. They will charm their way into prominent positions and flex rules.",
+    41: "Same as thirty-two. For this number, leadership is a breeze.",
+    42: "Same as twenty-four. They have a steady and assured foundation. They are the slow and steady.",
+    43: "The unfortunate. Forty-three is a sign of revolution or upheaval. They will ram home their agenda with force.",
+    44: "Same as twenty-six. This is a master number. They know the ins and outs of business but do not know when to stop.",
+    45: "Same as twenty-seven. They have ambition and success in business.",
+    46: "Same as thirty-seven. They are a mixed bag of innate skills that can be very profitable.",
+    47: "Same as twenty-nine. They are very good at picking apart problems and working with data.",
+    48: "Same as thirty. Their efforts are brought down by friction from all sides.",
+    49: "Same as thirty-one. They have a keen proponent of order and organization.",
+    50: "The wise. Fifty is about learning from past mistakes and applying that wisdom to new opportunities. This number is associated with introspection and gaining insight through personal experience.",
+    51: "The inventor. Fifty-one signifies innovation and forward-thinking. Those with this number are usually ahead of their time and thrive in environments that foster creativity and originality.",
+    52: "The caretaker. Fifty-two represents nurturing and taking care of others. It is a number associated with compassion and a sense of responsibility for those in need, particularly within families or communities.",
+    53: "The adventurer. Fifty-three is a number of exploration and change. It suggests a person who thrives on new experiences, enjoys taking risks, and seeks out variety in life.",
+    54: "The builder. Fifty-four embodies a strong desire to build and create long-lasting structures, both literally and metaphorically. It represents strong foundations and a focus on stability and security.",
+    55: "The teacher. Fifty-five is associated with leadership and guiding others through life. Those with this number often take on roles of mentorship and enjoy sharing their knowledge with others.",
+    56: "The creator. Fifty-six is a number that highlights creativity and artistic expression. Those influenced by this number often have a natural talent for creating beautiful things, whether through art, music, or writing.",
+    57: "The philosopher. Fifty-seven is a number of deep thinking and analysis. It suggests someone who is always questioning and seeking a deeper understanding of the world around them.",
+    58: "The performer. Fifty-eight represents individuals who are outgoing and charismatic. Those with this number are often drawn to the spotlight and enjoy expressing themselves through performance or public speaking.",
+    59: "The nurturer. Fifty-nine is a number that focuses on emotional intelligence and the ability to connect with others on a deep level. It represents people who are empathetic and caring, often taking on roles as caretakers or counselors.",
+    60: "The peacemaker. Sixty symbolizes harmony and balance. Those with this number often play the role of mediator, helping to resolve conflicts and bring peace to difficult situations.",
+    61: "The strategist. Sixty-one is a number of careful planning and foresight. It represents individuals who think ahead, anticipate challenges, and create strategies to overcome obstacles.",
+    62: "The humanitarian. Sixty-two is a number that values service to others and making a difference in the world. It represents those who are deeply committed to social causes and giving back to their communities.",
+    63: "The visionary. Sixty-three is a number that looks toward the future with optimism and excitement. It signifies people who can see the big picture and work towards a better world.",
+    64: "The organizer. Sixty-four represents people who are skilled at organizing people, tasks, and resources. It suggests someone who enjoys structure and thrives in roles that require attention to detail.",
+    65: "The protector. Sixty-five is a number that is associated with safeguarding others and providing security. Those with this number often feel a deep sense of duty to protect those they care about.",
+    66: "The healer. Sixty-six is a number of compassion and healing energy. It represents those who are drawn to helping others physically, emotionally, or spiritually.",
+    67: "The innovator. Sixty-seven symbolizes creativity and forward-thinking. It represents individuals who are not afraid to break from tradition and come up with new and inventive solutions to problems.",
+    68: "The diplomat. Sixty-eight is a number that values cooperation and finding common ground between differing parties. It represents individuals who are skilled in negotiation and resolving conflicts.",
+    69: "The teacher. Sixty-nine is a number associated with education and guiding others toward enlightenment. Those with this number often have a strong desire to share their wisdom and help others grow.",
+    70: "The thinker. Seventy represents deep contemplation and introspection. It is a number that signifies a person who enjoys spending time reflecting on life's big questions and seeking wisdom from within.",
+    71: "The leader. Seventy-one is a number of authority and command. It represents individuals who naturally take charge and guide others with confidence and decisiveness.",
+    72: "The philosopher. Seventy-two is a number that reflects a deep need to understand the world on a fundamental level. It represents individuals who are constantly seeking knowledge and spiritual enlightenment.",
+    73: "The creator. Seventy-three is a number of artistic expression and originality. Those with this number often excel in creative fields and have a unique approach to problem-solving.",
+    74: "The realist. Seventy-four is a number that values practicality and hard work. It represents people who are grounded in reality and focus on achieving their goals through perseverance and diligence.",
+    75: "The nurturer. Seventy-five is a number associated with care and protection. It represents individuals who are naturally empathetic and often take on caregiving roles in their personal and professional lives.",
+    76: "The teacher. Seventy-six is a number that symbolizes the desire to share knowledge and teach others. It represents individuals who are patient, understanding, and committed to helping others succeed.",
+    77: "The master. Seventy-seven is a powerful master number. It represents someone who has the potential to achieve great success and mastery in their chosen field. This number is associated with spiritual insight and enlightenment.",
+    78: "The philosopher. Seventy-eight is a number of reflection and contemplation. It represents individuals who are constantly seeking to understand deeper truths and have a strong intellectual and spiritual nature.",
+    79: "The seeker. Seventy-nine is a number associated with curiosity and a desire to explore new ideas and experiences. Those with this number often seek adventure and knowledge throughout their lives.",
+    80: "The executive. Eighty is a number associated with leadership and management. It represents individuals who are natural organizers and decision-makers, excelling in positions of power and influence.",
+    81: "The inventor. Eighty-one symbolizes creativity and innovation. It represents individuals who are able to think outside the box and come up with groundbreaking ideas and inventions.",
+    82: "The builder. Eighty-two represents strength and structure. It signifies individuals who are capable of creating solid foundations, both in their personal lives and in their careers.",
+    83: "The performer. Eighty-three is a number that represents charisma and charm. It symbolizes those who are comfortable in the spotlight and have a natural ability to entertain and engage others.",
+    84: "The peacemaker. Eighty-four symbolizes balance and diplomacy. It represents individuals who are skilled at bringing people together and finding peaceful solutions to conflicts.",
+    85: "The protector. Eighty-five represents individuals who feel a strong sense of duty to protect others. It is a number associated with guarding loved ones and standing up for the vulnerable.",
+    86: "The teacher. Eighty-six is a number of wisdom and education. It represents individuals who are dedicated to helping others grow and achieve their full potential.",
+    87: "The philosopher. Eighty-seven symbolizes deep thought and contemplation. It represents individuals who are constantly searching for the meaning of life and understanding the world on a higher level.",
+    88: "The master. Eighty-eight is a powerful master number associated with abundance, success, and mastery. Those with this number are capable of achieving great things and have the potential for extraordinary accomplishments.",
+    89: "The humanitarian. Eighty-nine is a number associated with service and compassion. It represents those who are driven by a desire to help others and make a positive impact on the world.",
+    90: "The guide. Ninety symbolizes leadership and guidance. It represents individuals who are able to help others find their way and provide wisdom and direction when needed.",
+    91: "The visionary. Ninety-one represents creativity and innovation. It symbolizes individuals who are ahead of their time and can see possibilities and solutions where others may not.",
+    92: "The peacemaker. Ninety-two symbolizes harmony and balance. It represents those who work toward bringing peace and resolving conflicts in their personal and professional lives.",
+    93: "The teacher. Ninety-three is a number associated with knowledge and learning. It represents those who have a deep desire to educate and share their wisdom with others.",
+    94: "The protector. Ninety-four symbolizes a strong sense of duty and responsibility to protect and care for others. Those with this number are often drawn to roles that require nurturing and safeguarding.",
+    95: "The builder. Ninety-five represents hard work and dedication to creating something lasting and substantial. It symbolizes those who are focused on building strong foundations for the future.",
+    96: "The healer. Ninety-six symbolizes compassion and care for others. It represents individuals who are naturally drawn to helping others heal, whether physically, emotionally, or spiritually.",
+    97: "The seeker. Ninety-seven represents a desire for personal growth and spiritual enlightenment. Those with this number are often searching for deeper meaning in their lives and seek wisdom from many sources.",
+    98: "The leader. Ninety-eight is a number of leadership and authority. It represents those who are natural leaders and are capable of guiding others toward success.",
+    99: "The master. Ninety-nine is a powerful master number associated with spiritual enlightenment and achieving great heights. It symbolizes individuals who are destined for extraordinary achievements and spiritual growth."
+    };
+    
+
+
+    function reduceNumber(number) {
+        // Check if the number is in the set {11, 22, 33}
+        if (number === 11 || number === 22 || number === 33) {
+            return number;  // Return the number itself if it's in the set
+        }
+        // or && ![11, 22, 33].includes(number)
+        while (number > 9)  {
+            // Convert the number to a string, split it into digits, map them to integers, and sum them
+            number = String(number)
+                .split('')                     // Split the number into its digits as strings
+                .map(digit => parseInt(digit))  // Convert each digit to a number
+                .reduce((sum, digit) => sum + digit, 0);  // Sum the digits
+        }
+        return number;
+    }
+
+    function reduceNumberToCompound(number) {
+        while (number > 99)  {
+            // Convert the number to a string, split it into digits, map them to integers, and sum them
+            number = String(number)
+                .split('')                     // Split the number into its digits as strings
+                .map(digit => parseInt(digit))  // Convert each digit to a number
+                .reduce((sum, digit) => sum + digit, 0);  // Sum the digits
+        }
+        return number;
+    }
+
+    function getChaldeanValue(char) {
+    
+        // Convert the character to uppercase and return the corresponding value, or 0 if not found
+        return chaldean_mapping[char.toUpperCase()] || 0;
+    }
+
+    // Function to calculate numerology
+    function calculateNumerology(firstName, lastName) {
+        let nameNumber = 0;
+        let soulUrgeNumber = 0;
+        let personalityNumber = 0;
+        
+        // Combine full name and remove spaces
+        const fullName = (firstName + " " + lastName || "").replace(/\s+/g, '');
+
+        // Loop through each character of the full name
+        for (let i = 0; i < fullName.length; i++) {
+            const char = fullName[i].toUpperCase();
+            
+            if (/[A-Z]/.test(char)) {  // Only consider alphabetic characters
+                const value = getChaldeanValue(char);
+                destinyNumber += value;
+
+                if (vowels.includes(char)) {
+                    soulUrgeNumber += value;
+                } else if (consonants.includes(char)) {
+                    personalityNumber += value;
+                }
+            }
+        }
+
+        // Reduce the numbers to single digits
+        nameNumber = reduceNumber(nameNumber);
+        soulUrgeNumber = reduceNumber(soulUrgeNumber);
+        personalityNumber = reduceNumber(personalityNumber);
+
+        return {
+            nameNumber,
+            soulUrgeNumber,
+            personalityNumber
+        };
+    }
+
+    function calculateNumerologyFromBirthdate(currentdate, birthdate) {
+        // Split the birthdate into month, day, and year
+        // Parse the birthdate (YYYY-MM-DD) into month, day, year
+        let birthDateParts = birthdate.split('-');
+        let year = parseInt(birthDateParts[0]); // Year
+        let month = parseInt(birthDateParts[1]); // Month (1-12)
+        let day = parseInt(birthDateParts[2]); // Day (1-31)
+
+        let allNumbersInBirthday = birthDateParts[0] + birthDateParts[1] + birthDateParts[2];
+        
+        // Calculate the Major Destiny Number
+        let majorDestiny = reduceNumberToCompound(parseInt(allNumbersInBirthday));
+        let minorDestiny = reduceNumber(month) + reduceNumber(day) + reduceNumber(year);
+        let attitudeNumber = reduceNumber(reduceNumber(month) + reduceNumber(day));
+        let destinyNumber = reduceNumber(minorDestiny);
+    
+        // Get the current date, or default to the current date if not provided
+        if (!currentdate) {
+            currentdate = new Date();
+        }
+    
+        // Extract the current date's month, day, and year
+        // Parse the current date (YYYY-MM-DD) into month, day, year
+        let currentDateParts = currentdate.split('-');
+        let currentYear = parseInt(currentDateParts[0]); // Year
+        let currentMonth = parseInt(currentDateParts[1]); // Month (1-12)
+        let currentDay = parseInt(currentDateParts[2]); // Day (1-31)
+    
+        // Step 1: Sum the current year, month, and day
+        let personalYear = currentYear + month + day;
+        // birthday month vs current Month
+        // pythagorean version but we'll use the older version of chaldean
+        /*if (currentMonth < month){
+            personalYear = personalYear - 1;
+        }*/
+    
+        // Step 2: Reduce to a single digit or master number
+        while (personalYear > 9 && ![11, 22, 33].includes(personalYear)) {
+            personalYear = reduceNumber(personalYear);
+        }
+    
+        // Step 2: Add the current month to get the personal month
+        let personalMonth = personalYear + currentMonth;
+    
+        // Step 3: Reduce to a single digit or master number
+        while (personalMonth > 9 && ![11, 22, 33].includes(personalMonth)) {
+            personalMonth = reduceNumber(personalMonth);
+        }
+    
+        // Step 3: Add the current day to get the personal day
+        let personalDay = personalMonth + currentDay;
+    
+        // Step 4: Reduce to a single digit or master number
+        while (personalDay > 9 && ![11, 22, 33].includes(personalDay)) {
+            personalDay = reduceNumber(personalDay);
+        }
+    
+        // Calculate the Birthday Number (simply the day of birth)
+        let birthdayNumber = day;
+    
+        // Return all the calculated values
+        return {
+            majorDestiny,
+            minorDestiny,
+            destinyNumber,
+            attitudeNumber,
+            birthdayNumber,
+            personalYear,
+            personalMonth,
+            personalDay
+        };
+    }
+    
+
+    // Function to handle the form submission
+    function handleFormSubmission(event) {
+      // Prevent the form from submitting normally (page reload)
+      event.preventDefault();
+
+      // Get the value from the input field
+      const first_name = document.getElementById('first-name').value;
+      const last_name = document.getElementById('last-name').value;
+      
+      
+      // Get current date value
+      let currentDate = document.getElementById('current-date').value;
+      let birthDate = document.getElementById('birthdate').value;
+
+      
+      // Create the result to display
+
+      //json output
+      let name_numbers = calculateNumerology(first_name, middle_name, last_name);
+      let numerologyValues = calculateNumerologyFromBirthdate(currentDate, birthDate);
+      
+      let nameNumber = name_numbers['nameNumber'];
+      let soulUrgeNumber = name_numbers['soulUrgeNumber'];
+      let personalityNumber = name_numbers['personalityNumber'];
+
+      let majorDestiny = numerologyValues['majorDestiny'];
+      let minorDestiny = numerologyValues['minorDestiny'];
+      let destinyNumber = numerologyValues['destinyNumber'];
+      let attitudeNumber = numerologyValues['attitudeNumber'];
+      let birthdayNumber = numerologyValues['birthdayNumber'];
+      let personalYear = numerologyValues['personalYear'];
+      let personalMonth = numerologyValues['personalMonth'];
+      let personalDay = numerologyValues['personalDay'];
+      let maturityNumber = reduceNumber(nameNumber + destinyNumber);
+      
+      let result = `<strong>Year, Month, and Daily Forecast.</strong><br/>`;
+      result += `<strong>This personal year's theme & external vibration number ${personalYear}.</strong>`;
+      result += `<br/>${personal_year_advice[personalYear]}`;
+
+      result += `<br/><br/><strong>This personal month's theme & external vibration number ${personalMonth}.</strong>`;
+      result += `<br/>${personal_day_advice[personalMonth]}`;
+
+      result += `<br/><br/><strong>This personal day theme & external vibration number ${personalDay}.</strong>`;
+      result += `<br/>${personal_day_advice[personalDay]}<br/><br/>`;
+
+      result += `<h2>Below are various numbers in your numerology chart.</h2>`;
+      result += `The core 5 numbers are the most impactful, which are the Birthday number, Major Destiny, Minor Destiny, Name number and Soul urge.<br/><br/>`;
+
+      result += `<br/><strong>The Birthday Number ${birthdayNumber}</strong>.<br/> `;
+      result += `<strong>The Birthday Number describes your natural abilities.</strong><br/>`;
+      result += `${birthday_numbers[birthdayNumber]['traits']}`;
+
+      result += `<br/><br/><strong>The Major Destiny ${majorDestiny}/${destinyNumber}</strong>.<br/>`;
+      result += `<strong>The Major Destiny Number is believed to reveal the person's highest soul potential.</strong><br/>`;
+      result += `${life_path_numbers[majorDestiny]['traits']}`;
+
+      result += `<br/><br/><strong>The Minor Destiny Number ${minorDestiny}/${destinyNumber}</strong>.<br/>`;
+      result += `<strong>The Minor Destiny Number is believed to reveal the person's inner soul purpose.</strong><br/>`;
+      result += `${life_path_numbers[minorDestiny]['traits']}`;
+      
+      result += `<br/><br/><strong>The Name Number ${nameNumber}</strong>.<br/>`;
+      result += `<strong>The Name Number describes how you will fulfill your life purpose.</strong><br/>`;
+      result += `${destiny_numbers[nameNumber]['traits']}`;
+
+      result += `<br/><br/><strong>The Soul Urge Number ${soulUrgeNumber}</strong>.<br/> `;
+      result += `<strong>The Soul Urge Number describes your drive, motivation, inner most desires.</strong><br/>`;
+      result += `${soul_urge_numbers[soulUrgeNumber]['traits']}`;
+
+      result += `<br/><br/><strong>The Personality Number ${personalityNumber}</strong>.<br/> `;
+      result += `<strong>The Personality Number describes your outer presence.</strong><br/>`;
+      result += `${personality_numbers[personalityNumber]['traits']}`;
+
+      result += `<br/><br/><strong>The Attitude Number is believe to reveal the way you present yourself to the world.</strong><br/>`;
+      result += `<strong>The Attitude Number ${attitudeNumber}</strong>.<br/> `;
+      result += `${number_description[attitudeNumber]}`;
+
+     // Parse the current date (YYYY-MM-DD) into month, day, year
+     let currentDateParts = currentDate.split('-');
+     let currentYear = parseInt(currentDateParts[0]); // Year
+     let currentMonth = parseInt(currentDateParts[1]); // Month (1-12)
+     let currentDay = parseInt(currentDateParts[2]); // Day (1-31)
+
+     // Parse the birthdate (YYYY-MM-DD) into month, day, year
+     let birthDateParts = birthDate.split('-');
+     let birthYear = parseInt(birthDateParts[0]); // Year
+     let birthMonth = parseInt(birthDateParts[1]); // Month (1-12)
+     let birthDay = parseInt(birthDateParts[2]); // Day (1-31)
+
+     
+      // Update the textarea with the result
+      document.getElementById('result').innerHTML = result;
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        // Event listener for the clear form button
+        document.getElementById("clearFormBtn").addEventListener("click", function() {
+            // Clear the input fields
+            document.getElementById('first-name').value = "";
+            document.getElementById('last-name').value = "";
+            document.getElementById('current-date').value = "";
+            document.getElementById('birthdate').value = "";
+            
+            // Clear the result display
+            document.getElementById("result").innerHTML = ""; 
+        });
+    });
+
+  </script>
+</head>
+<body>
+<div class="content">
+  <h1>Numerology</h1>
+
+  <!-- Textarea to display the results -->
+  <h2>What is numerology?</h2>
+  <p>Numerology is the science of numbers. It is an ancient science that says numbers have vibration, thus quality. Figures on the otherhand have quantity.
+    The roots of numerology and astrology can be traced back to ancient civilizations, including the Babylonians, Egyptians, and Greeks. The science of numbers is based on the concept that all is energy/vibration/frequency. This early form of astro-numerology is Chaldean or Vedic. There are differences between Chaldean and Pythagorean numerology; the birthday is more significant in Chaldean/Vedic numerology. 
+    <br />The idea behind numerology is that <strong>Everything is numbers</strong> and has vibrational frequency. Understanding numerology will help us stay in <strong>flow</strong> with divinity.
+  <br/><br/>
+  They recognized the significance of numbers in various aspects of life, including mathematics, astronomy, and mysticism. Astrology was based on correlation of the stars/signs and the cycles, patterns, and seasons.
+  In <strong>Chaldean numerology</strong>, the birth day is most significance, then the destiny numbers (aka life path numbers). The Chaldean method also examines
+   the compound numbers, not just the reduced value. Additionally, the name you are most known by is more important than the birth name. 
+<br/><br/>Psalms 90: 12 - So teach us to number our days, that we may apply our hearts unto wisdom.
+  <br/><br/>Math is the universal language of the world and the cosmos.  
+  </p>
+  <h3>Chaldean Table:</h3>
+  
+   <textarea id="chaldean" rows="6" cols="35" readonly>
+  1   2   3   4   5   6   7   8
+  A   B   C   D   E   U   O   F
+  I   K   G   M   H   V   Z   P
+  J   R   L   T   N   W    
+  Q   S   X   
+  Y
+   </textarea>
+
+  <!-- Form with Name and Age input fields -->
+  <form onsubmit="handleFormSubmission(event)">
+     <!-- First Name -->
+     <label for="first-name">First Name:</label>
+     <input type="text" id="first-name" name="first-name" required><br><br>
+
+     <!-- Middle Name (Optional) -->
+     <label for="middle-name">Middle Name (Optional):</label>
+     <input type="text" id="middle-name" name="middle-name"><br><br>
+
+     <!-- Last Name -->
+     <label for="last-name">Last Name:</label>
+     <input type="text" id="last-name" name="last-name" required><br><br>
+
+     <!-- Current Date -->
+     <label for="current-date">Current Date:</label>
+     <input type="date" id="current-date" name="current-date" required><br><br>
+
+     <!-- Birthdate -->
+     <label for="birthdate">Birthdate:</label>
+     <input type="date" id="birthdate" name="birthdate" required><br><br>
+
+    <button type="submit">Reveal</button>
+  </form>
+<br/>
+<br/>
+  <button id="clearFormBtn">Clear Form</button>
+  <!-- Textarea to display the results -->
+  <h3>Results:</h3>
+  <div id="result"></div>
+</div>
+</body>
+</html>
