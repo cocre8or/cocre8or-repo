@@ -444,6 +444,16 @@
         }
         return number;
     }
+    function reduceNumberToCompound(number) {
+        while (number > 99)  {
+            // Convert the number to a string, split it into digits, map them to integers, and sum them
+            number = String(number)
+                .split('')                     // Split the number into its digits as strings
+                .map(digit => parseInt(digit))  // Convert each digit to a number
+                .reduce((sum, digit) => sum + digit, 0);  // Sum the digits
+        }
+        return parseInt(number);
+    }
 
     function getPythagoreanValue(char) {
         // Define the Pythagorean numerology mapping
@@ -540,6 +550,7 @@
         // Calculate the Life Path Number
         let lifePathSum = reduceNumber(month) + reduceNumber(day) + reduceNumber(year);
         let attitudeNumber = reduceNumber(reduceNumber(month) + reduceNumber(day));
+        let compoundNumber = reduceNumberToCompound(lifePathSum);
         let lifePathNumber = reduceNumber(lifePathSum);
     
         // Get the current date, or default to the current date if not provided
@@ -584,6 +595,7 @@
         // Return all the calculated values
         return {
             lifePathNumber,
+            compoundNumber,
             attitudeNumber,
             birthdayNumber,
             personalYear,
@@ -621,6 +633,7 @@
       let personalityNumber = name_numbers['personalityNumber'];
 
       let lifePathNumber = numerologyValues['lifePathNumber'];
+      let compoundNumber = numerologyValues['compoundNumber'];
       let attitudeNumber = numerologyValues['attitudeNumber'];
       let birthdayNumber = numerologyValues['birthdayNumber'];
       let personalYear = numerologyValues['personalYear'];
@@ -641,7 +654,7 @@
       result += `<h2>Below are various numbers in your numerology chart.</h2>`;
       result += `The core 5 numbers are the most impactful, which are the life path number, destiny number, soul urge, personality, and birthday number.<br/><br/>`;
 
-      result += `<br/><strong>The Life Path Number ${lifePathNumber}</strong>.<br/>`;
+      result += `<br/><strong>The Life Path Number ${compoundNumber}/${lifePathNumber}</strong>.<br/>`;
       result += `<strong>The Life Path Number is believed to reveal the person's life purpose.</strong><br/>`;
       result += `${life_path_numbers[lifePathNumber]['traits']}`;
       
