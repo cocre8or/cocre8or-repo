@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chaldean Numerology</title>
+  <title>Ancient Science of Numerology</title>
   <style>
     /* Basic Reset */
     * {
@@ -31,6 +31,7 @@
       font-size: 3em;
       font-weight: bold;
       letter-spacing: 2px;
+      text-align: center;
     }
 
     header p {
@@ -41,13 +42,17 @@
     /* Main Content Styling */
     .content {
       padding: 20px;
-      text-align: center;
+      text-align: left;
     }
 
     .content h2 {
       font-size: 2em;
+      text-align: center;
       margin-bottom: 20px;
     }
+    .content h1 {
+       text-align: center;
+      }
 
     .content p {
       font-size: 1.1em;
@@ -81,15 +86,48 @@
         7: ['O', 'Z'],
         8: ['F', 'P']
       };
+
+      const pythagorean_mapping = {
+        'A': 1, 'B': 2, 'C': 3, 'D': 4, 'E': 5, 'F': 6, 'G': 7, 'H': 8, 'I': 9,
+        'J': 1, 'K': 2, 'L': 3, 'M': 4, 'N': 5, 'O': 6, 'P': 7, 'Q': 8, 'R': 9,
+        'S': 1, 'T': 2, 'U': 3, 'V': 4, 'W': 5, 'X': 6, 'Y': 7, 'Z': 8
+    };
+
+    const py_numerology_map = {
+        1: ['A', 'J', 'S'],
+        2: ['B', 'K', 'T'],
+        3: ['C', 'L', 'U'],
+        4: ['D', 'M', 'V'],
+        5: ['E', 'N', 'W'],
+        6: ['F', 'O', 'X'],
+        7: ['G', 'P', 'Y'],
+        8: ['H', 'Q', 'Z'],
+        9: ['I', 'R']
+    };
       
+      const number_description = {
+        0: "Before time and space, ultimate potential, source before manifestation, zero amplifies any number i.e. 4 to 40, without this amplification of 0 you can’t get to 49",
+        1: "The Pioneer, feminine winner mentality(delegates) starter, independent nature, life force, leader, ego, self, confidence",
+        2: "The Mediator, sensitivity, balance, harmony, peacemaker, kindness, partnerships",
+        3: "The Inspirator, lucky, masculine winner mentality(1 man army), triangle (Spirit), creativity, art, music, communication, recharge in quiet, reasoning, lucky",
+        4: "The Innovator, square (order, earth, seasons), organize, build a solid foundation, physical world, practical, task oriented, responsibility, strong work ethic, rational, methodical",
+        5: "The Explorer, human, protected success, unending talent, free-thinking, adaptable, brave, resilient, critical thinking, skeptic, network, work toward trusting one's self",
+        6: "The Healer, nurturing, supportive, problem-solving emotions and physical, family, security, controlling",
+        7: "The Scientist/Meditator, solitude, self-care, detective, keen eye, wisdom, inventive, perfectionist, good luck, introspection, inner wisdom, inner spirituality",
+        8: "The Banker, wealth, workaholic, abundance, karma, destiny, order, promotion, good managers",
+        9: "The Life-coach, Warrior, spiritual awareness, transformative, social ethics, old soul, completion, release, forgive, humanitarian, minister, philanthropy, 360 circle 3+6+0 = 9 it represents Alpha & Omega",
+        11: "The Guru, heal of self and others, balanced spiritually and philosophically",
+        22: "The Architect, master builder, dependable",
+        33: "The Savior, self sacrifice"
+    }
 
     const personal_day_advice = {
         1: "Take controller of your destiny. It is also a time when you are vulnerable to the negative influences of others. You should be confident in your abilities and work independently to succeed. Embrace new beginnings and take initiative. Focus on your personal goals and assert your independence.",
         2: "Be nurturing to self and other. Cultivate harmony and cooperation. Focus on building relationships and practicing patience with others.",
-        3: "Be Proud Of Yourself. Express your creativity and enjoy social interactions. Use this time for self-expression and joy.",
+        3: "Be Proud Of Yourself. This will be a day about communication. Express your creativity and enjoy social interactions. Use this time for self-expression and joy.",
         4: "Be Productive. Planning day. Focus on building a solid foundation. Organize your tasks and pay attention to details for long-term success.",
-        5: "Be Bold and beautify your environment. Embrace change and flexibility.",
-        6: "Be responsible. Your main concern should be about your familial and domestic matters.",
+        5: "Be Active. Embrace change and flexibility.",
+        6: "Be Responsible. Your main concern should be about your familial and domestic matters.",
         7: "Be Calm. Follow your intuition. Know thyself. Make an extra effort to stay calm and composed throughout the day. Take time for introspection and spiritual growth. Engage in self-reflection and seek deeper understanding.",
         8: "Be Business-minded in a relaxed manner. It is a day to make some essential professional decisions in life. Business and financial decisions taken on this day would reap good results. Focus on your ambitions and financial goals. Take decisive action towards your career and material success.",
         9: "Be generous and be willing to make big goals. Share your experience and achievements with others. Let go of what no longer serves you. Focus on closure, forgiveness, and preparing for new chapters in your life.",
@@ -111,111 +149,61 @@
         22: "In Year 22/4, you begin to stabilize what you've learned over the past few years and build something that will last in the future.",
         33: "In Year 33/6, you continue to grow and nurture what you've been creating."
     }
-    const number_description = {
-        0: "Before time and space, ultimate potential, source before manifestation, zero amplifies any number i.e. 4 to 40, without this amplification of 0 you can’t get to 49",
-        1: "The Pioneer, God, starter, independent nature, life force, leader, ego, self, confidence",
-        2: "The Mediator, sensitivity, balance, harmony, peacemaker, kindness, partnerships",
-        3: "The Entertainer, triangle (Spirit), creativity, art, music, communication, recharge in quiet, reasoning, lucky",
-        4: "The Builder, square (order, earth, seasons), organize, build a solid foundation, physical world, practical, task oriented, responsibility, strong work ethic, rational, methodical",
-        5: "The Explorer, human, unending talent, free-thinking, adaptable, brave, resilient, critical thinking, skeptic, network, work toward trusting one's self",
-        6: "The Healer, nurturing, supportive, problem-solving emotions and physical, family, security, controlling",
-        7: "The Scientist/Meditator, solitude, self-care, detective, keen eye, wisdom, inventive, perfectionist, good luck, introspection, inner wisdom, inner spirituality",
-        8: "The Banker, wealth, workaholic, abundance, karma, destiny, order, promotion, good managers",
-        9: "The Life-coach, Warrior, spiritual awareness, transformative, social ethics, old soul, completion, release, forgive, humanitarian, minister, philanthropy, 360 circle 3+6+0 = 9 it represents Alpha & Omega",
-        11: "The Guru, heal of self and others, balanced spiritually and philosophically",
-        22: "The Architect, master builder, dependable",
-        33: "The Savior, self sacrifice"
-    }
 
     const destiny_numbers = {
-        1: {
-            "meaning": "Leadership and Independence",
-            "traits": "The leader. Individuals with Destiny Number 1 are natural leaders who are ambitious and self-reliant. They have a strong desire to achieve and are often seen as pioneers in their field. They are confident, determined, and have a clear vision of their goals."
-        },
-        2: {
-            "meaning": "Cooperation and Sensitivity",
-            "traits": "The diplomat. Those with Destiny Number 2 are diplomatic, sensitive, and have a strong ability to connect with others. They value harmony and are often seen as peacemakers. Their ability to work well in teams and their intuitive nature make them excellent collaborators."
-        },
-        3: {
-            "meaning": "Creativity and Expression",
-            "traits": "The inspirer. People with Destiny Number 3 are creative, expressive, and enjoy engaging with others. You are multi-talented and shoud develop your communication/expression skills to inspire others. They are often artistic and have a talent for communication. They bring joy and enthusiasm to their interactions and are known for their optimism and charisma."
-        },
-        4: {
-            "meaning": "Practicality and Stability",
-            "traits": "Individuals with Destiny Number 4 are hardworking, reliable, and grounded. They have a strong sense of responsibility and are adept at managing details and ensuring stability. They value structure and are often seen as dependable and practical."
-        },
-        5: {
-            "meaning": "Adventure and Freedom",
-            "traits": "The change promoter or maker. Those with Destiny Number 5 are adventurous, energetic, and thrive on change. They value freedom and dislike routine. Their dynamic nature often leads them to explore new opportunities and experiences. They are versatile and adaptable, with a love for excitement."
-        },
-        6: {
-            "meaning": "Nurturing and Responsibility",
-            "traits": "People with Destiny Number 6 are caring, responsible, and have a strong sense of duty. They are often drawn to roles where they can help others and create harmony in their environment. Their nurturing nature makes them excellent caregivers and support systems."
-        },
-        7: {
-            "meaning": "Introspection and Wisdom",
-            "traits": "Individuals with Destiny Number 7 are introspective, analytical, and seek deeper understanding. They are often drawn to spiritual or intellectual pursuits and value solitude and reflection. Their wisdom and insight are valuable assets in their quest for knowledge."
-        },
-        8: {
-            "meaning": "Power and Achievement",
-            "traits": "Those with Destiny Number 8 are ambitious, determined, and focused on achieving their goals. They have strong leadership qualities and are often drawn to positions of power and authority. Their drive for success and financial stability is a key aspect of their personality."
-        },
-        9: {
-            "meaning": "Compassion and Idealism",
-            "traits": "People with Destiny Number 9 are compassionate, idealistic, and have a strong sense of purpose. They are often involved in humanitarian efforts and are driven by a desire to make the world a better place. Their empathy and vision for the greater good are central to their identity."
-        }
-    }
-    
-    const life_path_numbers = {
-        1: {
-            "meaning": "Leadership and Independence",
-            "traits": "Individuals with Life Path Number 1 are natural leaders who are confident, ambitious, and self-reliant. They are driven to achieve and often have a pioneering spirit. Their confidence, determination, and originality are key attributes."
-        },
-        2: {
-            "meaning": "Cooperation and Sensitivity",
-            "traits": "Those with Life Path Number 2 are diplomatic, sensitive, and have a talent for creating harmony in their relationships. They are cooperative and have a natural ability to work well with others. Their intuitive and empathetic nature often guides them."
-        },
-        3: {
-            "meaning": "Creativity and Expression",
-            "traits": "Your Life Path 3 needs you to be seen! The great communicators. Life Path Number 3s are the entertainers of the world and most of these people are truly gifted musicians, writers, actors, dancers, public speakers, and politicians. The Life Path 3 is one that is characterised by beauty, excitement, eccentricity, and fame. Its very important for those living out this vibration to find authentic ways to express their inner essence and be truly seen (behind the mask, and beyond the stage) and for many, this is the real challenge. Some threes stray from their path, giving up their dreams and talents and some even escape into drug abuse or promiscuity in a bid to silence their inner calling. For this reason, 3s must retain their sense of childlike wonder, play and relentlessly fuel their creativity."
-        },
-        4: {
-            "meaning": "Practicality and Stability",
-            "traits": "Their purpose in life is to think positively, develop flexibility both mentally and physically, and break away from the trap of conventional thinking. They dislike idleness. They came into this lifetime to learn about limitations. Life Path Number 4s are often the pillars of their communities. These individuals are hard-working, practical and trustworthy, and as such, make fantastic marriage and business partners, teachers, mentors and advisors. Their resourceful nature means that they are able to create something out of nothing and are often called upon in a crisis! However, self-sacrificing fours often demand too much both of themselves and others and can develop reputations as martyrs or tyrants: Their will-power and tenacity being misinterpreted as greed and stubbornness. This completely baffles the confused Number 4 whose intentions are usually to benefit the good of all, so it is important for those living through this vibration to regularly release some of their perfectionist tendencies and practice kindness and compassion for both themselves and others."
-        },
-        5: {
-            "meaning": "Adventure and Freedom, unending talent",
-            "traits": "Your Life Path 5 needs you to be fearless and find freedom! Life Path Number 5s are highly inquisitive individuals who consider the hands-on experience to be the best teacher in life. Many people living out this vibration are deeply intelligent, philosophical and spiritually-minded, as well as being great communicators that make excellent social anthropologists, archaeologists, teachers, writers, and historians. However, Number 5s can tend towards being self-absorbed and unaware of the more widespread effects of their footloose and seemingly reckless actions. The avoidance of commitment of many fives can also prevent deep and loyal bonds forming between them and the people in their lives, so it is really important for these folk to find ways of experiencing freedom and variety, without running away from responsibility and hurting their families."
-        },
-        6: {
-            "meaning": "Nurturing and Responsibility",
-            "traits": "People with Life Path Number 6 are nurturing, responsible, and deeply concerned with their families and communities. They are natural caregivers and often find fulfillment in roles that involve supporting and helping others."
-        },
-        7: {
-            "meaning": "Introspection and Wisdom",
-            "traits": "Individuals with Life Path Number 7 are introspective, analytical, and seek deeper understanding. Here to seek the truth. They are often drawn to spiritual or intellectual pursuits and value solitude and contemplation. Their wisdom and insight are central to their personality."
-        },
-        8: {
-            "meaning": "Power and Achievement",
-            "traits": "Those with Life Path Number 8 are ambitious, determined, and focused on achieving their goals. Here to master the art of success in the material world through patient endures and hard-work. They are often drawn to positions of authority and have strong leadership qualities. Their drive for success and financial stability is a defining aspect."
-        },
-        9: {
-            "meaning": "Compassion and Idealism",
-            "traits": "People with Life Path Number 9 are compassionate, idealistic, and driven by a desire to make a positive impact on the world. They are often involved in humanitarian efforts and possess a deep sense of empathy and vision. Challenges they must overcome are - Lack of concentration, they don't ask for support in their learning, struggling alone, Holding on to the past, not letting go, Too much attachment, which, in the end, gives misery."
-        },
-        11: {
-            "meaning": "Inspiration and Illumination",
-            "traits": "Individuals with Life Path Number 11 are highly intuitive, inspirational, and have a strong sense of purpose. They often possess a heightened spiritual awareness and a deep connection to their inner selves, guiding others through their wisdom and vision."
-        },
-        22: {
-            "meaning": "Master Builder and Visionary",
-            "traits": "Those with Life Path Number 22 are powerful visionaries with the ability to turn dreams into reality. They are practical and ambitious, with a strong drive to achieve great things. Their leadership and organizational skills enable them to create lasting impact."
-        },
-        33: {
-            "meaning": "Master Teacher and Compassion",
-            "traits": "People with Life Path Number 33 are often seen as master teachers and healers. They possess a deep sense of compassion and a strong desire to help others. Their ability to inspire and uplift those around them is a key aspect of their path."
-        }
-    }
+        1: "Represented by the Celestial body of the Sun. It dictates the 'feminine winner mentality', which means that one desires freedom and abundance. Therefore one has a strong winner mentality in order to gain success so that one can do whatever is desired. People who are represented by the number 1 strongly dislike authorities because they want to be authorities themselves. People who are represented by the number 1 like to delegate work, and they like to make other people do their job. They dislike sloppy people and people without ambition. People who are represented by the number 1 are also very creative and very perfectionist. People who are represented by the number 1 have a hard time dealing with big problems because they want their success to flow easily. They want a hedonist lifestyle with abundance and freedom.",
+        2: "Represented by the celestial body of the Moon. People who are represented by the number 2 are very soft and often weak. Because they are weak, they have strong creativity, but they also tend to be melancholic easily. Therefore the creativity made by people who are represented by the number 2 is often melancholic and sad.  The main strength of people who are represented by the number 2 is that they are good at reading people and understanding people. They have strong empathy, but they often fail to see the big picture. Especially men who are represented by the number 2 are afraid to be weak. Therefore many male criminals are represented by the number 2 because they want to appear as if they are tough even though they are not.",
+        3: "Represented by planet Jupiter. The number 3 is the first number of the Heavenly Triad of 3, 6 and 9. It’s the number of expansion, growth and the 'male winner mentality'. It’s a number of theories, knowledge, and advancement. People who are represented by the number 3 have a strong talent at being strategic and keeping an overview. Unlike people who are represented by the “feminine winner mentality” (number 1) who like to outsource, people who are represented by the number 3 want to do everything themselves. Therefore they often appear as a 'one-man army'. This is the case because people who are represented by the number 3 want to be in control in order to be sure that everything is done well enough.",
+        4: "Represented by planet Uranus. The number 4 is the shadow number of the number 1. People who are represented by the number 4 want to be unique. They are good at thinking outside the box, and they are natural-born engineers, scientists, and inventors of all kinds.People who are represented by the number 1 hates authorities, and they often get in conflict with authorities because they are different and they have a rebellious behavior. Therefore people who are represented by the number 4 wants to revolutionize with new ideas, but most people hate new ideas as this brings people out of their comfort zone. Therefore people who are represented by the number 4 have many enemies. People who are represented by the number 4 are often perceived as the black sheep. They almost always suffer psychological problems such as ADHD, Asperger’s syndrome, OCD, autism and also sometimes mythomania.",
+        5: "Represented by planet Mercury.People who are represented by the number 5 are natural born speakers.They have great social skills and they are good at getting along with everyone. This is the case because the number 5 is between 1 and 9, and therefore it can go all the way to the top (9) and to the bottom (1). Therefore people who are represented by the number 5 often behave as social butterflies.The number 5 stands for motion, vigor, communication, friends, and business.Therefore people who are represented by the number 5 are good at making friends and making networks.",
+        6: "Represented by planet Venus. The number 6 is the second number of the Heavenly Triad of 3, 6 and 9. Like in electricity, you have a plus and a minus pole. The number 3 is plus and the number 6 is minus. This means that the number 3 is about doing and the number 6 is about receiving. Therefore the number 6 stands for comfort, the homeliness and therefore people who are represented by the number 6 are slow movers and they are very stubborn. On the contrary, people who are represented by the number 6 are very charming, and they appear trustworthy. However, people who are represented by the number 6 are very skilled in manipulation and in using their charm for personal gain.",
+        7:	"Represented by planet Neptune.The number 7 is the shadow number of the number 2.The number 7 stands for insight, seeking deeper meaning in everything, and therefore people who are represented by the number 7 have many profound thoughts within their mind. They seek a deeper meaning in everything, and they try to understand a deeper meaning – even where one might say – there is none. People who are represented by the number 7 are good at understanding people’s intentions behind their actions and they have a very developed gut feeling.However, just like people who are represented by the number 2 is also afraid to be weak. Therefore many male criminals are represented by the number 7 because they are afraid to be weak.",
+        8:	"Represented by planet Saturn. The number 8 is known as the major destiny number and it represents the symbol of eternity. This means that people who are represented by the number 8 are born to create a major change in the world and to create something that will last forever. People who are represented by the number 8 want to build things up slowly and thoroughly. They often appear cynical and pragmatic. They are also very practical in their approach to life in general. However many people who are represented by the number 8 have a very tough life. This is meant to harden them so they can deal with a major responsibility. Therefore many CEOs are represented by the number 8.",
+        9:	"Represented by planet Mars. The number 9 is the final number of the Heavenly Triad of 3, 6 and 9. It’s also considered to be a divine number because it’s the highest number there is. The number 9 is considered as the number of literally everything. Therefore the number 9 is the shadow number of number 0. The number 0 is the number of nothing and the number 9 is the number of everything. According to ancient Chaldean philosophy, everything is nothing, and nothing is everything. Therefore people who are represented by the number 9 are meant to be the enforcers of Karma and justice. People who are represented by the number 9 are focused on justice, integrity, and honor. Therefore they are very frank and they speak their mind without a filter. Nearly all people who are represented by the number 9 have had a tough childhood. People who are represented by the number 9 are meant to see the big picture of life.",
+        10 : "<strong>Chaldean tablets</strong> Symbolized as the 'Wheel of Fortune'. It’s the number of honor, faith, and self-confidence. Of rising and fall. One’s name shall be known for good or evil according to one’s desires. It’s a fortunate number in the sense that one’s plans are likely to be carried out.<br/><br/><strong>Meaning </strong>The number 10/1 is a number of the 'feminine winner mentality'. This means that it’s important to people who are represented by the number 10/1 that their success comes easily to them. They have a high level of creativity, but they really hate to lose.People who are represented by the number 10/1 are often loved and hated because they might appear in a hedonist, which can make other people envy. People who are represented by the number 10/1 also appear arrogant to some people.",
+        11 : "<strong>Chaldean tablets</strong> This is an ominous number to occultists. It gives warning of hidden dangers, trials, and treachery from others. It has a symbol of a clenched hand and a lion muzzled. It represents a person who will have great difficulties to contend against<br/><br/><strong>Meaning </strong>The symbolism of 'a lion muzzled' means that one has a great deal of inner strength, but it all drowns in self-doubt, low self-esteem and mind racing.Therefore the number 11/2 is a number of stress, low energy, and low self-esteem. It’s a number of caring too much about other people’s opinions and it’s a number of inferior complexes. Therefore addictions come with the compound number of 11/2.",
+        12 : "<strong>Chaldean tablets</strong> The symbolism of this number is suffering and anxiety of mind. It is also indicated as 'the sacrifice' or 'the victim' and generally it foreshadows one being sacrificed for the plans and intrigues of others.<br/><br/><strong>Meaning </strong>It’s mentioned in the Chaldean tablets that the number 12/3 is the number of victimhood.This happens in the way that one does everything according to the book, and other people mess up, and one becomes the victim to other people’s mistakes and incompetence.Therefore if one is represented by the compound number of 12/3, one will often experience victimhood and hopelessness.One tries to evolve from it, and one works a lot with oneself, but one keeps falling back into the same mistakes over and over.Therefore with the compound number of 12/3, one is paranoid and overthinks things. One is afraid that the danger is around every corner. Therefore one gets a great deal of anxiety. From this comes addictions and self-destructive and/or abusive behavior.",
+        13 : "<strong>Chaldean tablets</strong> This is a number indicating a change of plans, place and such-like and it’s not unfortunate as it’s generally supposed. In some of the ancient writings, it’s said: 'He who understands the number 13/4 will be given power and dominion'. It’s symbolized by the picture of 'The grim reaper' with a scythe reaping down men in a field of new-grown grass where young faces and heads appear cropping up on every side. It’s a number of upheaval and destruction. It’s a symbol of power which if it’s wrongly used will wreak destruction upon oneself. It’s a number of warnings of the unknown or unexpected if it becomes a compound number in one’s calculations.<br/><br/><strong>Meaning </strong>In the Chaldean tables, the compound number of 13/4 is associated with the Grim Reaper. The symbol of death. The symbol of death is a metaphor for removing something that is there and replacing it with something new.This could, for example, have to do with removing old and outdated traditions and concepts and replacing them with new ideas – for example science and other similar things. The compound number of 13/4 is the number of innovation, science, and everything that can be proven and documented.Innovation is something that changes old habits and traditions.The compound number of 13/4 is basically about change.Therefore people who are represented by the compound number of 13/4 are also people who often change their minds – to great frustration to their fellows.People who are represented by the compound number of 13/4 often suffer from ADHD, autism, Asperger’s syndrome, OCD and other similar spectrum sufferings.",
+        14 : "<strong>Chaldean tablets</strong> This is a number of movements, a combination of people and things, and danger from natural forces such as tempests, water, air or fire. This number is fortunate for dealings with money, speculation a change in business, but there is always a strong element of risk and danger attached to it, but generally owing to the actions and foolhardiness of others. If this number comes out in calculations of future events, the person should be warned to act with caution and prudence<br/><br/><strong>Meaning </strong>The compound number of 14/5 is a number that is frequently seen among self-made billionaires.It creates situations in people’s lives in which they suffer deeply from a bad economy, and then eventually the individual will decide on getting wealthy so he/ she shall never go hungry again.Thereby the compound number of 14/5 supports the individual to getting wealthy, but he/ she must work hard and determined to do so.With the compound number of 14/5, one is a natural-born investor and stockbroker. However one must work hard to become good, but if one does so, great achievements can be made.The compound number of 14/5 is also the number of eloquence and fact-based communication.",
+        15 : "This is a number of occult significance, of magic and mystery, but as a rule, it does not represent the higher side of occultism, it’s meaning being that the person represented by it will use every art of magic they can to carry out their purpose. If associated with a good or fortunate single number, it can be very lucky and powerful, but if associated with one of the peculiar numbers such as 4 or/ and 8, the person it represents will not hesitate to use any sort of art or even 'black magic' to gain what he or she desires.It’s peculiarly associated with good talkers, often with eloquence, gifts of music and art and a dramatic personality combined with a certain voluptuous temperament and a strong personal magnetism. For obtaining money, gifts and favors from others, it’s a fortunate number<br/><br/><strong>Meaning </strong>The compound number of 15/6 stands for manipulation, strong charisma, and social magnetism. However, it’s also a number associated with sociopathy and even psychopathy if it stands together with the compound numbers of 4 and 8.The compound number of 15/6 is often seen among politicians, salesmen/ women, actors and other kinds of people who are in the spotlight. It’s a number of mesmerizing people with charm and charisma.However, the compound number of 15/6 is also a number of a wide spectrum of serious diseases such as rare diseases, skin diseases, psychological diseases, depression, a volatile temper, etc.",
+        16 : "<strong>Chaldean tablets</strong> This number has a most peculiar occult symbolism. It’s pictured by a tower struck by lightning from which a man is falling with a crown on his head. It’s also called 'the shattered citadel'. It gives warning of some strange fatalities awaiting one, also the danger of accidents and defeat of one’s plans. If it appears as a compound number relating to the future, it’s a warning sign that one should be very careful.<br/><br/><strong>Meaning </strong>The compound number of 16/7 is a number of fatalities or/ and metaphorical fatalities in one’s closest relations. People who are represented by the compound number of 16/7 have lost a lot of loved ones in their lives, and people who are represented by the compound number of 16/7 will live long so they will outlive all their loved ones and thereby they will experience even more fatalities in their near relations.People who are represented by the compound number of 16/7 don’t feel themselves much. They are in a constant stage of anesthesia. For example, if they break their hand, they ignore their pain, and they just keep on doing what they used to do.",
+        17 : "This is a highly spiritual number and is expressed in symbolism by the 8-pointed star of Venus: a symbol of love and peace. It’s also called 'the star of the magi'. It expresses that a person who is represented by the compound number of 17/8 will rise superior in spirit to the trials and difficulties of life or his/ her career. It’s considered the number of 'immortality', and it means that the person’s name will live after hi/ her. It’s a fortunate number if it works out in relation to future events if it’s not associated with the single numbers four and 8.<br/><br/><strong>Meaning </strong>The compound number of 17/8 is a number of having a very strong character and that one is always being remembered by others. This can be good and bad. People who are represented by the compound number of 17/8 often have a love/ hate relationship to the spotlight.They are excellent at being in the spotlight, but they are afraid of messing up as they know that if they do so, people will never forget.People who are represented by the compound number of 17/8 are often very intelligent and they have a high IQ. Therefore it’s mentioned in the ancient Chaldean tablets that they 'rise superior in spirit to the difficulties of life'.",
+        18 : "<strong>Chaldean tablets</strong> This number has a difficult symbolism to translate. It’s pictured as 'a rayed moon from which drops of blood are falling. A wolf and a hungry dog are seen below catching the falling drops of blood in their opened mouths, while still lower down a crap is seen hastening to join them'. It’s a symbol of materialism striving to destroy the spiritual side of nature. It’s generally associated with a person who has bitter quarrels in the family. It’s a number of war, upheavals, revolutions and in some cases, it indicates making money and position through wars. It’s, however, a number of treachery, deception by others, also danger from the elements such as storms, danger from water, fires, and explosions.<br/><br/><strong>Meaning </strong>The compound number of 18/9 is a number of working hard and getting things done. The prime motivation is materialism, status, and achievements.People who are represented by the compound number of 18/9 are strictly focused on justice. However, they have a lot of frustrations within. Therefore their sense of justice often gets polluted by self-righteous behavior, and their strife for justice becomes injustice.Furthermore, people who are represented by the compound number of 18/9 tend to prioritize status before the environment.People who are represented by the compound number of 18/9 always have many problems in family because they have very low patience with 'bullshit'.",
+        19 : "This number is regarded as fortunate and extremely favorable. It’s symbolized as 'the Sun' and it’s called 'the prince of heaven'. It’s a number of promising happiness, success, esteem, and honor and promises success in one’s plan of the future<br/><br/><strong>Meaning </strong>It’s important to understand that there are strict rules for the compound number of 19/1. If these rules are met, the effect of the number is as above mentioned.However, if the compound number of 19/1 is unbalanced, then one gets fake hope that results in major disappointments and even depression.The compound number of 19/1 if it’s unbalanced can also cause a big ego and that one overestimates one’s abilities.However, the compound number of 19/1 is seen among many very beautiful people. People who are represented by the compound number of 19/1 are perfectionists and they are also perfectionists on the way they look.",
+        20 : "<strong>Chaldean tablets</strong> This number is called 'the Awakening'. It’s also called 'the judgment'. It’s symbolized by the figure of a winged angel sounding a trumpet hile from below a man, a woman, and a child are seen rising from a tomb with their hands clasped in prayer.This number has a peculiar interpretation; the call of action, but for some great purpose, cause or duty.<br/><br/><strong>Meaning </strong>The compound number of 20/2 is the number of creativity, passion, and idealism.It’s a number of the desire of wanting to change the world and to make the world a better place for all people. However, the weakness of the compound number of 20/2 is that one often get fixated about one concept and one idea and that one becomes so obsessed with it that one might not be able to think of anything but that.It’s furthermore a number of aesthetics and hedonism. It’s also the number of melancholia if it’s unbalanced.",
+        21 : "<strong>Chaldean tablets</strong> This number is symbolized by the picture of 'the Universe', and it is also called 'the Crown of the Magi'. It is a number of advancement, honors, elevation in life and general success. It means victory after a long initiation and tests of determination. It is a fortunate number of promises if it appears in any connection with future events.<br/><br/><strong>Meaning </strong>The compound number of 21/3 means that one wants to crack the code into gaining ultimate success that will be ever ongoing throughout one’s enter life.However, if it’s unbalanced, one will have the feeling of often being close to the total success, but the success seems further away than initially anticipated.Therefore if it’s unbalanced, one’s life might feel like walking through a tunnel of a constant learning process.",
+        22 : "<strong>Chaldean tablets</strong> This number is symbolized by an 'a Good Man blinded by the folly of others, with a knapsack on his back full of Arrows'. In this picture, he appears to offer no defense against a ferocious tiger that is attacking him. It is a warning number of illusion and delusion, a good person who lives in a fool’s paradise; a dreamer of dreams who awakens only when surrounded by danger. It is also a number of false judgments owing to the influence of others. As a number in connection with future events, it is a warning and its meaning should be carefully noted.<br/><br/><strong>Meaning </strong>The compound number of 22/4 is very unfortunate.It means that one is very naïve and keep trusting bad people who will rip one-off.It also means that one often gets ripped off in business and that one will keep forgiving the crooked people, so one will get ripped off over and over.With the compound number of 22/4, one has a naïve humanist life view that will attract a lot of bad people who will take advantage of one.It also means that one lives in a happy fantasy world – far beyond reality.This, therefore, means that people who are represented by the compound number of 22/4 often suffer from mythomania, and they often believe in their lies.People who are represented by the compound number of 22/4 furthermore tend to have autism, OCD, Asperger’s syndrome and other similar mental disorders.",
+        23 : "<strong>Chaldean tablets</strong> This number is called 'the Royal Star of the Lion.' It is a promise of success, help from superiors and protection from those in high places. In dealing with future events it is a most fortunate number and a promise of success of one’s plans.<br/><br/><strong>Meaning </strong>The compound number of 23/5 is extremely fortunate.It’s a number of Karmic protection and Karmic reward. This means that one can get away with a lot of things and that things never really got as bad as they could have.If the compound number of 23/5 is perfectly balanced, one is always invincible.If not, the compound number of 23/5 means that one is hard to defeat.The compound number of 23/5 is also a number of great network skills, and skills of communication and oratory.",
+        24 : "<strong>Chaldean tablets</strong> This number is also fortunate: it promises the assistance and association of those of rank and position with one’s plans; it also denotes gain through love and the opposite sex: it is a favorable number when it comes out in relation to future events.<br/><br/><strong>Meaning </strong>The compound number of 24/6 is a number of conservative values.It represents order, integrity, and justice.It also represents a person with a firm handshake and a person who is a man of his/ her words.People who are represented by the compound number of 24/6 have a great deal of charm and charisma and they are very likable.",
+        25 : "<strong>Chaldean tablets</strong> This is a number denoting strength gained through experience, and benefits obtained through observation of people and things. It is not deemed exactly 'lucky', as its success is given through strife and trials in an earlier life. It is favorable when it appears regarding the future.<br/><br/><strong>Meaning </strong>The compound number of 25/7 has a motto: 'What doesn’t kill me makes me stronger!'This is the case because the essence of the compound number of 25/7 is that one gradually learns and grows stronger from experience. Especially from tough experience.Furthermore, people who are represented by the compound number of 25/7 have strong creativity and a good gut feeling.",
+        26 : "In numerology 26/8 means to achieve great success and lose it again fastChaldean tablets:This number is full of the gravest warnings for the future. It foreshadows disasters brought about by association with others; ruin by bad speculations, by partnerships, unions, and bad advice. If it comes out in connection with future events one should carefully consider the path one is treading.<br/><br/><strong>Meaning </strong>The compound number of 26/8 is extremely unfortunate.With the compound number of 26/8, one can achieve great success rapidly, but one will eventually lose it extremely fast. When this happens, one will have a feeling of life being like a ruin.One’s life constantly starts over, and life often becomes a struggle of rebuilding instead of living.",
+        27 : "<strong>Chaldean tablets</strong> This is a good number and is symbolized as 'the Scepter.' It is a promise of authority, power, and command. It indicates that reward will come from the productive intellect; that the creative faculties have sown good seeds that will reap a harvest. Persons with this 'command' number at their back should carry out their ideas and plans. It is a fortunate number if it appears in any connection with future events.<br/><br/><strong>Meaning </strong>The compound number of 27/9 is a number of integrity, honesty and the attitude that a deal is a deal and a deal must always be kept.It’s also a number of standing up for oneself and having integrity.",
+        28 : "This number is full of contradictions. It indicates a person of great promise and possibilities who is likely to see all taken away from him unless he carefully provides for the future. It indicates loss through trust in others, opposition, and competition in trade, the danger of loss through the law, and the likelihood of having to begin life’s road over and over again.<br/><br/><strong>Meaning </strong>It’s a number of breaking promises.People who are represented by the compound number of 28/1 are unreliable and they have no problem breaking promises.Therefore they often end up in disputes with people.Furthermore, people who are represented by the compound number of 28/1 often end up in court for this behavior.",
+        29 : "<strong>Chaldean tablets</strong> It is not a fortunate number for the indication of future events. This number indicates uncertainties, treachery, and deception of others; it foreshadows trials, tribulation, and unexpected dangers, unreliable friends, and grief and deception caused by members of the opposite sex. It gives a grave warning if it comes out in anything concerning future events.<br/><br/><strong>Meaning </strong>The compound number of 29/2 is extremely unfortunate.It’s like the compound number of 11/2 on steroids.This is the case because of 2+9=11/2.The compound number of 29/2 is often associated with criminal behavior or people who work with criminals such as defense lawyers etc.",
+        30 : "<strong>Chaldean tablets</strong> This is a number of thoughtful deduction, retrospection, and mental superiority over one’s fellows, but as it seems to belong completely to the mental plane, the persons it represents, are likely to put all material things on one side — not because they have to, but because they wish to do so. For this reason, it is neither fortunate nor unfortunate, for either depends on the mental outlook of the person it represents. It can be all-powerful, but it is just as often indifferent according to the will or desire of the person.<br/><br/><strong>Meaning </strong>People who are represented by the compound number of 30/3 have the mind of a philosopher.They have a profound mindset, and they like to see things from a higher perspective.Therefore they are also interested in history because they like to understand why things are the way they are now, and they want to understand how things became this way.People who are represented by the compound number of 30/3 are much in their head, and therefore they prefer a small group of friends rather than a vast army of acquaintances",
+        31 : "<strong>Chaldean tablets</strong> This number is very similar to the preceding one, except that the person it represents is even more self-contacted, lonely, and isolated from his fellows. It is not a fortunate number from a worldly or material standpoint.<br/><br/><strong>Meaning </strong>The compound number of 31/4 is associated with autism, OCD, Asperger’s, ADHD and other similar mental disorders.People who are represented by the compound number of 31/4 are perceived as the black sheep, and they often have a feeling of loneliness – even when they are with big groups of people.People who are represented by the compound number of 31/4 sometimes have genius tendencies, but this often comes with the expense of social problems and strange behavior.",
+        32 : "This number has a magical power like the single 5, or the 'command' numbers 14 and 23. It is usually associated with combinations of people or nations. It is a fortunate number if the person it represents holds to his judgment and opinions: if not, his plans are likely to be wrecked by the stubbornness and stupidity of others. It is a favorable number if it appears in connection with future events.<br/><br/><strong>Meaning </strong>The compound number of 32/5 is a number of international businesses, great speakers and eloquence on a high level.It’s also a number of corporate businesses and strong abilities to get wealthy.The compound number of 32/5 also stands for international travel if balanced.It’s a number seen among many corporate CEOs and major corporations.",
+        33 : "<strong>Chaldean tablets</strong>  No description<br/><br/><strong>Meaning </strong>The compound number of 33/6 has many similarities with the compound number of 24/6.However, the compound number of 33/6 is more focused on materialism and business. It’s also strongly focused on due diligence in business and a high level of integrity in business.",
+        34 : "<strong>Chaldean tablets</strong>  No description<br/><br/><strong>Meaning </strong>The compound number of 34/7 has many similarities with the compound number of 25/7. However, the compound number of 34/7 is less fortunate and powerful.This is the case because the compound number of 25/7 has a better ability to learning from experience, and the compound number of 34/7 has a higher level of stress and low energy.",
+        35 : "<strong>Chaldean tablets</strong>  No description<br/><br/><strong>Meaning </strong>The compound number of 35/8 is even worse than the preceding 26/8. It’s a number of many dramatic ups and downs in life. It’s also a number of a very cold and cynical personality.It’s a very unfortunate number.",
+        36 : "<strong>Chaldean tablets</strong>  No description, in Numerology 36/9 is very powerful and a number of a great sense of humor and charisma.<br/><br/><strong>Meaning </strong>The compound number has some similarities with the compound number of 27/9. However, the compound number of 36/9 is far more 'kick-ass'. It’s a number of – metaphorically speaking – kicking in the doors and telling people what’s the deal. Therefore the compound number of 36/9 is very powerful and it’s also a number of a great sense of humor and charisma.People who are represented by the compound number of 36/9 are very frank and honest. They speak their mind without a filter.",
+        37 : "<strong>Chaldean tablets</strong> This number has a distinct potency of its own. It is a number of good and fortunate friendships in love, and combinations connected with the opposite sex. It is also good for partnerships of all kinds. It is a fortunate indication if it appears in connection with future events. In numerology 37/1 stands for a highly intellectual mind, the potential to achieve major international business and get wealthy.<br/><br/><strong>Meaning </strong>The compound number of 37/1 is also known as the 'royal star of the bull' – and thereby it’s a very fortunate counterpart to the compound number of 23/5 which is known as the 'royal star of the lion'. If these two numbers are put together in a numeroscope, it’s going to be very powerful.The compound number of 37/1 stands for a highly intellectual mind, the potential to achieve major international business and getting wealthy.With the compound number of 37/1, one also has a very strong intuition and gut feeling.The compound number of 37/1 also creates a high level of popularity among people. If the compound number of 37/1 is balanced, it will create a rockstar attitude.",
+        38 : "<strong>Chaldean tablets</strong>  No description<br/><br/><strong>Meaning </strong>The compound number of 38/2 is very unfortunate.It has some similarities with the unfortunate compound number of 29/2.However, the compound number of 38/2 is more focused on stress in business, a business that won’t be properly achieved and stress about not getting things done.",
+        39 : "<strong>Chaldean tablets</strong>  No description<br/><br/><strong>Meaning </strong>It’s a number of a very powerful winner mentality in which one keeps going until eventually succeeding. It’s a number of never giving up.If perfectly balanced, it can be extremely powerful.",
+        40 : "<strong>Chaldean tablets</strong>  No description<br/><br/><strong>Meaning </strong>It’s even worse than the compound number of 31/4. It even has a higher level of autistic tendencies and social difficulties.",
+        41 : "<strong>Chaldean tablets</strong>  No description<br/><br/><strong>Meaning </strong> It’s very similar to the compound number of 14/5.It’s a number of business, motion, and relations. It’s moderately fortunate.",
+        42 : "<strong>Chaldean tablets</strong>  No description<br/><br/><strong>Meaning </strong>The compound number of 42/6 has many similarities with the compound number of 24/6.However, the compound number of 42/6 is more focused on romantic love and passion.",
+        43 : "<strong>Chaldean tablets</strong> This is an unfortunate number. It is symbolized by the signs of revolution, upheaval, strife, failure, and prevention and is not a fortunate number if it comes out in calculation relating to future events.<br/><br/><strong>Meaning </strong>People who are represented by the compound number of 43/7 often make the impression on people that they are 'pain in the ass'. Even if they have a point in what they say, they are mostly disliked. They often appear in a very annoying way in the public eye.",
+        44 : "<strong>Chaldean tablets</strong>  No description<br/><br/><strong>Meaning </strong>The compound number of 44/8 is one of the three compound numbers that dictates Karmic penalty. The ones are 48/3 and 88/7.This is the case because the compound number of 44/8 consists of double 4 and 8. The numbers 4 and 8 are the minor and the major destiny number. When they are put together in this order, it becomes disastrous.Therefore the compound number of 44/8 is far worse than 26/8 and 35/8 combined.",
+        45 : "<strong>Chaldean tablets</strong>  No description<br/><br/><strong>Meaning </strong>The compound number of 45/9 has similarities with the compound number of 27/9.However, the compound number of 45/9 is made from 4 and 5. This means that the compound number of 45/9 represents aspects of innovation and business. Thereby the compound number of 45/9 is about leadership in business and new ideas.",
+        46 : "<strong>Chaldean tablets</strong>  No descriptions<br/><br/><strong>Meaning </strong>The compound number of 46/1 is a number that means that one metaphorically speaking wears a backpack full of various talents.With the compound number of 46/1, one generally is good at most things one undertakes.",
+        47 : "<strong>Chaldean tablets</strong>  No description<br/><br/><strong>Meaning </strong>The compound number has similar aspects to the compound number of 29/2.However, the compound number of 47/2 holds a great deal of confusion between faith and logic.This is the case because the compound number of 47/2 is made from the numbers 4 and 7 which are each other’s opposites. The number 4 stands for logic and reason and the number 7 stands for faith and belief.Therefore with the compound number of 47/2, one is confused about whether to trust in faith and intuition or to rely on logic and reason. This creates stress and low energy and mistrust in oneself.",
+        48 : "<strong>Chaldean tablets</strong>  No description<br/><br/><strong>Meaning </strong>The compound number of 48/3 is a number of disaster, victimhood and it’s one of the three compound numbers of Karmic penalty.It dictates heavy sufferings, fear, and anxiety. It’s one of the worst numbers there is.",
+        49 : "<strong>Chaldean tablets</strong>  no description<br/><br/><strong>Meaning </strong>The compound number of 49/4 is even worse than the compound numbers of 40/4 and 31/4. It’s a number of heavy autism, OCD, ADHD, Asperger’s and other similar mental disorders. It’s also a number of lack of social skills and the feeling of loneliness.",
+        50 : "<strong>Chaldean tablets</strong>  No description<br/><br/><strong>Meaning </strong>The compound number of 50/5 is a number of communication, good social skills, and the ability to get along with everyone. In comparison with the compound numbers of 14/5, 23/5, 32/5, and 41/5, the compound number of 50/5 is much more spontaneous. People who are represented by the compound number of 50/5, take more chances and they do less work to do for example market research. Sometimes they just do things and hope for the best.",
+        51 : "<strong>Chaldean tablets</strong> This number has a very powerful potency of its own. It represents the nature of the warrior; it promises sudden advancement in whatever one undertakes; it is especially favorable for those in military or naval life and for leaders in any cause. At the same time, it threatens enemies, dangers, and the likelihood of assassination.<br/><br/><strong>Meaning </strong>The compound number of 51/6 dictates a bully-behavior in which one advances in an aggressive way, which will create enemies. Eventually, the enemies will stab one in the back – metaphorically speaking (hopefully).",
+        52 : "<strong>Chaldean tablets</strong> No description<br/><br/><strong>Meaning </strong>The compound number of 52/7 is an over-sentimental number. It represents a person who gets emotional by discount at 20 % in Wal-Mart. Therefore it represents a fragile person with too many emotional ups and downs."
+    };
     
     const soul_urge_numbers = {
         1: {
@@ -308,133 +296,41 @@
     };
     
     const birthday_numbers = {
-        1: {
-            "meaning": "The Pioneer/Leader",
-            "traits": "You have a great ambition and a strong drive for success. You are highly independent and dislike the restrictions of having to work with others. You easily become frustrated with the routine."
-        },
-        2: {
-            "meaning": "The Peacemaker",
-            "traits": "You are warm and affectionate and need the same from your close friends and loved ones. You want to be hugged and cuddled. There is a tendency to fall into childhood patterns when giving and receiving affection."
-        },
-        3: {
-            "meaning": "The Creative Child",
-            "traits": "The leader and original thinker who values independence. Ones represent self consciousness, creativeness, and original thought. As a number of strength, they are always the first in the series, dominant, and very confident. On the positive side they are active and innovative. On the negative side they are bossy, hasty, and tactless. Ones have a unique style with outstanding will."
-        },
-        4: {
-            "meaning": "The Salt of the Earth",
-            "traits": "You are precise and take great care in what you do. You are highly principled, disciplined, and responsible. You take your obligations very seriously."
-        },
-        5: {
-            "meaning": "The Freedom Lover",
-            "traits": "You are highly adaptable and need excitement. You relate well to others and have an easy way with words. In fact, you have a talent for promotion, public relations, and, for some, writing."
-        },
-        6: {
-            "meaning": "Love and Sacrifice",
-            "traits": "Your focus is on relationships. You want to help others and have a talent as a healer and could make a profession of the healing arts, either as a nutritionist, alternative health therapist (acupuncture, massage, for example) or doctor."
-        },
-        7: {
-            "meaning": "Seeker of Wisdom",
-            "traits": "You should meditate and do some type of spiritual exercise in order to develop your intuitive talents. Once you have begun to trust your intuition, you will develop a sound faith."
-        },
-        8: {
-            "meaning": "Balance & Power",
-            "traits": "Your approach to business is original, creative, and daring. You have sound judgment and need the freedom to exercise it, lest you become bitter and tyrannical elsewhere in your life."
-        },
-        9: {
-            "meaning": "Global Awareness",
-            "traits": "You have a greater social role to play that will require a blend of the practical and the humanitarian. You must have a keen sense of what will work, but at the same time direct those efforts toward some greater good."
-        },
-        10: {
-            "meaning": "Taking Charge",
-            "traits": "Your test in life is to live according to your dream - that is, to have the courage and the stamina to overcome obstacles and win the independence you so deeply want."
-        },
-        11: {
-            "meaning": "The Intuitive",
-            "traits": "Your intuition is so keen, in fact, that you would make a fine counselor and/or healer. You seem to understand people before they reveal their inner being themselves."
-        },
-        12: {
-            "meaning": "Self Expression",
-            "traits": "Your artistic talent emerges in virtually everything you take seriously, your home, your cooking, the way you express yourself, and any artistic endeavor you commit to."
-        },
-        13: {
-            "meaning": "The Rock",
-            "traits": "You love things that are solid and grounded in the practical. Yet, you possess a considerable amount of artistic talent that is searching for concrete forms of expression."
-        },
-        14: {
-            "meaning": "The Adventurer",
-            "traits": "You are highly social and work well with others as long as there are not too many restrictions to bind you. You get restless easily, a characteristic that can make you change vocations or relationships much too quickly."
-        },
-        15: {
-            "meaning": "Mother-/Fatherhood",
-            "traits": "There is a yearning within you to ground within the family or community structure, but there is a hint of wanderlust, too, which makes grounding difficult. You want the best in your life, and you strive for it."
-        },
-        16: {
-            "meaning": "Phoenix Rising",
-            "traits": "You have a fine analytical mind that is capable of penetrating beneath the surface of the subject at hand. You also have the capacity for excellent concentration."
-        },
-        17: {
-            "meaning": "Success Through Detachment",
-            "traits": "Your approach to business is original, creative, and daring. You are an excellent manager and organizer. You are gifted with the ability to see the larger picture, and, remarkably, how the details come into play."
-        },
-        18: {
-            "meaning": "The World is Your Oyster",
-            "traits": "You are broadminded and should be educated in several different fields, particularly the arts. Many great artists are found under this number."
-        },
-        19: {
-            "meaning": "The Individualist",
-            "traits": "As the poet John Donne said: 'No man is an Island unto himself... We are all bits of the main.' This is a central lesson in your life: to learn the difference between the dream of independence and the reality of interdependence."
-        },
-        20: {
-            "meaning": "Bringer of Harmony",
-            "traits": "You possess great awareness and can sense the feelings of others, even when they try to hide their inner thoughts. Consequently, you are easily influenced by your environment."
-        },
-        21: {
-            "meaning": "Express & Create",
-            "traits": "Your imagination is highly charged. It reveals itself in everything you do, from your sparkling conversation to your most prized projects. You are quick-witted and can think on your feet."
-        },
-        22: {
-            "meaning": "The Master Builder",
-            "traits": "You are an organizer, or builder of an institution or business. You have a vision and the capability to realize it. You possess the capacity for great strength, but conversely you can be deeply afraid of the dimensions of your ambitions."
-        },
-        23: {
-            "meaning": "Adaptable & Versatile",
-            "traits": "You are highly adaptable, which makes change a great deal easier for you than for others. You have an easy way with relationships and generally get along well with most people you meet."
-        },
-        24: {
-            "meaning": "Teacher & Healer",
-            "traits": "You are energetic, responsible, and helpful, but your sympathetic nature may cause you to interfere in relationships and get you into trouble. Know your limits."
-        },
-        25: {
-            "meaning": "Spiritual Growth",
-            "traits": "You are capable of investigating and researching subjects deeply. Your analytical skills force you to avoid taking anything at face value."
-        },
-        26: {
-            "meaning": "Between Matter & Spirit",
-            "traits": "Your challenge is to maintain a balance between your material goals and the fundamental human qualities of understanding, compassion, and love."
-        },
-        27: {
-            "meaning": "The People's Spirit",
-            "traits": "You are a bit of a late-bloomer. You need exposure to many different types of people before you find the area in which you will specialize. This is also the reason many change careers more than once."
-        },
-        28: {
-            "meaning": "Self Empowerment",
-            "traits": "You are unconventional, idealistic, and independent. You are extremely ambitious. You possess much self-confidence but need much encouragement."
-        },
-        29: {
-            "meaning": "The Psychic",
-            "traits": "You are so driven by spiritual pursuits that no matter what you do in life, the world of spirit and philosophy will be central to your daily behavior. You feel linked with the larger universal forces, and nothing will change that."
-        },
-        30: {
-            "meaning": "Perform & Express",
-            "traits": "You are an artist at heart. You could excel in writing, visual, or performing arts. If you are not professionally involved in one of these areas, you should consider taking up art as a hobby."
-        },
-        31: {
-            "meaning": "Power of Work",
-            "traits": "You are the foundation of any enterprise you commit to, doing your work with determination and precision."
-        }
+        1: "Represented by the Celestial body of the Sun. It dictates the 'feminine winner mentality', which means that one desires freedom and abundance. Therefore one has a strong winner mentality in order to gain success so that one can do whatever is desired. People who are represented by the number 1 strongly dislike authorities because they want to be authorities themselves. People who are represented by the number 1 like to delegate work, and they like to make other people do their job. They dislike sloppy people and people without ambition. People who are represented by the number 1 are also very creative and very perfectionist. People who are represented by the number 1 have a hard time dealing with big problems because they want their success to flow easily. They want a hedonist lifestyle with abundance and freedom.",
+        2: "Represented by the celestial body of the Moon. People who are represented by the number 2 are very soft and often weak. Because they are weak, they have strong creativity, but they also tend to be melancholic easily. Therefore the creativity made by people who are represented by the number 2 is often melancholic and sad.  The main strength of people who are represented by the number 2 is that they are good at reading people and understanding people. They have strong empathy, but they often fail to see the big picture. Especially men who are represented by the number 2 are afraid to be weak. Therefore many male criminals are represented by the number 2 because they want to appear as if they are tough even though they are not.",
+        3: "Represented by planet Jupiter. The number 3 is the first number of the Heavenly Triad of 3, 6 and 9. It’s the number of expansion, growth and the 'male winner mentality'. It’s a number of theories, knowledge, and advancement. People who are represented by the number 3 have a strong talent at being strategic and keeping an overview. Unlike people who are represented by the “feminine winner mentality” (number 1) who like to outsource, people who are represented by the number 3 want to do everything themselves. Therefore they often appear as a 'one-man army'. This is the case because people who are represented by the number 3 want to be in control in order to be sure that everything is done well enough.",
+        4: "Represented by planet Uranus. The number 4 is the shadow number of the number 1. People who are represented by the number 4 want to be unique. They are good at thinking outside the box, and they are natural-born engineers, scientists, and inventors of all kinds.People who are represented by the number 1 hates authorities, and they often get in conflict with authorities because they are different and they have a rebellious behavior. Therefore people who are represented by the number 4 wants to revolutionize with new ideas, but most people hate new ideas as this brings people out of their comfort zone. Therefore people who are represented by the number 4 have many enemies. People who are represented by the number 4 are often perceived as the black sheep. They almost always suffer psychological problems such as ADHD, Asperger’s syndrome, OCD, autism and also sometimes mythomania.",
+        5: "Represented by planet Mercury.People who are represented by the number 5 are natural born speakers.They have great social skills and they are good at getting along with everyone. This is the case because the number 5 is between 1 and 9, and therefore it can go all the way to the top (9) and to the bottom (1). Therefore people who are represented by the number 5 often behave as social butterflies.The number 5 stands for motion, vigor, communication, friends, and business.Therefore people who are represented by the number 5 are good at making friends and making networks.",
+        6: "Represented by planet Venus. The number 6 is the second number of the Heavenly Triad of 3, 6 and 9. Like in electricity, you have a plus and a minus pole. The number 3 is plus and the number 6 is minus. This means that the number 3 is about doing and the number 6 is about receiving. Therefore the number 6 stands for comfort, the homeliness and therefore people who are represented by the number 6 are slow movers and they are very stubborn. On the contrary, people who are represented by the number 6 are very charming, and they appear trustworthy. However, people who are represented by the number 6 are very skilled in manipulation and in using their charm for personal gain.",
+        7:	"Represented by planet Neptune.The number 7 is the shadow number of the number 2.The number 7 stands for insight, seeking deeper meaning in everything, and therefore people who are represented by the number 7 have many profound thoughts within their mind. They seek a deeper meaning in everything, and they try to understand a deeper meaning – even where one might say – there is none. People who are represented by the number 7 are good at understanding people’s intentions behind their actions and they have a very developed gut feeling.However, just like people who are represented by the number 2 is also afraid to be weak. Therefore many male criminals are represented by the number 7 because they are afraid to be weak.",
+        8:	"Represented by planet Saturn. The number 8 is known as the major destiny number and it represents the symbol of eternity. This means that people who are represented by the number 8 are born to create a major change in the world and to create something that will last forever. People who are represented by the number 8 want to build things up slowly and thoroughly. They often appear cynical and pragmatic. They are also very practical in their approach to life in general. However many people who are represented by the number 8 have a very tough life. This is meant to harden them so they can deal with a major responsibility. Therefore many CEOs are represented by the number 8.",
+        9:	"Represented by planet Mars. The number 9 is the final number of the Heavenly Triad of 3, 6 and 9. It’s also considered to be a divine number because it’s the highest number there is. The number 9 is considered as the number of literally everything. Therefore the number 9 is the shadow number of number 0. The number 0 is the number of nothing and the number 9 is the number of everything. According to ancient Chaldean philosophy, everything is nothing, and nothing is everything. Therefore people who are represented by the number 9 are meant to be the enforcers of Karma and justice. People who are represented by the number 9 are focused on justice, integrity, and honor. Therefore they are very frank and they speak their mind without a filter. Nearly all people who are represented by the number 9 have had a tough childhood. People who are represented by the number 9 are meant to see the big picture of life.",
+        10 : "<strong>Chaldean tablets</strong> Symbolized as the 'Wheel of Fortune'. It’s the number of honor, faith, and self-confidence. Of rising and fall. One’s name shall be known for good or evil according to one’s desires. It’s a fortunate number in the sense that one’s plans are likely to be carried out.<br/><br/><strong>Meaning </strong>The number 10/1 is a number of the 'feminine winner mentality'. This means that it’s important to people who are represented by the number 10/1 that their success comes easily to them. They have a high level of creativity, but they really hate to lose.People who are represented by the number 10/1 are often loved and hated because they might appear in a hedonist, which can make other people envy. People who are represented by the number 10/1 also appear arrogant to some people.",
+        11 : "<strong>Chaldean tablets</strong> This is an ominous number to occultists. It gives warning of hidden dangers, trials, and treachery from others. It has a symbol of a clenched hand and a lion muzzled. It represents a person who will have great difficulties to contend against<br/><br/><strong>Meaning </strong>The symbolism of 'a lion muzzled' means that one has a great deal of inner strength, but it all drowns in self-doubt, low self-esteem and mind racing.Therefore the number 11/2 is a number of stress, low energy, and low self-esteem. It’s a number of caring too much about other people’s opinions and it’s a number of inferior complexes. Therefore addictions come with the compound number of 11/2.",
+        12 : "<strong>Chaldean tablets</strong> The symbolism of this number is suffering and anxiety of mind. It is also indicated as 'the sacrifice' or 'the victim' and generally it foreshadows one being sacrificed for the plans and intrigues of others.<br/><br/><strong>Meaning </strong>It’s mentioned in the Chaldean tablets that the number 12/3 is the number of victimhood.This happens in the way that one does everything according to the book, and other people mess up, and one becomes the victim to other people’s mistakes and incompetence.Therefore if one is represented by the compound number of 12/3, one will often experience victimhood and hopelessness.One tries to evolve from it, and one works a lot with oneself, but one keeps falling back into the same mistakes over and over.Therefore with the compound number of 12/3, one is paranoid and overthinks things. One is afraid that the danger is around every corner. Therefore one gets a great deal of anxiety. From this comes addictions and self-destructive and/or abusive behavior.",
+        13 : "<strong>Chaldean tablets</strong> This is a number indicating a change of plans, place and such-like and it’s not unfortunate as it’s generally supposed. In some of the ancient writings, it’s said: 'He who understands the number 13/4 will be given power and dominion'. It’s symbolized by the picture of 'The grim reaper' with a scythe reaping down men in a field of new-grown grass where young faces and heads appear cropping up on every side. It’s a number of upheaval and destruction. It’s a symbol of power which if it’s wrongly used will wreak destruction upon oneself. It’s a number of warnings of the unknown or unexpected if it becomes a compound number in one’s calculations.<br/><br/><strong>Meaning </strong>In the Chaldean tables, the compound number of 13/4 is associated with the Grim Reaper. The symbol of death. The symbol of death is a metaphor for removing something that is there and replacing it with something new.This could, for example, have to do with removing old and outdated traditions and concepts and replacing them with new ideas – for example science and other similar things. The compound number of 13/4 is the number of innovation, science, and everything that can be proven and documented.Innovation is something that changes old habits and traditions.The compound number of 13/4 is basically about change.Therefore people who are represented by the compound number of 13/4 are also people who often change their minds – to great frustration to their fellows.People who are represented by the compound number of 13/4 often suffer from ADHD, autism, Asperger’s syndrome, OCD and other similar spectrum sufferings.",
+        14 : "<strong>Chaldean tablets</strong> This is a number of movements, a combination of people and things, and danger from natural forces such as tempests, water, air or fire. This number is fortunate for dealings with money, speculation a change in business, but there is always a strong element of risk and danger attached to it, but generally owing to the actions and foolhardiness of others. If this number comes out in calculations of future events, the person should be warned to act with caution and prudence<br/><br/><strong>Meaning </strong>The compound number of 14/5 is a number that is frequently seen among self-made billionaires.It creates situations in people’s lives in which they suffer deeply from a bad economy, and then eventually the individual will decide on getting wealthy so he/ she shall never go hungry again.Thereby the compound number of 14/5 supports the individual to getting wealthy, but he/ she must work hard and determined to do so.With the compound number of 14/5, one is a natural-born investor and stockbroker. However one must work hard to become good, but if one does so, great achievements can be made.The compound number of 14/5 is also the number of eloquence and fact-based communication.",
+        15 : "This is a number of occult significance, of magic and mystery, but as a rule, it does not represent the higher side of occultism, it’s meaning being that the person represented by it will use every art of magic they can to carry out their purpose. If associated with a good or fortunate single number, it can be very lucky and powerful, but if associated with one of the peculiar numbers such as 4 or/ and 8, the person it represents will not hesitate to use any sort of art or even 'black magic' to gain what he or she desires.It’s peculiarly associated with good talkers, often with eloquence, gifts of music and art and a dramatic personality combined with a certain voluptuous temperament and a strong personal magnetism. For obtaining money, gifts and favors from others, it’s a fortunate number<br/><br/><strong>Meaning </strong>The compound number of 15/6 stands for manipulation, strong charisma, and social magnetism. However, it’s also a number associated with sociopathy and even psychopathy if it stands together with the compound numbers of 4 and 8.The compound number of 15/6 is often seen among politicians, salesmen/ women, actors and other kinds of people who are in the spotlight. It’s a number of mesmerizing people with charm and charisma.However, the compound number of 15/6 is also a number of a wide spectrum of serious diseases such as rare diseases, skin diseases, psychological diseases, depression, a volatile temper, etc.",
+        16 : "<strong>Chaldean tablets</strong> This number has a most peculiar occult symbolism. It’s pictured by a tower struck by lightning from which a man is falling with a crown on his head. It’s also called 'the shattered citadel'. It gives warning of some strange fatalities awaiting one, also the danger of accidents and defeat of one’s plans. If it appears as a compound number relating to the future, it’s a warning sign that one should be very careful.<br/><br/><strong>Meaning </strong>The compound number of 16/7 is a number of fatalities or/ and metaphorical fatalities in one’s closest relations. People who are represented by the compound number of 16/7 have lost a lot of loved ones in their lives, and people who are represented by the compound number of 16/7 will live long so they will outlive all their loved ones and thereby they will experience even more fatalities in their near relations.People who are represented by the compound number of 16/7 don’t feel themselves much. They are in a constant stage of anesthesia. For example, if they break their hand, they ignore their pain, and they just keep on doing what they used to do.",
+        17 : "This is a highly spiritual number and is expressed in symbolism by the 8-pointed star of Venus: a symbol of love and peace. It’s also called 'the star of the magi'. It expresses that a person who is represented by the compound number of 17/8 will rise superior in spirit to the trials and difficulties of life or his/ her career. It’s considered the number of 'immortality', and it means that the person’s name will live after hi/ her. It’s a fortunate number if it works out in relation to future events if it’s not associated with the single numbers four and 8.<br/><br/><strong>Meaning </strong>The compound number of 17/8 is a number of having a very strong character and that one is always being remembered by others. This can be good and bad. People who are represented by the compound number of 17/8 often have a love/ hate relationship to the spotlight.They are excellent at being in the spotlight, but they are afraid of messing up as they know that if they do so, people will never forget.People who are represented by the compound number of 17/8 are often very intelligent and they have a high IQ. Therefore it’s mentioned in the ancient Chaldean tablets that they 'rise superior in spirit to the difficulties of life'.",
+        18 : "<strong>Chaldean tablets</strong> This number has a difficult symbolism to translate. It’s pictured as 'a rayed moon from which drops of blood are falling. A wolf and a hungry dog are seen below catching the falling drops of blood in their opened mouths, while still lower down a crap is seen hastening to join them'. It’s a symbol of materialism striving to destroy the spiritual side of nature. It’s generally associated with a person who has bitter quarrels in the family. It’s a number of war, upheavals, revolutions and in some cases, it indicates making money and position through wars. It’s, however, a number of treachery, deception by others, also danger from the elements such as storms, danger from water, fires, and explosions.<br/><br/><strong>Meaning </strong>The compound number of 18/9 is a number of working hard and getting things done. The prime motivation is materialism, status, and achievements.People who are represented by the compound number of 18/9 are strictly focused on justice. However, they have a lot of frustrations within. Therefore their sense of justice often gets polluted by self-righteous behavior, and their strife for justice becomes injustice.Furthermore, people who are represented by the compound number of 18/9 tend to prioritize status before the environment.People who are represented by the compound number of 18/9 always have many problems in family because they have very low patience with 'bullshit'.",
+        19 : "This number is regarded as fortunate and extremely favorable. It’s symbolized as 'the Sun' and it’s called 'the prince of heaven'. It’s a number of promising happiness, success, esteem, and honor and promises success in one’s plan of the future<br/><br/><strong>Meaning </strong>It’s important to understand that there are strict rules for the compound number of 19/1. If these rules are met, the effect of the number is as above mentioned.However, if the compound number of 19/1 is unbalanced, then one gets fake hope that results in major disappointments and even depression.The compound number of 19/1 if it’s unbalanced can also cause a big ego and that one overestimates one’s abilities.However, the compound number of 19/1 is seen among many very beautiful people. People who are represented by the compound number of 19/1 are perfectionists and they are also perfectionists on the way they look.",
+        20 : "<strong>Chaldean tablets</strong> This number is called 'the Awakening'. It’s also called 'the judgment'. It’s symbolized by the figure of a winged angel sounding a trumpet hile from below a man, a woman, and a child are seen rising from a tomb with their hands clasped in prayer.This number has a peculiar interpretation; the call of action, but for some great purpose, cause or duty.<br/><br/><strong>Meaning </strong>The compound number of 20/2 is the number of creativity, passion, and idealism.It’s a number of the desire of wanting to change the world and to make the world a better place for all people. However, the weakness of the compound number of 20/2 is that one often get fixated about one concept and one idea and that one becomes so obsessed with it that one might not be able to think of anything but that.It’s furthermore a number of aesthetics and hedonism. It’s also the number of melancholia if it’s unbalanced.",
+        21 : "<strong>Chaldean tablets</strong> This number is symbolized by the picture of 'the Universe', and it is also called 'the Crown of the Magi'. It is a number of advancement, honors, elevation in life and general success. It means victory after a long initiation and tests of determination. It is a fortunate number of promises if it appears in any connection with future events.<br/><br/><strong>Meaning </strong>The compound number of 21/3 means that one wants to crack the code into gaining ultimate success that will be ever ongoing throughout one’s enter life.However, if it’s unbalanced, one will have the feeling of often being close to the total success, but the success seems further away than initially anticipated.Therefore if it’s unbalanced, one’s life might feel like walking through a tunnel of a constant learning process.",
+        22 : "<strong>Chaldean tablets</strong> This number is symbolized by an 'a Good Man blinded by the folly of others, with a knapsack on his back full of Arrows'. In this picture, he appears to offer no defense against a ferocious tiger that is attacking him. It is a warning number of illusion and delusion, a good person who lives in a fool’s paradise; a dreamer of dreams who awakens only when surrounded by danger. It is also a number of false judgments owing to the influence of others. As a number in connection with future events, it is a warning and its meaning should be carefully noted.<br/><br/><strong>Meaning </strong>The compound number of 22/4 is very unfortunate.It means that one is very naïve and keep trusting bad people who will rip one-off.It also means that one often gets ripped off in business and that one will keep forgiving the crooked people, so one will get ripped off over and over.With the compound number of 22/4, one has a naïve humanist life view that will attract a lot of bad people who will take advantage of one.It also means that one lives in a happy fantasy world – far beyond reality.This, therefore, means that people who are represented by the compound number of 22/4 often suffer from mythomania, and they often believe in their lies.People who are represented by the compound number of 22/4 furthermore tend to have autism, OCD, Asperger’s syndrome and other similar mental disorders.",
+        23 : "<strong>Chaldean tablets</strong> This number is called 'the Royal Star of the Lion.' It is a promise of success, help from superiors and protection from those in high places. In dealing with future events it is a most fortunate number and a promise of success of one’s plans.<br/><br/><strong>Meaning </strong>The compound number of 23/5 is extremely fortunate.It’s a number of Karmic protection and Karmic reward. This means that one can get away with a lot of things and that things never really got as bad as they could have.If the compound number of 23/5 is perfectly balanced, one is always invincible.If not, the compound number of 23/5 means that one is hard to defeat.The compound number of 23/5 is also a number of great network skills, and skills of communication and oratory.",
+        24 : "<strong>Chaldean tablets</strong> This number is also fortunate: it promises the assistance and association of those of rank and position with one’s plans; it also denotes gain through love and the opposite sex: it is a favorable number when it comes out in relation to future events.<br/><br/><strong>Meaning </strong>The compound number of 24/6 is a number of conservative values.It represents order, integrity, and justice.It also represents a person with a firm handshake and a person who is a man of his/ her words.People who are represented by the compound number of 24/6 have a great deal of charm and charisma and they are very likable.",
+        25 : "<strong>Chaldean tablets</strong> This is a number denoting strength gained through experience, and benefits obtained through observation of people and things. It is not deemed exactly 'lucky', as its success is given through strife and trials in an earlier life. It is favorable when it appears regarding the future.<br/><br/><strong>Meaning </strong>The compound number of 25/7 has a motto: 'What doesn’t kill me makes me stronger!'This is the case because the essence of the compound number of 25/7 is that one gradually learns and grows stronger from experience. Especially from tough experience.Furthermore, people who are represented by the compound number of 25/7 have strong creativity and a good gut feeling.",
+        26 : "In numerology 26/8 means to achieve great success and lose it again fastChaldean tablets:This number is full of the gravest warnings for the future. It foreshadows disasters brought about by association with others; ruin by bad speculations, by partnerships, unions, and bad advice. If it comes out in connection with future events one should carefully consider the path one is treading.<br/><br/><strong>Meaning </strong>The compound number of 26/8 is extremely unfortunate.With the compound number of 26/8, one can achieve great success rapidly, but one will eventually lose it extremely fast. When this happens, one will have a feeling of life being like a ruin.One’s life constantly starts over, and life often becomes a struggle of rebuilding instead of living.",
+        27 : "<strong>Chaldean tablets</strong> This is a good number and is symbolized as 'the Scepter.' It is a promise of authority, power, and command. It indicates that reward will come from the productive intellect; that the creative faculties have sown good seeds that will reap a harvest. Persons with this 'command' number at their back should carry out their ideas and plans. It is a fortunate number if it appears in any connection with future events.<br/><br/><strong>Meaning </strong>The compound number of 27/9 is a number of integrity, honesty and the attitude that a deal is a deal and a deal must always be kept.It’s also a number of standing up for oneself and having integrity.",
+        28 : "This number is full of contradictions. It indicates a person of great promise and possibilities who is likely to see all taken away from him unless he carefully provides for the future. It indicates loss through trust in others, opposition, and competition in trade, the danger of loss through the law, and the likelihood of having to begin life’s road over and over again.<br/><br/><strong>Meaning </strong>It’s a number of breaking promises.People who are represented by the compound number of 28/1 are unreliable and they have no problem breaking promises.Therefore they often end up in disputes with people.Furthermore, people who are represented by the compound number of 28/1 often end up in court for this behavior.",
+        29 : "<strong>Chaldean tablets</strong> It is not a fortunate number for the indication of future events. This number indicates uncertainties, treachery, and deception of others; it foreshadows trials, tribulation, and unexpected dangers, unreliable friends, and grief and deception caused by members of the opposite sex. It gives a grave warning if it comes out in anything concerning future events.<br/><br/><strong>Meaning </strong>The compound number of 29/2 is extremely unfortunate.It’s like the compound number of 11/2 on steroids.This is the case because of 2+9=11/2.The compound number of 29/2 is often associated with criminal behavior or people who work with criminals such as defense lawyers etc.",
+        30 : "<strong>Chaldean tablets</strong> This is a number of thoughtful deduction, retrospection, and mental superiority over one’s fellows, but as it seems to belong completely to the mental plane, the persons it represents, are likely to put all material things on one side — not because they have to, but because they wish to do so. For this reason, it is neither fortunate nor unfortunate, for either depends on the mental outlook of the person it represents. It can be all-powerful, but it is just as often indifferent according to the will or desire of the person.<br/><br/><strong>Meaning </strong>People who are represented by the compound number of 30/3 have the mind of a philosopher.They have a profound mindset, and they like to see things from a higher perspective.Therefore they are also interested in history because they like to understand why things are the way they are now, and they want to understand how things became this way.People who are represented by the compound number of 30/3 are much in their head, and therefore they prefer a small group of friends rather than a vast army of acquaintances",
+        31 : "<strong>Chaldean tablets</strong> This number is very similar to the preceding one, except that the person it represents is even more self-contacted, lonely, and isolated from his fellows. It is not a fortunate number from a worldly or material standpoint.<br/><br/><strong>Meaning </strong>The compound number of 31/4 is associated with autism, OCD, Asperger’s, ADHD and other similar mental disorders.People who are represented by the compound number of 31/4 are perceived as the black sheep, and they often have a feeling of loneliness – even when they are with big groups of people.People who are represented by the compound number of 31/4 sometimes have genius tendencies, but this often comes with the expense of social problems and strange behavior."
     };
+
 // chaldean
-const expressionNumber = {
+    const nameNumbers = {
     1: "The leader and original thinker who values independence. Ones represent self consciousness, creativeness, and original thought. As a number of strength, they are always the first in the series, dominant, and very confident. On the positive side they are active and innovative. On the negative side they are bossy, hasty, and tactless. Ones have a unique style with outstanding will.",
     2: "The partner and diplomat who values cooperativeness. Twos represent a pair or duo, the principle of receptivity, and tactfulness. They prefer to be a follower though they seek inner balance and unity. Two’s seek unity between two distinct entities, like good and evil, true or false, positive and negative. They are cautious but flexible. On the positive side they are creative and sensitive. On the negative side they are moody, shy, and irrational. Twos are modest with a desire for collaboration.",
     3: "The entrepreneur and entertainer who values creativeness. Threes represent the performer who appreciates pleasure, romance, and beauty. They love to be sociable. This number is all about changing and developing. There are a lot of ups and downs with this number. Their optimism allows for all things to be possible as it impacts the three key components (mind, body, and spirit). On the positive side they are witty and charming. On the negative side they are narcissistic, moody, and undisciplined. Threes have a keen imagination with various expressions.",
@@ -535,14 +431,8 @@ const expressionNumber = {
     98: "The leader. Ninety-eight is a number of leadership and authority. It represents those who are natural leaders and are capable of guiding others toward success.",
     99: "The master. Ninety-nine is a powerful master number associated with spiritual enlightenment and achieving great heights. It symbolizes individuals who are destined for extraordinary achievements and spiritual growth."
     };
-    
-
 
     function reduceNumber(number) {
-        // Check if the number is in the set {11, 22, 33}
-        if (number === 11 || number === 22 || number === 33) {
-            return number;  // Return the number itself if it's in the set
-        }
         // or && ![11, 22, 33].includes(number)
         while (number > 9)  {
             // Convert the number to a string, split it into digits, map them to integers, and sum them
@@ -551,7 +441,7 @@ const expressionNumber = {
                 .map(digit => parseInt(digit))  // Convert each digit to a number
                 .reduce((sum, digit) => sum + digit, 0);  // Sum the digits
         }
-        return number;
+        return parseInt(number);
     }
 
     function reduceNumberToCompound(number) {
@@ -562,7 +452,7 @@ const expressionNumber = {
                 .map(digit => parseInt(digit))  // Convert each digit to a number
                 .reduce((sum, digit) => sum + digit, 0);  // Sum the digits
         }
-        return number;
+        return parseInt(number);
     }
 
     function getChaldeanValue(char) {
@@ -571,22 +461,63 @@ const expressionNumber = {
         return chaldean_mapping[char.toUpperCase()] || 0;
     }
 
+    function getPythagoreanValue(char) {
+
+        // Convert the character to uppercase and return the corresponding value, or 0 if not found
+        return pythagorean_mapping[char.toUpperCase()] || 0;
+    }
+
+    function calculateEssenceNumbers(firstName, middleName, lastName, age = 90) {
+        // Combine first, middle, and last names
+        const fullName = firstName + middleName + lastName;
+        
+        // Array to store the essence numbers
+        const essenceNumbers = [];
+        
+        // Loop through each year from 0 to age
+        for (let year = 0; year <= age; year++) {
+            // Find the essence number for the current year
+            let nameSum = 0;
+            
+            // Sum the Pythagorean values for each letter in the full name (only alphabetic characters)
+            for (let i = 0; i < fullName.length; i++) {
+                const letter = fullName[i];
+                if (/[a-zA-Z]/.test(letter)) {  // Check if the character is an alphabet letter
+                    nameSum += getPythagoreanValue(letter);  // Get the Pythagorean value for the letter
+                }
+            }
+            
+            // Calculate the essence number by adding the current year
+            let essenceNumber = nameSum + year;
+    
+            // Reduce the essence number to a single digit (except for 11, 22, or 33)
+            while (essenceNumber > 9 && ![11, 22, 33].includes(essenceNumber)) {
+                essenceNumber = essenceNumber.toString().split('').reduce((sum, digit) => sum + parseInt(digit), 0);
+            }
+    
+            // Append the essence number to the array
+            essenceNumbers.push(essenceNumber);
+        }
+    
+        return essenceNumbers;
+    }
+
     // Function to calculate numerology
-    function calculateNumerology(firstName, lastName) {
+    function calculateNumerology(firstName, mid, lastName) {
         let nameNumber = 0;
         let soulUrgeNumber = 0;
         let personalityNumber = 0;
         
         // Combine full name and remove spaces
-        const fullName = (firstName + " " + lastName || "").replace(/\s+/g, '');
+        const fullName = (firstName + " " + (mid || "") + (lastName || "")).replace(/\s+/g, '');
 
         // Loop through each character of the full name
         for (let i = 0; i < fullName.length; i++) {
             const char = fullName[i].toUpperCase();
             
             if (/[A-Z]/.test(char)) {  // Only consider alphabetic characters
-                const value = getChaldeanValue(char);
-                destinyNumber += value;
+                const value = getPythagoreanValue(char);
+                nameNumber += value;
 
                 if (vowels.includes(char)) {
                     soulUrgeNumber += value;
@@ -689,6 +620,7 @@ const expressionNumber = {
 
       // Get the value from the input field
       const first_name = document.getElementById('first-name').value;
+      const mid_name = document.getElementById('middle-name').value;
       const last_name = document.getElementById('last-name').value;
       
       
@@ -700,7 +632,7 @@ const expressionNumber = {
       // Create the result to display
 
       //json output
-      let name_numbers = calculateNumerology(first_name, middle_name, last_name);
+      let name_numbers = calculateNumerology(first_name, mid_name, last_name);
       let numerologyValues = calculateNumerologyFromBirthdate(currentDate, birthDate);
       
       let nameNumber = name_numbers['nameNumber'];
@@ -730,21 +662,21 @@ const expressionNumber = {
       result += `<h2>Below are various numbers in your numerology chart.</h2>`;
       result += `The core 5 numbers are the most impactful, which are the Birthday number, Major Destiny, Minor Destiny, Name number and Soul urge.<br/><br/>`;
 
-      result += `<br/><strong>The Birthday Number ${birthdayNumber}</strong>.<br/> `;
+      result += `<br/><strong>The Birthday Number ${birthdayNumber}/${reduceNumber(birthdayNumber)}</strong>.<br/> `;
       result += `<strong>The Birthday Number describes your natural abilities.</strong><br/>`;
-      result += `${birthday_numbers[birthdayNumber]['traits']}`;
+      result += `${birthday_numbers[birthdayNumber]}`;
 
       result += `<br/><br/><strong>The Major Destiny ${majorDestiny}/${destinyNumber}</strong>.<br/>`;
       result += `<strong>The Major Destiny Number is believed to reveal the person's highest soul potential.</strong><br/>`;
-      result += `${life_path_numbers[majorDestiny]['traits']}`;
+      result += `${destiny_numbers[majorDestiny]}`;
 
       result += `<br/><br/><strong>The Minor Destiny Number ${minorDestiny}/${destinyNumber}</strong>.<br/>`;
       result += `<strong>The Minor Destiny Number is believed to reveal the person's inner soul purpose.</strong><br/>`;
-      result += `${life_path_numbers[minorDestiny]['traits']}`;
+      result += `${destiny_numbers[minorDestiny]}`;
       
-      result += `<br/><br/><strong>The Name Number ${nameNumber}</strong>.<br/>`;
+      result += `<br/><br/><strong>The Name Number ${nameNumber}/${reduceNumber(nameNumber)}</strong>.<br/>`;
       result += `<strong>The Name Number describes how you will fulfill your life purpose.</strong><br/>`;
-      result += `${destiny_numbers[nameNumber]['traits']}`;
+      result += `${nameNumbers[nameNumber]}`;
 
       result += `<br/><br/><strong>The Soul Urge Number ${soulUrgeNumber}</strong>.<br/> `;
       result += `<strong>The Soul Urge Number describes your drive, motivation, inner most desires.</strong><br/>`;
@@ -754,7 +686,7 @@ const expressionNumber = {
       result += `<strong>The Personality Number describes your outer presence.</strong><br/>`;
       result += `${personality_numbers[personalityNumber]['traits']}`;
 
-      result += `<br/><br/><strong>The Attitude Number is believe to reveal the way you present yourself to the world.</strong><br/>`;
+      result += `<br/><br/><strong>The Attitude Number is believed to reveal the way you present yourself to the world.</strong><br/>`;
       result += `<strong>The Attitude Number ${attitudeNumber}</strong>.<br/> `;
       result += `${number_description[attitudeNumber]}`;
 
@@ -770,7 +702,16 @@ const expressionNumber = {
      let birthMonth = parseInt(birthDateParts[1]); // Month (1-12)
      let birthDay = parseInt(birthDateParts[2]); // Day (1-31)
 
+     //pinnacle numbers todo
+     let age_py1 = 36 - destinyNumber;
+     let age_py2 = 9 + age_py1;
+     let age_py3 = age_py2 + 9; // pattern of 9 is a cycle
      
+     result += `<br/><br/><strong>Pinnacle cycle 1 Number: ${reduceNumber(birthMonth + birthDay)} and age: 0 - ${age_py1}.</strong>`;
+     result += `<br/><strong>Pinnacle cycle 2 Number: ${reduceNumber(birthDay + birthYear)} and age: ${age_py1} - ${age_py2}.</strong>`;
+     result += `<br/><strong>Pinnacle cycle 3 Number: ${reduceNumber(birthMonth + birthDay + birthDay + birthYear)} and age: ${age_py2} - ${age_py3}.</strong>`;
+     result += `<br/><strong>Pinnacle cycle 4 Number: ${reduceNumber(birthMonth + birthYear)} and age: ${age_py3}+.</strong>`;
+
       // Update the textarea with the result
       document.getElementById('result').innerHTML = result;
     }
@@ -804,18 +745,36 @@ const expressionNumber = {
   They recognized the significance of numbers in various aspects of life, including mathematics, astronomy, and mysticism. Astrology was based on correlation of the stars/signs and the cycles, patterns, and seasons.
   In <strong>Chaldean numerology</strong>, the birth day is most significance, then the destiny numbers (aka life path numbers). The Chaldean method also examines
    the compound numbers, not just the reduced value. Additionally, the name you are most known by is more important than the birth name. 
+   The Father of Mathematics and <strong>Modern Numerology</strong> is Pythagoras. He studied over 20+ years in Babylon & Egypt learning about math and science around 600 BC. The first source of numerology is truly unknown. Best known for
+    the pythagorean theorem. a^2 + b^2 = c^2 for a right triangle. 
+    <br />The idea behind numerology is that <strong>Everything is numbers</strong>. Understanding numerology will help us stay in <strong>flow</strong> with divinity.
+  <br/><br/>
+Pythagorean Influence: The Greek philosopher Pythagoras (c. 600 BC) is often credited with developing a formal system of numerology. He believed that numbers had inherent meanings and that they could be used to understand the universe. Pythagorean numerology assigns specific meanings to numbers 1 through 9 and the master numbers 11 and 22.
+<br/><br/>
+   The numbers themselves have the same meaning in both Pythagorean numerology and Chaldean, its the calculations that are different.
+   For the name calculations I like to use Pythagorean but for birthday and lifepath I use Chaldean as it is more in-depth.
 <br/><br/>Psalms 90: 12 - So teach us to number our days, that we may apply our hearts unto wisdom.
   <br/><br/>Math is the universal language of the world and the cosmos.  
   </p>
+  <br/><br/>
   <h3>Chaldean Table:</h3>
   
-   <textarea id="chaldean" rows="6" cols="35" readonly>
+   <textarea id="chaldean" rows="7" cols="35" readonly>
   1   2   3   4   5   6   7   8
   A   B   C   D   E   U   O   F
   I   K   G   M   H   V   Z   P
   J   R   L   T   N   W    
   Q   S   X   
   Y
+   </textarea>
+
+   <h3>Pythagorean Table:</h3>
+  
+   <textarea id="pythagorean" rows="5" cols="37" readonly>
+   1   2   3   4   5   6   7   8   9   
+   A   B   C   D   E   F   G   H   I   
+   J   K   L   M   N   O   P   Q   R   
+   S   T   U   V   W   X   Y   Z   
    </textarea>
 
   <!-- Form with Name and Age input fields -->
@@ -830,7 +789,7 @@ const expressionNumber = {
 
      <!-- Last Name -->
      <label for="last-name">Last Name:</label>
-     <input type="text" id="last-name" name="last-name" required><br><br>
+     <input type="text" id="last-name" name="last-name"><br><br>
 
      <!-- Current Date -->
      <label for="current-date">Current Date:</label>
@@ -840,7 +799,7 @@ const expressionNumber = {
      <label for="birthdate">Birthdate:</label>
      <input type="date" id="birthdate" name="birthdate" required><br><br>
 
-    <button type="submit">Reveal</button>
+    <button type="submit">View Chart</button>
   </form>
 <br/>
 <br/>
