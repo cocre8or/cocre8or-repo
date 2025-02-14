@@ -4,6 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pythagorean Numerology</title>
+
+  <style>
+    h1, h2, h3{
+        color:#0047AB;
+    }
+
+  </style>
   <script>
 
     const vowels = 'AEIOU';
@@ -49,7 +56,7 @@
         6: "In Year 6, responsibilities and nurturing your family and home. Be careful with overeating this year.",
         7: "In order to deepen and stabilize everything you've been learning and creating in your life, it's time to go within and listen to the whispers of your soul.",
         8: "Time of reaping what you've sown. Now is the time to externalize everything you've downloaded, solidified, nurtured, and built. The is a powerful moment of goal realization.",
-        9: "At the end of the cycle, you receive and appreciate everything you've done in these cycle. This the culmination of achievements. Let go of attachments that no longer serve you.",
+        9: "At the end of the cycle, you receive and appreciate everything you've done in these cycle. This is the culmination of achievements. Let go of attachments that no longer serve you.",
         11: "In Year 11/2,This is a time to create emotional balance in your life and tend to your relationships.",
         22: "In Year 22/4, you begin to stabilize what you've learned over the past few years and build something that will last in the future.",
         33: "In Year 33/6, you continue to grow and nurture what you've been creating."
@@ -679,42 +686,31 @@
       let personalDay = numerologyValues['personalDay'];
       let maturityNumber = reduceNumber(lifePathNumber + destinyNumber);
       
-      let result = `<strong>Year, Month, and Daily Forecast.</strong><br/>`;
-      result += `<strong>This personal year's theme & external vibration number ${personalYear}.</strong>`;
-      result += `<br/>${personal_year_advice[personalYear]}`;
-
-      result += `<br/><br/><strong>This personal month's theme & external vibration number ${personalMonth}.</strong>`;
-      result += `<br/>${personal_day_advice[personalMonth]}`;
-
-      result += `<br/><br/><strong>This personal day theme & external vibration number ${personalDay}.</strong>`;
-      result += `<br/>${personal_day_advice[personalDay]}<br/><br/>`;
-
-      result += `<h2>Below are various numbers in your numerology chart.</h2>`;
-      result += `The core 5 numbers are the most impactful, which are the life path number, destiny number, soul urge, personality, and birthday number.<br/><br/>`;
-
-      result += `<br/><strong>The Life Path Number ${compoundNumber}/${lifePathNumber}</strong>.<br/>`;
-      result += `<strong>The Life Path Number is believed to be the vibration that reveal's your satisfying way of experiencing the journey of life.</strong><br/>`;
-      result += `${life_path_numbers[lifePathNumber]['traits']}`;
       
-      result += `<br/><br/><strong>The Destiny Number ${destinyNumber}</strong>.<br/>`;
-      result += `<strong>The Destiny/Expression Name Number is believed to be the vibration that reveals your calling in life or ultimate goal in life.</strong><br/>`;
-      result += `${destiny_numbers[destinyNumber]['traits']}`;
+      let py = `<strong>This personal year's theme & external vibration number ${personalYear}.</strong>`;
+      py += `<br/>${personal_year_advice[personalYear]}`;
+      py += `<br/><br/><strong>This personal month's theme & external vibration number ${personalMonth}.</strong>`;
+      py += `<br/>${personal_day_advice[personalMonth]}`;
+      py += `<br/><br/><strong>This personal day theme & external vibration number ${personalDay}.</strong>`;
+      py += `<br/>${personal_day_advice[personalDay]}`;
 
-      result += `<br/><br/><strong>The Soul Urge Number ${soulUrgeNumber}</strong>.<br/> `;
-      result += `<strong>The Soul Urge Number is believed to be the vibration that reveals your drive, motivation, inner most desires.</strong><br/>`;
-      result += `${soul_urge_numbers[soulUrgeNumber]['traits']}`;
+      let lp = `<strong>The Life Path Number ${compoundNumber}/${lifePathNumber}</strong>.<br/>`;
+      lp += `${life_path_numbers[lifePathNumber]['traits']}`;
+      
+      let dn = `<strong>The Destiny Number ${destinyNumber}</strong>.<br/>`;
+      dn += `${destiny_numbers[destinyNumber]['traits']}`;
 
-      result += `<br/><br/><strong>The Personality Number ${personalityNumber}</strong>.<br/> `;
-      result += `<strong>The Personality Number is believed to be the vibration that reveals how other people see you.</strong><br/>`;
-      result += `${personality_numbers[personalityNumber]['traits']}`;
+      let soul = `<strong>The Soul Urge Number ${soulUrgeNumber}</strong>.<br/> `;
+      soul += `${soul_urge_numbers[soulUrgeNumber]['traits']}`;
 
-      result += `<br/><br/><strong>The Birthday Number ${birthdayNumber}</strong>.<br/> `;
-      result += `<strong>The Birthday Number is believed to be the vibration that reveals your satisfying way of thinking and behaving.</strong><br/>`;
-      result += `${birthday_numbers[birthdayNumber]['traits']}`;
+      let pd = `<strong>The Personality Number ${personalityNumber}</strong>.<br/> `;
+      pd += `${personality_numbers[personalityNumber]['traits']}`;
 
-      result += `<br/><br/><strong>The Attitude Number is believe to reveal the way you approach the world and its challenges.</strong><br/>`;
-      result += `<strong>The Attitude Number ${attitudeNumber}</strong>.<br/> `;
-      result += `${number_description[attitudeNumber]}`;
+      let bd = `<strong>The Birthday Number ${birthdayNumber}</strong>.<br/> `;
+      bd += `${birthday_numbers[birthdayNumber]['traits']}`;
+
+      let ad = `<strong>The Attitude Number ${attitudeNumber}</strong>.<br/> `;
+      ad += `${number_description[attitudeNumber]}`;
 
      // Parse the current date (YYYY-MM-DD) into month, day, year
      let currentDateParts = currentDate.split('-');
@@ -733,20 +729,29 @@
      let age_py2 = 9 + age_py1;
      let age_py3 = age_py2 + 9; // pattern of 9 is a cycle
      
-     result += `<br/><br/><strong>Pinnacle cycle 1 Number: ${reduceNumber(birthMonth + birthDay)} and age: 0 - ${age_py1}.</strong>`;
-     result += `<br/><strong>Pinnacle cycle 2 Number: ${reduceNumber(birthDay + birthYear)} and age: ${age_py1} - ${age_py2}.</strong>`;
-     result += `<br/><strong>Pinnacle cycle 3 Number: ${reduceNumber(birthMonth + birthDay + birthDay + birthYear)} and age: ${age_py2} - ${age_py3}.</strong>`;
-     result += `<br/><strong>Pinnacle cycle 4 Number: ${reduceNumber(birthMonth + birthYear)} and age: ${age_py3}+.</strong>`;
+     let pc = `<strong>Pinnacle cycle 1 Number: ${reduceNumber(birthMonth + birthDay)} and age: 0 - ${age_py1}.</strong>`;
+     pc += `<br/><strong>Pinnacle cycle 2 Number: ${reduceNumber(birthDay + birthYear)} and age: ${age_py1} - ${age_py2}.</strong>`;
+     pc += `<br/><strong>Pinnacle cycle 3 Number: ${reduceNumber(birthMonth + birthDay + birthDay + birthYear)} and age: ${age_py2} - ${age_py3}.</strong>`;
+     pc += `<br/><strong>Pinnacle cycle 4 Number: ${reduceNumber(birthMonth + birthYear)} and age: ${age_py3}+.</strong>`;
 
-     result += `<br/><br/><strong>The Essence Number inner vibration number for the year ${currentYear}.</strong>`;
+     let ec = `<strong>The Essence Number inner vibration number for the year ${currentYear}.</strong>`;
      index = currentYear - birthYear + 1;
-     result += `<br/><strong>Essence Number: ${essence_numbers[index]}.</strong>`;      
-     result += `<br/><br/><strong>The Maturity Number describes the traits you should develop as you grow older.</strong>`;
-     result += `<br/><strong>The Maturity Number ${maturityNumber}</strong>.<br/>`;
-      result += ` ${growth_numbers[maturityNumber]['traits']}`;
+     ec += `<br/><strong>Essence Number: ${essence_numbers[index]}.</strong>`;      
+     
+     let md =`<strong>The Maturity Number ${maturityNumber}</strong>.<br/>`;
+     md += ` ${growth_numbers[maturityNumber]['traits']}`;
 
       // Update the textarea with the result
-      document.getElementById('result').innerHTML = result;
+      document.getElementById('py').innerHTML = py;
+      document.getElementById('pc').innerHTML = pc;
+      document.getElementById('bd').innerHTML = bd;
+      document.getElementById('lp').innerHTML = lp;
+      document.getElementById('dn').innerHTML = dn;
+      document.getElementById('soul').innerHTML = soul;
+      document.getElementById('pd').innerHTML = pd;
+      document.getElementById('ad').innerHTML = ad;
+      document.getElementById('md').innerHTML = md;
+      //document.getElementById('ec').innerHTML = ec;
     }
 
     document.addEventListener("DOMContentLoaded", function() {
@@ -819,8 +824,50 @@ Pythagorean Influence: The Greek philosopher Pythagoras (c. 600 BC) is often cre
 <br/>
   <button id="clearFormBtn">Clear Form</button>
   <!-- Textarea to display the results -->
-  <h3>Results:</h3>
-  <div id="result"></div>
+  <h2>Below are various numbers in your numerology chart.</h2>
+  <p>The core 5 numbers are the most impactful, which are the life path number, destiny number, soul urge, personality, and birthday number.</p>
+
+  <h3>Personal Year, Month, and Day Forecast</h3>
+  <div id="py"></div>
+<!--
+  <h3>Essence Year</h3>
+  <p>The Essence Number inner vibration number for the year.</p>
+  <div id="ec"></div>
+-->
+  <h3>Birthday Number Details</h3>
+  <p>The Birthday Number is believed to be the vibration that reveals your satisfying way of thinking and behaving.</p>
+  <div id="bd"></div>
+
+  <h3>Life Path Number Details</h3>
+  <p>The Life Path Number is believed to be the vibration that reveal's your satisfying way of experiencing the journey of life.</p>
+  <div id="lp"></div>
+
+
+  <h3>Destiny or Name Number Details</h3>
+  <p>The Destiny/Expression Name Number is believed to be the vibration that reveals your calling in life or ultimate goal in life.</p>
+  <div id="dn"></div>
+
+  <h3>Soul Urge Details</h3>
+  <p>The Soul Urge Number is believed to be the vibration that reveals your drive, motivation, inner most desires.</p>
+  <div id="soul"></div>
+
+  <h3>Personality Details</h3>
+  <p>The Personality Number is believed to be the vibration that reveals how other people see you.</p>
+  <div id="pd"></div>
+
+  <h3>Attitude Details</h3>
+  <p>The Attitude Number is believe to reveal the way you approach the world and its challenges.</p>
+  <div id="ad"></div>
+
+  <h3>Maturity Details</h3>
+  <p>The Maturity Number describes the traits you should develop as you grow older.</p>
+  <div id="md"></div>
+
+  <h3>Pinnacle Cycles</h3>
+  <p>The Pinnacles are four long-term cycles on your Life Path. Each Pinnacle represents a particular lesson we are working on.</p>
+  <div id="pc"></div>
+
+
   <!--<textarea id="result" rows="6" cols="30" readonly></textarea>-->
 
 </body>
