@@ -17,6 +17,20 @@
         margin: 0;
         padding: 0;
     }
+    #container{
+        max-width: 1200px;
+            margin: 0 auto;
+            padding: 10px;
+    }
+
+    /*Mobile devices*/
+    @media (max-width: 600px){
+           #container{
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 10px;
+           }
+    }
 
     /* Dark mode when the user prefers dark theme */
     @media (prefers-color-scheme: dark) {
@@ -38,7 +52,7 @@
 
 </head>
 <body>
-
+<div id="container">
   <h1>Numerology</h1>
 
   <!-- Textarea to display the results -->
@@ -134,7 +148,7 @@ Pythagorean Influence: The Greek philosopher Pythagoras (c. 600 BC) is often cre
   <h3>Pinnacle Cycles</h3>
   <p>The Pinnacles are four long-term cycles on your Life Path. Each Pinnacle represents a particular lesson we are working on.</p>
   <div id="pc"></div>
-
+</div>
 
   <!--<textarea id="result" rows="6" cols="30" readonly></textarea>-->
   <script>
