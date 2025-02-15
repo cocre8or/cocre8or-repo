@@ -9,10 +9,133 @@
     h1, h2, h3{
         color:#0047AB;
     }
+    /* Default light theme */
+    body {
+        background-color: white;
+        color: black;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
 
+    /* Dark mode when the user prefers dark theme */
+    @media (prefers-color-scheme: dark) {
+        body {
+            background-color: #121212;
+            color: white;
+        }
+        input[type="text"], input[type="date"], textarea {
+            background-color: lightgray;
+            color: black;
+        }
+    }
   </style>
-  <script>
 
+</head>
+<body>
+
+  <h1>Numerology</h1>
+
+  <!-- Textarea to display the results -->
+  <h2>What is numerology?</h2>
+  <p>Numerology is the science of numbers. It is an ancient science that says numbers have vibration, thus quality. Figures on the otherhand have quantity.
+  The Father of Mathematics and <strong>Modern Numerology</strong> is Pythagoras. He studied over 20+ years in Babylon & Egypt learning about math and science around 600 BC. The first source of numerology is truly unknown. Best known for
+    the pythagorean theorem. a^2 + b^2 = c^2 for a right triangle. 
+    <br />The idea behind numerology is that <strong>Everything is numbers</strong>. Understanding numerology will help us stay in <strong>flow</strong> with divinity.
+  <br/><br/>
+Pythagorean Influence: The Greek philosopher Pythagoras (c. 600 BC) is often credited with developing a formal system of numerology. He believed that numbers had inherent meanings and that they could be used to understand the universe. Pythagorean numerology assigns specific meanings to numbers 1 through 9 and the master numbers 11 and 22.
+
+<br/><br/>Psalms 90: 12 - So teach us to number our days, that we may apply our hearts unto wisdom.
+  <br/><br/>Math is the universal language of the world and the cosmos.  
+  </p>
+  <h3>Pythagorean Table:</h3>
+  
+  <textarea id="pythagorean" rows="4" cols="35" readonly>
+  1   2   3   4   5   6   7   8   9   
+  A   B   C   D   E   F   G   H   I   
+  J   K   L   M   N   O   P   Q   R   
+  S   T   U   V   W   X   Y   Z   
+  </textarea> 
+
+  <!-- Form with Name and Age input fields -->
+  <form onsubmit="handleFormSubmission(event)">
+     <!-- First Name -->
+     <label for="first-name">First Name:</label>
+     <input type="text" id="first-name" name="first-name" required><br><br>
+
+     <!-- Middle Name (Optional) -->
+     <label for="middle-name">Middle Name (Optional):</label>
+     <input type="text" id="middle-name" name="middle-name"><br><br>
+
+     <!-- Last Name -->
+     <label for="last-name">Last Name:</label>
+     <input type="text" id="last-name" name="last-name" required><br><br>
+
+     <!-- Current Date -->
+     <label for="current-date">Current Date:</label>
+     <input type="date" id="current-date" name="current-date" required><br><br>
+
+     <!-- Birthdate -->
+     <label for="birthdate">Birthdate:</label>
+     <input type="text" id="birthdate" placeholder="mm/dd/yyyy" maxlength="10" required>
+     <!--<input type="date" id="birthdate" name="birthdate" required>-->
+     <br><br>
+
+    <button type="submit">Reveal Chart</button>
+  </form>
+<br/>
+<br/>
+  <button id="clearFormBtn">Clear Form</button>
+  <!-- Textarea to display the results -->
+  <h2>Below are various numbers in your numerology chart.</h2>
+  <p>The core 5 numbers are the most impactful, which are the life path number, destiny number, soul urge, personality, and birthday number.</p>
+
+  <h3>Personal Year, Month, and Day Forecast</h3>
+  <div id="py"></div>
+
+  <h3>Essence Year</h3>
+  <p>The Essence Number inner vibration number for the year.</p>
+  <div id="ec"></div>
+
+  <h3>Birthday Number Details</h3>
+  <p>The Birthday Number is believed to be the vibration that reveals your satisfying way of thinking and behaving.</p>
+  <div id="bd"></div>
+
+  <h3>Life Path Number Details</h3>
+  <p>The Life Path Number is believed to be the vibration that reveal's your satisfying way of experiencing the journey of life.</p>
+  <div id="lp"></div>
+
+
+  <h3>Destiny or Name Number Details</h3>
+  <p>The Destiny/Expression Name Number is believed to be the vibration that reveals your calling in life or ultimate goal in life.</p>
+  <div id="dn"></div>
+
+  <h3>Soul Urge Details</h3>
+  <p>The Soul Urge Number is believed to be the vibration that reveals your drive, motivation, inner most desires.</p>
+  <div id="soul"></div>
+
+  <h3>Personality Details</h3>
+  <p>The Personality Number is believed to be the vibration that reveals how other people see you.</p>
+  <div id="pd"></div>
+
+  <h3>Attitude Details</h3>
+  <p>The Attitude Number is believe to reveal the way you approach the world and its challenges.</p>
+  <div id="ad"></div>
+
+  <h3>Maturity Details</h3>
+  <p>The Maturity Number describes the traits you should develop as you grow older.</p>
+  <div id="md"></div>
+
+  <h3>Pinnacle Cycles</h3>
+  <p>The Pinnacles are four long-term cycles on your Life Path. Each Pinnacle represents a particular lesson we are working on.</p>
+  <div id="pc"></div>
+
+
+  <!--<textarea id="result" rows="6" cols="30" readonly></textarea>-->
+  <script>
+    
+    
+        
     const vowels = 'AEIOU';
     const consonants = 'BCDFGHJKLMNPQRSTVWXYZ';
 
@@ -447,12 +570,11 @@
         function printReduction(components, label) {
           const componentSum = components.split('').reduce((sum, digit) => sum + parseInt(digit), 0);
           const reducedComponent = reduceToSingleDigit(componentSum);
-          console.log(`${label}: ${components.split('').join(' + ')} = ${componentSum} / ${reducedComponent}`);
           return reducedComponent;
         }
       
         // Split the birthdate into month, day, and year
-        const [year, month, day] = birthdate.split('-');
+        const [year, month, day] = birthdate.split('/');
       
         // Calculate and print for month, day, and year
         const reducedMonth = printReduction(month, 'Month');
@@ -464,7 +586,6 @@
       
         // Final reduction to a single digit or Master Number
         const finalNumber = reduceToSingleDigit(totalSum);
-        console.log(`Final sum: ${reducedMonth} + ${reducedDay} + ${reducedYear} = ${totalSum} / ${finalNumber}`);
       
         return finalNumber;
       }
@@ -515,36 +636,88 @@
     function calculateEssenceNumbers(firstName, middleName, lastName, age = 90) {
         // Combine first, middle, and last names
         const fullName = firstName + middleName + lastName;
-        
+        // https://numerology.center/essence_5.php
         // Array to store the essence numbers
         const essenceNumbers = [];
-        
+        let f_name = [];
+        let m_name = [];
+        let l_name = [];
+        let start = true;
         // Loop through each year from 0 to age
-        for (let year = 0; year <= age; year++) {
-            // Find the essence number for the current year
-            let nameSum = 0;
-            
-            // Sum the Pythagorean values for each letter in the full name (only alphabetic characters)
-            for (let i = 0; i < fullName.length; i++) {
-                const letter = fullName[i];
+        while (start) {
+            for (let i = 0; i < firstName.length; i++) {
+                let letter = firstName[i];
+                let numeric = 0;
                 if (/[a-zA-Z]/.test(letter)) {  // Check if the character is an alphabet letter
-                    nameSum += getPythagoreanValue(letter);  // Get the Pythagorean value for the letter
+                    numeric = getPythagoreanValue(letter); // Get the Pythagorean value for the letter
+                    for(let i = 0; i < numeric;i++){
+                        if(f_name.length <= age){
+                            // add to f_name
+                            f_name.push(numeric);
+                        }else{
+                            start = false;
+                            break;
+                        }
+                        
+                    }
                 }
             }
-            
-            // Calculate the essence number by adding the current year
-            let essenceNumber = nameSum + year;
-    
-            // Reduce the essence number to a single digit (except for 11, 22, or 33)
-            while (essenceNumber > 9 && ![11, 22, 33].includes(essenceNumber)) {
-                essenceNumber = essenceNumber.toString().split('').reduce((sum, digit) => sum + parseInt(digit), 0);
-            }
-    
-            // Append the essence number to the array
-            essenceNumbers.push(essenceNumber);
         }
-    
-        return essenceNumbers;
+        start = true;
+            // fill middle
+            while (start) {
+                if(middleName.length == 0){
+                    for(let i =0; i <= age;i++){
+                        m_name.push("I");
+                    }
+                    start = false;
+                    break;
+                }
+                for (let i = 0; i < middleName.length; i++) {
+                    let letter = middleName[i];
+                    let numeric = 0;
+                    if (/[a-zA-Z]/.test(letter)) {  // Check if the character is an alphabet letter
+                        numeric = getPythagoreanValue(letter); // Get the Pythagorean value for the letter
+                        for(let i = 0; i < numeric;i++){
+                            if(m_name.length <= age){
+                                // add to f_name
+                                m_name.push(numeric);
+                            }else{
+                                start = false;
+                                break;
+                            }
+                            
+                        }
+                    }
+                }
+            }
+            start = true;
+            //fill last
+            while (start) {
+                for (let i = 0; i < lastName.length; i++) {
+                    let letter = lastName[i];
+                    let numeric = 0;
+                    if (/[a-zA-Z]/.test(letter)) {  // Check if the character is an alphabet letter
+                        numeric = getPythagoreanValue(letter); // Get the Pythagorean value for the letter
+                        for(let i = 0; i < numeric;i++){
+                            if(l_name.length <= age){
+                                // add to f_name
+                                l_name.push(numeric);
+                            }else{
+                                start = false;
+                                break;
+                            }
+                            
+                        }
+                    }
+                }
+            }
+
+            for(let i = 0; i <= age; i++){
+                essenceNumbers.push(reduceNumber(f_name[i] + m_name[i] + l_name[i]))
+            }
+            return essenceNumbers;
+
     }
 
     // Function to calculate numerology
@@ -587,10 +760,10 @@
     function calculateNumerologyFromBirthdate(currentdate, birthdate) {
         // Split the birthdate into month, day, and year
         // Parse the birthdate (YYYY-MM-DD) into month, day, year
-        let birthDateParts = birthdate.split('-');
-        let year = parseInt(birthDateParts[0]); // Year
-        let month = parseInt(birthDateParts[1]); // Month (1-12)
-        let day = parseInt(birthDateParts[2]); // Day (1-31)
+        let birthDateParts = birthdate.split('/');
+        let year = parseInt(birthDateParts[2]); // Year
+        let month = parseInt(birthDateParts[0]); // Month (1-12)
+        let day = parseInt(birthDateParts[1]); // Day (1-31)
     
         // Calculate the Life Path Number
         let lifePathSum = reduceNumber(month) + reduceNumber(day) + reduceNumber(year);
@@ -664,7 +837,7 @@
       // Get current date value
       let currentDate = document.getElementById('current-date').value;
       let birthDate = document.getElementById('birthdate').value;
-
+      console.log(birthDate);
       
       // Create the result to display
 
@@ -719,10 +892,10 @@
      let currentDay = parseInt(currentDateParts[2]); // Day (1-31)
 
      // Parse the birthdate (YYYY-MM-DD) into month, day, year
-     let birthDateParts = birthDate.split('-');
-     let birthYear = parseInt(birthDateParts[0]); // Year
-     let birthMonth = parseInt(birthDateParts[1]); // Month (1-12)
-     let birthDay = parseInt(birthDateParts[2]); // Day (1-31)
+     let birthDateParts = birthDate.split('/');
+     let birthYear = parseInt(birthDateParts[2]); // Year
+     let birthMonth = parseInt(birthDateParts[0]); // Month (1-12)
+     let birthDay = parseInt(birthDateParts[1]); // Day (1-31)
 
      //pinnacle numbers todo
      let age_py1 = 36 - lifePathNumber;
@@ -751,9 +924,20 @@
       document.getElementById('pd').innerHTML = pd;
       document.getElementById('ad').innerHTML = ad;
       document.getElementById('md').innerHTML = md;
-      //document.getElementById('ec').innerHTML = ec;
+      document.getElementById('ec').innerHTML = ec;
     }
-
+    
+    const dateInput = document.getElementById('birthdate');
+    dateInput.addEventListener('input', function(e) {
+        let value = e.target.value.replace(/\D/g, ''); // Remove all non-digit characters
+        if (value.length > 2 && value.length <= 4) {
+            value = value.slice(0, 2) + '/' + value.slice(2);
+        } else if (value.length > 4) {
+            value = value.slice(0, 2) + '/' + value.slice(2, 4) + '/' + value.slice(4, 8);
+        }
+        e.target.value = value;
+    });
+    
     document.addEventListener("DOMContentLoaded", function() {
         // Event listener for the clear form button
         document.getElementById("clearFormBtn").addEventListener("click", function() {
@@ -770,105 +954,5 @@
     });
 
   </script>
-</head>
-<body>
-
-  <h1>Numerology</h1>
-
-  <!-- Textarea to display the results -->
-  <h2>What is numerology?</h2>
-  <p>Numerology is the science of numbers. It is an ancient science that says numbers have vibration, thus quality. Figures on the otherhand have quantity.
-  The Father of Mathematics and <strong>Modern Numerology</strong> is Pythagoras. He studied over 20+ years in Babylon & Egypt learning about math and science around 600 BC. The first source of numerology is truly unknown. Best known for
-    the pythagorean theorem. a^2 + b^2 = c^2 for a right triangle. 
-    <br />The idea behind numerology is that <strong>Everything is numbers</strong>. Understanding numerology will help us stay in <strong>flow</strong> with divinity.
-  <br/><br/>
-Pythagorean Influence: The Greek philosopher Pythagoras (c. 600 BC) is often credited with developing a formal system of numerology. He believed that numbers had inherent meanings and that they could be used to understand the universe. Pythagorean numerology assigns specific meanings to numbers 1 through 9 and the master numbers 11 and 22.
-
-<br/><br/>Psalms 90: 12 - So teach us to number our days, that we may apply our hearts unto wisdom.
-  <br/><br/>Math is the universal language of the world and the cosmos.  
-  </p>
-  <h3>Pythagorean Table:</h3>
-  
-  <textarea id="pythagorean" rows="4" cols="35" readonly>
-  1   2   3   4   5   6   7   8   9   
-  A   B   C   D   E   F   G   H   I   
-  J   K   L   M   N   O   P   Q   R   
-  S   T   U   V   W   X   Y   Z   
-  </textarea> 
-
-  <!-- Form with Name and Age input fields -->
-  <form onsubmit="handleFormSubmission(event)">
-     <!-- First Name -->
-     <label for="first-name">First Name:</label>
-     <input type="text" id="first-name" name="first-name" required><br><br>
-
-     <!-- Middle Name (Optional) -->
-     <label for="middle-name">Middle Name (Optional):</label>
-     <input type="text" id="middle-name" name="middle-name"><br><br>
-
-     <!-- Last Name -->
-     <label for="last-name">Last Name:</label>
-     <input type="text" id="last-name" name="last-name" required><br><br>
-
-     <!-- Current Date -->
-     <label for="current-date">Current Date:</label>
-     <input type="date" id="current-date" name="current-date" required><br><br>
-
-     <!-- Birthdate -->
-     <label for="birthdate">Birthdate:</label>
-     <input type="date" id="birthdate" name="birthdate" required><br><br>
-
-    <button type="submit">Reveal Chart</button>
-  </form>
-<br/>
-<br/>
-  <button id="clearFormBtn">Clear Form</button>
-  <!-- Textarea to display the results -->
-  <h2>Below are various numbers in your numerology chart.</h2>
-  <p>The core 5 numbers are the most impactful, which are the life path number, destiny number, soul urge, personality, and birthday number.</p>
-
-  <h3>Personal Year, Month, and Day Forecast</h3>
-  <div id="py"></div>
-<!--
-  <h3>Essence Year</h3>
-  <p>The Essence Number inner vibration number for the year.</p>
-  <div id="ec"></div>
--->
-  <h3>Birthday Number Details</h3>
-  <p>The Birthday Number is believed to be the vibration that reveals your satisfying way of thinking and behaving.</p>
-  <div id="bd"></div>
-
-  <h3>Life Path Number Details</h3>
-  <p>The Life Path Number is believed to be the vibration that reveal's your satisfying way of experiencing the journey of life.</p>
-  <div id="lp"></div>
-
-
-  <h3>Destiny or Name Number Details</h3>
-  <p>The Destiny/Expression Name Number is believed to be the vibration that reveals your calling in life or ultimate goal in life.</p>
-  <div id="dn"></div>
-
-  <h3>Soul Urge Details</h3>
-  <p>The Soul Urge Number is believed to be the vibration that reveals your drive, motivation, inner most desires.</p>
-  <div id="soul"></div>
-
-  <h3>Personality Details</h3>
-  <p>The Personality Number is believed to be the vibration that reveals how other people see you.</p>
-  <div id="pd"></div>
-
-  <h3>Attitude Details</h3>
-  <p>The Attitude Number is believe to reveal the way you approach the world and its challenges.</p>
-  <div id="ad"></div>
-
-  <h3>Maturity Details</h3>
-  <p>The Maturity Number describes the traits you should develop as you grow older.</p>
-  <div id="md"></div>
-
-  <h3>Pinnacle Cycles</h3>
-  <p>The Pinnacles are four long-term cycles on your Life Path. Each Pinnacle represents a particular lesson we are working on.</p>
-  <div id="pc"></div>
-
-
-  <!--<textarea id="result" rows="6" cols="30" readonly></textarea>-->
-
 </body>
 </html>
