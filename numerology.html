@@ -574,45 +574,7 @@ Pythagorean Influence: The Greek philosopher Pythagoras (c. 600 BC) is often cre
             "meaning": "Power of Work",
             "traits": "You are the foundation of any enterprise you commit to, doing your work with determination and precision."
         }
-    };
-
-    function calculateLifePathNumber(birthdate) {
-        // Helper function to reduce a number to a single digit or Master Number
-        function reduceToSingleDigit(number) {
-          while (number >= 10 && ![11, 22, 33].includes(number)) {
-            number = String(number).split('').reduce((sum, digit) => sum + parseInt(digit), 0);
-          }
-          return number;
-        }
-      
-        // Function to print and calculate the reduction of a component
-        function printReduction(components, label) {
-          const componentSum = components.split('').reduce((sum, digit) => sum + parseInt(digit), 0);
-          const reducedComponent = reduceToSingleDigit(componentSum);
-          return reducedComponent;
-        }
-      
-        // Split the birthdate into month, day, and year
-        const [year, month, day] = birthdate.split('/');
-      
-        // Calculate and print for month, day, and year
-        const reducedMonth = printReduction(month, 'Month');
-        const reducedDay = printReduction(day, 'Day');
-        const reducedYear = printReduction(year, 'Year');
-      
-        // Final sum of reduced components
-        const totalSum = reducedMonth + reducedDay + reducedYear;
-      
-        // Final reduction to a single digit or Master Number
-        const finalNumber = reduceToSingleDigit(totalSum);
-      
-        return finalNumber;
-      }
-      
-      // Example usage:
-      const birthdate = '1990-07-22';
-      const lifePath = calculateLifePathNumber(birthdate);
-      
+    };  
 
     function reduceNumber(number) {
         // Check if the number is in the set {11, 22, 33}
@@ -653,91 +615,37 @@ Pythagorean Influence: The Greek philosopher Pythagoras (c. 600 BC) is often cre
     }
 
     function calculateEssenceNumbers(firstName, middleName, lastName, age = 90) {
-        // Combine first, middle, and last names
-        const fullName = firstName + middleName + lastName;
-        // https://numerology.center/essence_5.php
+
         // Array to store the essence numbers
         const essenceNumbers = [];
-        let f_name = [];
-        let m_name = [];
-        let l_name = [];
-        let start = true;
-        // Loop through each year from 0 to age
-        while (start) {
-            for (let i = 0; i < firstName.length; i++) {
-                let letter = firstName[i];
-                let numeric = 0;
+        
+        // Function to process a name and return the numeric values
+        function processName(name) {
+            const nameValues = [];
+            for (let i = 0; i < name.length; i++) {
+                const letter = name[i];
                 if (/[a-zA-Z]/.test(letter)) {  // Check if the character is an alphabet letter
-                    numeric = getPythagoreanValue(letter); // Get the Pythagorean value for the letter
-                    for(let i = 0; i < numeric;i++){
-                        if(f_name.length <= age){
-                            // add to f_name
-                            f_name.push(numeric);
-                        }else{
-                            start = false;
-                            break;
-                        }
-                        
-                    }
+                    const numeric = getPythagoreanValue(letter); // Get the Pythagorean value for the letter
+                    nameValues.push(...Array(numeric).fill(numeric)); // Add the numeric value to the array
                 }
             }
+            return nameValues;
         }
-        start = true;
-            // fill middle
-            while (start) {
-                if(middleName.length == 0){
-                    for(let i =0; i <= age;i++){
-                        m_name.push("I");
-                    }
-                    start = false;
-                    break;
-                }
-                for (let i = 0; i < middleName.length; i++) {
-                    let letter = middleName[i];
-                    let numeric = 0;
-                    if (/[a-zA-Z]/.test(letter)) {  // Check if the character is an alphabet letter
-                        numeric = getPythagoreanValue(letter); // Get the Pythagorean value for the letter
-                        for(let i = 0; i < numeric;i++){
-                            if(m_name.length <= age){
-                                // add to f_name
-                                m_name.push(numeric);
-                            }else{
-                                start = false;
-                                break;
-                            }
-                            
-                        }
-                    }
-                }
-            }
-            start = true;
-            //fill last
-            while (start) {
-                for (let i = 0; i < lastName.length; i++) {
-                    let letter = lastName[i];
-                    let numeric = 0;
-                    if (/[a-zA-Z]/.test(letter)) {  // Check if the character is an alphabet letter
-                        numeric = getPythagoreanValue(letter); // Get the Pythagorean value for the letter
-                        for(let i = 0; i < numeric;i++){
-                            if(l_name.length <= age){
-                                // add to f_name
-                                l_name.push(numeric);
-                            }else{
-                                start = false;
-                                break;
-                            }
-                            
-                        }
-                    }
-                }
-            }
-
-            for(let i = 0; i <= age; i++){
-                essenceNumbers.push(reduceNumber(f_name[i] + m_name[i] + l_name[i]))
-            }
-            return essenceNumbers;
-
+    
+        // Process first, middle, and last names
+        const f_name = processName(firstName);
+        const m_name = middleName ? processName(middleName) : Array(age + 1).fill(0); // Handle empty middle name
+        const l_name = processName(lastName);
+    
+        // Loop through each year (0 to age) and calculate the essence numbers
+        for (let i = 0; i <= age; i++) {
+            const sum = (f_name[i] || 0) + (m_name[i] || 0) + (l_name[i] || 0);
+            essenceNumbers.push(reduceNumber(sum)); // Reduce and push the essence number
+        }
+    
+        return essenceNumbers;
     }
+    
 
     // Function to calculate numerology
     function calculateNumerology(firstName, middleName, lastName) {
