@@ -22,6 +22,16 @@
             margin: 0 auto;
             padding: 10px;
     }
+    table {
+        border-collapse: collapse;
+        width: 50%;
+        margin: 20px auto;
+    }
+    th, td {
+        border: 1px solid black;
+        padding: 10px;
+        text-align: center;
+    }
 
     /*Mobile devices*/
     @media (max-width: 600px){
@@ -43,7 +53,9 @@
             color: black;
             font-family: Arial, sans-serif;
         }
-
+        th, td{
+            border: 1px solid #ffffff;
+        }
         h1, h2, h3{
             color:#7bdbfa;
         }
@@ -67,14 +79,58 @@ Pythagorean Influence: The Greek philosopher Pythagoras (c. 600 BC) is often cre
 <br/><br/>Psalms 90: 12 - So teach us to number our days, that we may apply our hearts unto wisdom.
   <br/><br/>Math is the universal language of the world and the cosmos.  
   </p>
-  <h3>Pythagorean Table:</h3>
   
-  <textarea id="pythagorean" rows="4" cols="35" readonly>
-  1   2   3   4   5   6   7   8   9   
-  A   B   C   D   E   F   G   H   I   
-  J   K   L   M   N   O   P   Q   R   
-  S   T   U   V   W   X   Y   Z   
-  </textarea> 
+  <table>
+    <thead>
+        <tr>
+            <th colspan="9"><h3>Pythagorean Table</h3></th>
+        </tr>
+    </thead>
+    <tr>
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+        <td>4</td>
+        <td>5</td>
+        <td>6</td>
+        <td>7</td>
+        <td>8</td>
+        <td>9</td>
+    </tr>
+    <tr>
+        <td>A</td>
+        <td>B</td>
+        <td>C</td>
+        <td>D</td>
+        <td>E</td>
+        <td>F</td>
+        <td>G</td>
+        <td>H</td>
+        <td>I</td>
+    </tr>
+    <tr>
+        <td>J</td>
+        <td>K</td>
+        <td>L</td>
+        <td>M</td>
+        <td>N</td>
+        <td>O</td>
+        <td>P</td>
+        <td>Q</td>
+        <td>R</td>
+    </tr>
+    <tr>
+        <td>S</td>
+        <td>T</td>
+        <td>U</td>
+        <td>V</td>
+        <td>W</td>
+        <td>X</td>
+        <td>Y</td>
+        <td>Z</td>
+        <td></td>
+    </tr>
+</table>
 
   <!-- Form with Name and Age input fields -->
   <form onsubmit="handleFormSubmission(event)">
