@@ -33,6 +33,13 @@
         text-align: center;
     }
 
+    td:nth-child(odd), th:nth-child(odd) {
+        background-color: #444; /* Dark background for odd columns */
+    }
+    td:nth-child(even), th:nth-child(even) {
+        background-color: #666; /* Lighter background for even columns */
+    }
+    
     /*Mobile devices*/
     @media (max-width: 600px){
            #container, div{
@@ -59,6 +66,7 @@
         h1, h2, h3{
             color:#7bdbfa;
         }
+
     }
   </style>
 
