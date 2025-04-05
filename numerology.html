@@ -160,7 +160,7 @@ Pythagorean Influence: The Greek philosopher Pythagoras (c. 600 BC) is often cre
 
      <!-- Birthdate -->
      <label for="birthdate">Birthdate:</label>
-     <input type="text" id="birthdate" placeholder="mm/dd/yyyy" maxlength="10" required>
+     <input type="text" id="birthdate" placeholder="YYYY-MM-dd" maxlength="10" required>
      <!--<input type="date" id="birthdate" name="birthdate" required>-->
      <br><br>
 
@@ -181,11 +181,11 @@ Pythagorean Influence: The Greek philosopher Pythagoras (c. 600 BC) is often cre
   <div id="ec"></div>
 
   <h3>Birthday Number Details</h3>
-  <p>The Birthday Number is believed to be the vibration that reveals your satisfying way of thinking and behaving.</p>
+  <p>The Birthday Number is believed to be the vibration that reveals your natural way of thinking and behaving.</p>
   <div id="bd"></div>
 
   <h3>Life Path Number Details</h3>
-  <p>The Life Path Number is believed to be the vibration that reveal's your satisfying way of experiencing the journey of life.</p>
+  <p>The Life Path Number is believed to be the vibration that reveal's your natural approach to experiencing the journey of life.</p>
   <div id="lp"></div>
 
 
@@ -751,10 +751,10 @@ Pythagorean Influence: The Greek philosopher Pythagoras (c. 600 BC) is often cre
     function calculateNumerologyFromBirthdate(currentdate, birthdate) {
         // Split the birthdate into month, day, and year
         // Parse the birthdate (YYYY-MM-DD) into month, day, year
-        let birthDateParts = birthdate.split('/');
-        let year = parseInt(birthDateParts[2]); // Year
-        let month = parseInt(birthDateParts[0]); // Month (1-12)
-        let day = parseInt(birthDateParts[1]); // Day (1-31)
+        let birthDateParts = birthdate.split('-');
+        let year = parseInt(birthDateParts[0]); // Year
+        let month = parseInt(birthDateParts[1]); // Month (1-12)
+        let day = parseInt(birthDateParts[2]); // Day (1-31)
     
         // Calculate the Life Path Number
         let lifePathSum = reduceNumber(month) + reduceNumber(day) + reduceNumber(year);
@@ -774,8 +774,14 @@ Pythagorean Influence: The Greek philosopher Pythagoras (c. 600 BC) is often cre
         let currentMonth = parseInt(currentDateParts[1]); // Month (1-12)
         let currentDay = parseInt(currentDateParts[2]); // Day (1-31)
     
+        let personalYear;
         // Step 1: Sum the current year, month, and day
-        let personalYear = currentYear + month + day;
+        if(new Date(currentYear,currentMonth,currentDay) < new Date(currentYear, month, day)){
+            personalYear = (currentYear - 1) + month + day;
+        }
+        else{
+            personalYear = currentYear + month + day;
+        }
     
         // Step 2: Reduce to a single digit or master number
         while (personalYear > 9 && ![11, 22, 33].includes(personalYear)) {
@@ -814,6 +820,38 @@ Pythagorean Influence: The Greek philosopher Pythagoras (c. 600 BC) is often cre
     }
     
 
+    // Function to get the North Node sign for a given date
+function getNorthNode(birthdate) {
+    // Reference date: North Node was last in Aries on 1600-07-17
+    const referenceDate = new Date("1800-04-22");
+    
+    // Total days since reference date
+    let birthDateParts = birthdate.split('/');
+    console.log(birthdate);
+    let year = parseInt(birthDateParts[2]); // Year
+    let month = parseInt(birthDateParts[0]); // Month (1-12)
+    let day = parseInt(birthDateParts[1]); // Day (1-31)
+
+    const targetDate = new Date(""+ year +"-"+ month +"-"+ day +"");
+    const timeDifference = targetDate - referenceDate; // in milliseconds
+    const daysDifference = timeDifference / (1000 * 3600 * 24); // convert ms to days
+  
+    // North Node cycle (in days) - approximately 18.6 years (18.6 * 365.25 days)
+    const cycleDurationDays = 18.6 * 365.25;
+  
+    // Calculate the number of days since reference date within the current cycle
+    const cyclePosition = (daysDifference % cycleDurationDays + cycleDurationDays) % cycleDurationDays;
+  
+    // The North Node spends approximately 1.55 years (567 days) in each zodiac sign
+    const zodiacSigns = ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"];
+    
+    // Find which zodiac sign the North Node is in based on the cycle position
+    const signIndex = Math.floor(cyclePosition / 567); // Each sign lasts for about 567 days
+  
+    return zodiacSigns[signIndex];
+  }
+  
+  
     // Function to handle the form submission
     function handleFormSubmission(event) {
       // Prevent the form from submitting normally (page reload)
@@ -829,6 +867,7 @@ Pythagorean Influence: The Greek philosopher Pythagoras (c. 600 BC) is often cre
       let currentDate = document.getElementById('current-date').value;
       let birthDate = document.getElementById('birthdate').value;
       console.log(birthDate);
+      console.log(getNorthNode(birthDate));
       
       // Create the result to display
 
@@ -883,10 +922,10 @@ Pythagorean Influence: The Greek philosopher Pythagoras (c. 600 BC) is often cre
      let currentDay = parseInt(currentDateParts[2]); // Day (1-31)
 
      // Parse the birthdate (YYYY-MM-DD) into month, day, year
-     let birthDateParts = birthDate.split('/');
-     let birthYear = parseInt(birthDateParts[2]); // Year
-     let birthMonth = parseInt(birthDateParts[0]); // Month (1-12)
-     let birthDay = parseInt(birthDateParts[1]); // Day (1-31)
+     let birthDateParts = birthDate.split('-');
+     let birthYear = parseInt(birthDateParts[0]); // Year
+     let birthMonth = parseInt(birthDateParts[1]); // Month (1-12)
+     let birthDay = parseInt(birthDateParts[2]); // Day (1-31)
 
      //pinnacle numbers todo
      let age_py1 = 36 - lifePathNumber;
@@ -924,7 +963,7 @@ Pythagorean Influence: The Greek philosopher Pythagoras (c. 600 BC) is often cre
         if (value.length > 2 && value.length <= 4) {
             value = value.slice(0, 2) + '/' + value.slice(2);
         } else if (value.length > 4) {
-            value = value.slice(0, 2) + '/' + value.slice(2, 4) + '/' + value.slice(4, 8);
+            value = value.slice(4, 8) + '-' + value.slice(0, 2) + '-' + value.slice(2, 4);
         }
         e.target.value = value;
     });
