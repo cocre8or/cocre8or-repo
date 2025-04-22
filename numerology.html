@@ -776,12 +776,12 @@ Pythagorean Influence: The Greek philosopher Pythagoras (c. 600 BC) is often cre
     
         let personalYear;
         // Step 1: Sum the current year, month, and day
-        if(new Date(currentYear,currentMonth,currentDay) < new Date(currentYear, month, day)){
-            personalYear = (currentYear - 1) + month + day;
-        }
-        else{
-            personalYear = currentYear + month + day;
-        }
+        //if(new Date(currentYear,currentMonth,currentDay) < new Date(currentYear, month, day)){
+        //    personalYear = (currentYear - 1) + month + day;
+        //}
+        //else{
+        personalYear = currentYear + month + day;
+        //}
     
         // Step 2: Reduce to a single digit or master number
         while (personalYear > 9 && ![11, 22, 33].includes(personalYear)) {
