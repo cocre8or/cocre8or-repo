@@ -68,10 +68,33 @@
         }
 
     }
+    .light-theme{
+        background-color: white;
+        color: black;
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+    .dark-theme {
+        background-color: #121212;
+        color: #ffffff;
+    }
+
+    .theme-toggle-button {
+        margin: 20px;
+        padding: 10px 20px;
+        cursor: pointer;
+        border: none;
+        border-radius: 5px;
+        background-color: #888;
+        color: white;
+        font-size: 16px;
+    }
   </style>
 
 </head>
-<body>
+<body class="light-theme">
+<button id="themeToggle" class="theme-toggle-button">Switch to Dark Theme</button>
 <div id="container">
   <h1>Numerology</h1>
 
@@ -160,8 +183,7 @@ Pythagorean Influence: The Greek philosopher Pythagoras (c. 600 BC) is often cre
 
      <!-- Birthdate -->
      <label for="birthdate">Birthdate:</label>
-     <input type="text" id="birthdate" placeholder="YYYY-MM-dd" maxlength="10" required>
-     <!--<input type="date" id="birthdate" name="birthdate" required>-->
+     <input type="date" id="birthdate" name="birthdate" required>
      <br><br>
 
     <button type="submit">Reveal Chart</button>
@@ -277,7 +299,7 @@ Pythagorean Influence: The Greek philosopher Pythagoras (c. 600 BC) is often cre
         6: "The Healer, nurturing, supportive, problem-solving emotions and physical, family, security, controlling",
         7: "The Scientist/Meditator, truth seeker, solitude, self-care, detective, keen eye, wisdom, inventive, perfectionist, good luck, introspection, inner wisdom, inner spirituality",
         8: "The Banker, ambition, power, teacher, masculine(doer) winner mentality, wealth, workaholic, abundance, karma, destiny, order, promotion, good managers",
-        9: "The Life-coach, universal or global perspective, idealistic, warrior, spiritual awareness, transformative, social ethics, old soul, completion, release, forgive, humanitarian, minister, philanthropy, 360 circle 3+6+0 = 9 it represents Alpha & Omega",
+        9: "The Life-coach, universal or global perspective, idealistic, warrior, spiritual awareness, transformative, social ethics, old soul, completion, Highest form of the heavenly triad, represented by Mars, known for a warrior spirit, fiery energy, the aura of pinnacle of strength, people can be intimidated by you, you hold all the numbers and attributes, authority figure from onset",
         11: "The Guru, heal of self and others, balanced spiritually and philosophically",
         22: "The Architect, master builder, dependable",
         33: "The Savior, self sacrifice"
@@ -686,11 +708,15 @@ Pythagorean Influence: The Greek philosopher Pythagoras (c. 600 BC) is often cre
         // Function to process a name and return the numeric values
         function processName(name) {
             const nameValues = [];
-            for (let i = 0; i < name.length; i++) {
-                const letter = name[i];
-                if (/[a-zA-Z]/.test(letter)) {  // Check if the character is an alphabet letter
-                    const numeric = getPythagoreanValue(letter); // Get the Pythagorean value for the letter
-                    nameValues.push(...Array(numeric).fill(numeric)); // Add the numeric value to the array
+            let count = 0;
+            while (count < age) {
+                for (let i = 0; i < name.length && count < age; i++) {
+                    const letter = name[i];
+                    if (/[a-zA-Z]/.test(letter)) {  // Check if the character is an alphabet letter
+                        const numeric = getPythagoreanValue(letter); // Get the Pythagorean value for the letter
+                        nameValues.push(...Array(numeric).fill(numeric)); // Add the numeric value to the array
+                    }
+                    count++;
                 }
             }
             return nameValues;
@@ -827,7 +853,6 @@ function getNorthNode(birthdate) {
     
     // Total days since reference date
     let birthDateParts = birthdate.split('/');
-    console.log(birthdate);
     let year = parseInt(birthDateParts[2]); // Year
     let month = parseInt(birthDateParts[0]); // Month (1-12)
     let day = parseInt(birthDateParts[1]); // Day (1-31)
@@ -862,12 +887,9 @@ function getNorthNode(birthdate) {
       const middle_name = document.getElementById('middle-name').value;
       const last_name = document.getElementById('last-name').value;
       
-      
       // Get current date value
       let currentDate = document.getElementById('current-date').value;
       let birthDate = document.getElementById('birthdate').value;
-      console.log(birthDate);
-      console.log(getNorthNode(birthDate));
       
       // Create the result to display
 
@@ -956,18 +978,7 @@ function getNorthNode(birthdate) {
       document.getElementById('md').innerHTML = md;
       document.getElementById('ec').innerHTML = ec;
     }
-    
-    const dateInput = document.getElementById('birthdate');
-    dateInput.addEventListener('input', function(e) {
-        let value = e.target.value.replace(/\D/g, ''); // Remove all non-digit characters
-        if (value.length > 2 && value.length <= 4) {
-            value = value.slice(0, 2) + '/' + value.slice(2);
-        } else if (value.length > 4) {
-            value = value.slice(4, 8) + '-' + value.slice(0, 2) + '-' + value.slice(2, 4);
-        }
-        e.target.value = value;
-    });
-    
+
     document.addEventListener("DOMContentLoaded", function() {
         // Event listener for the clear form button
         document.getElementById("clearFormBtn").addEventListener("click", function() {
@@ -982,6 +993,16 @@ function getNorthNode(birthdate) {
             document.getElementById("result").innerHTML = ""; 
         });
     });
+
+    const button = document.getElementById('themeToggle');
+        const body = document.body;
+
+        button.addEventListener('click', () => {
+            const isDark = body.classList.toggle('dark-theme');
+            body.classList.toggle('light-theme', !isDark);
+            button.textContent = isDark ? 'Switch to Light Theme' : 'Switch to Dark Theme';
+        });
+    
 
   </script>
 </body>
