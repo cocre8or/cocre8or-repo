@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Pythagorean Numerology</title>
 
+  <!-- MathJax for mathematical notation -->
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?version=4.8.0&features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
   <style>
     h1, h2, h3{
         color:#0047AB;
@@ -105,7 +109,7 @@
   <h2>What is numerology?</h2>
   <p>Numerology is the science of numbers. It is an ancient science that says numbers have vibration, thus quality. Figures on the otherhand have quantity.
   The Father of Mathematics and <strong>Modern Numerology</strong> is Pythagoras. He studied over 20+ years in Babylon & Egypt learning about math and science around 600 BC. The first source of numerology is truly unknown. Best known for
-    the pythagorean theorem. a^2 + b^2 = c^2 for a right triangle. 
+    the pythagorean theorem. \(a^2 + b^2 = c^2\) for a right triangle. 
     <br />The idea behind numerology is that <strong>Everything is numbers</strong>. Understanding numerology will help us stay in <strong>flow</strong> with divinity.
   <br/><br/>
 Pythagorean Influence: The Greek philosopher Pythagoras (c. 600 BC) is often credited with developing a formal system of numerology. He believed that numbers had inherent meanings and that they could be used to understand the universe. Pythagorean numerology assigns specific meanings to numbers 1 through 9 and the master numbers 11 and 22.
@@ -293,375 +297,438 @@ Pythagorean Influence: The Greek philosopher Pythagoras (c. 600 BC) is often cre
         33: "In Year 33/6, you continue to grow and nurture what you've been creating."
     }
     const number_description = {
-        0: "Before time and space, ultimate potential, source before manifestation, zero amplifies any number i.e. 4 to 40, without this amplification of 0 you can't get to 49",
-        1: "The Pioneer, goal-oriented, energy, starter,unique, feminine winner mentality(delegating), independent nature, life force, leader, ego, self, confidence",
-        2: "The Mediator, partner-oriented, sensitivity, balance, harmony, peacemaker, kindness, partnerships",
-        3: "The Entertainer, creation oriented, doer mentality, abundance, triangle (Spirit), creativity, art, music, communication, recharge in quiet, reasoning, lucky",
-        4: "The Builder, process-oriented, responsible, hard working, systematic, square (order, earth, seasons), organize, build a solid foundation, physical world, practical, task oriented, responsibility, strong work ethic, rational, methodical",
-        5: "The Explorer, curious, inquistive, fluid, risk taker, adaptive, observant, unending talent, free-thinking, brave, resilient, critical thinking, skeptic, network",
-        6: "The Healer, nurturing, supportive, problem-solving emotions and physical, family, security, controlling",
-        7: "The Scientist/Meditator, truth seeker, solitude, self-care, detective, keen eye, wisdom, inventive, perfectionist, good luck, introspection, inner wisdom, inner spirituality",
-        8: "The Banker, ambition, power, teacher, masculine(doer) winner mentality, wealth, workaholic, abundance, karma, destiny, order, promotion, good managers",
-        9: "The Life-coach, universal or global perspective, idealistic, warrior, spiritual awareness, transformative, social ethics, old soul, completion, Highest form of the heavenly triad, represented by Mars, known for a warrior spirit, fiery energy, the aura of pinnacle of strength, people can be intimidated by you, you hold all the numbers and attributes, authority figure from onset",
-        11: "The Guru, heal of self and others, balanced spiritually and philosophically",
-        22: "The Architect, master builder, dependable",
-        33: "The Savior, self sacrifice"
-    }
+    0: "The Void / Infinite Potential — Represents limitless possibility, divine source energy, and the field before manifestation. Zero amplifies and spiritualizes the energy of surrounding numbers, intensifying their influence. Symbolizes wholeness, eternity, intuition, and unseen potential. In numerology, 0 is often associated with spiritual development, cycles, and infinite expansion.",
+    1: "The Pioneer — Independent, ambitious, self-motivated, and innovative. Number 1 represents leadership, originality, individuality, confidence, and the drive to initiate action. It carries strong masculine yang energy associated with creation, willpower, and determination. Ones are natural leaders who thrive when forging their own path, though they may struggle with ego, impatience, or stubbornness.",
+    2: "The Mediator — Diplomatic, sensitive, intuitive, and harmony-oriented. Number 2 represents cooperation, emotional intelligence, balance, patience, and partnership. Twos thrive in supportive environments and naturally act as peacemakers and mediators. This number carries receptive feminine yin energy and emphasizes connection, empathy, and teamwork. Challenges can include over-sensitivity, indecision, or dependency on others.",
+    3: "The Creator — Expressive, creative, charismatic, and socially magnetic. Number 3 represents communication, joy, artistic talent, optimism, and emotional expression. Associated with the creative trinity of mind, body, and spirit, Threes often excel in entertainment, writing, speaking, or artistic pursuits. They uplift others through humor and inspiration but may struggle with scattered energy, superficiality, or emotional inconsistency.",
+    4: "The Builder — Practical, disciplined, reliable, and hardworking. Number 4 represents structure, stability, organization, responsibility, and long-term foundations. Symbolized by the square and the four elements, it embodies order within the physical world. Fours value consistency, loyalty, and measurable progress. They excel through persistence and methodical effort but may become rigid, stubborn, or resistant to change.",
+    5: "The Explorer — Adventurous, adaptable, curious, and freedom-seeking. Number 5 represents movement, change, versatility, experience, and progressive thinking. Fives are natural risk-takers who thrive on variety, travel, communication, and expanding their understanding of life. Their energy is magnetic, rebellious, and highly social. They excel in dynamic environments but may struggle with impulsiveness, inconsistency, or commitment.",
+    6: "The Healer — Compassionate, nurturing, protective, and service-oriented. Number 6 represents responsibility, love, family, emotional support, healing, and harmony within the home and community. Sixes naturally care for others and often take on mentoring, teaching, or caregiving roles. They value beauty, loyalty, and emotional security. Challenges can include over-sacrificing, perfectionism, worry, or becoming overly controlling.",
+    7: "The Seeker — Analytical, spiritual, introspective, and wisdom-oriented. Number 7 represents truth, higher knowledge, intuition, solitude, and inner discovery. Sevens are natural researchers and deep thinkers who seek meaning beneath the surface of life. Often associated with spirituality, science, philosophy, and mysticism, they possess strong intellectual and intuitive abilities. Challenges include emotional detachment, isolation, skepticism, or overthinking.",
+    8: "The Powerhouse — Ambitious, authoritative, strategic, and success-driven. Number 8 represents material mastery, leadership, wealth, karma, discipline, and executive power. Eights are naturally drawn toward achievement, influence, business, and large-scale success. They possess strong manifestation abilities and excel in positions of responsibility. At their highest level, they use power ethically to create lasting impact. Challenges include workaholism, control issues, or excessive attachment to status and material success.",
+    9: "The Humanitarian — Compassionate, wise, idealistic, and spiritually evolved. Number 9 represents completion, universal consciousness, emotional depth, service to humanity, and transformation. Often considered the old soul of numerology, Nines possess broad perspective, empathy, and strong moral awareness. They are drawn toward healing, teaching, creativity, or humanitarian causes. This number carries both warrior and sage energy, symbolizing strength through compassion. Challenges include emotional overwhelm, difficulty letting go, or unrealistic expectations of others.",
+    11: "The Illuminator — Highly intuitive, spiritually aware, visionary, and inspirational. Master Number 11 represents enlightenment, higher consciousness, intuition, and spiritual awakening. Elevens possess heightened sensitivity and the ability to inspire others through insight, creativity, and emotional intelligence. They often feel connected to a greater purpose and can become teachers, healers, or visionaries. Challenges include nervous tension, anxiety, emotional overwhelm, or difficulty grounding their energy.",
+    22: "The Master Builder — Visionary, disciplined, practical, and capable of creating lasting impact on a global scale. Master Number 22 combines the spiritual insight of 11 with the grounded structure of 4. It represents manifestation, leadership, organization, and the ability to turn ambitious dreams into reality. Those influenced by 22 often possess exceptional strategic thinking and leadership abilities. Challenges include intense pressure, perfectionism, or fear of failing their larger mission.",
+    33: "The Master Teacher — Compassionate, selfless, healing, and spiritually devoted to uplifting humanity. Master Number 33 represents unconditional love, emotional healing, service, and higher wisdom. It combines the expressive creativity of 3 with the nurturing responsibility of 6. Thirty-threes often possess strong empathic and teaching abilities and are called toward helping others through guidance, healing, or spiritual leadership. Challenges include martyrdom, emotional exhaustion, or neglecting personal needs while caring for others."
+}
 
     const destiny_numbers = {
         1: {
-            "meaning": "Leadership and Independence",
-            "traits": "The leader. Individuals with Destiny Number 1 are natural leaders who are ambitious and self-reliant. They have a strong desire to achieve and are often seen as pioneers in their field. They are confident, determined, and have a clear vision of their goals."
+            "meaning": "The Pioneer - Leadership and Independence",
+            "traits": "Your life's calling is to be a leader and innovator. You are destined to forge new paths, take initiative, and establish yourself as an authority in your field. Your mission is to develop courage, confidence, and originality. You must learn to act independently and trust your vision, even when others doubt. The challenge is to balance your natural dominance with humility and to avoid becoming tyrannical or overly self-centered. Your destiny asks you to pioneer new ideas and ventures that will benefit not just yourself, but ultimately humanity. You are here to learn that true leadership comes from within, and that independence must be balanced with integrity and responsibility to others."
         },
         2: {
-            "meaning": "Cooperation and Sensitivity",
-            "traits": "The diplomat. Those with Destiny Number 2 are diplomatic, sensitive, and have a strong ability to connect with others. They value harmony and are often seen as peacemakers. Their ability to work well in teams and their intuitive nature make them excellent collaborators."
+            "meaning": "The Mediator - Cooperation and Partnership",
+            "traits": "Your life's calling is to be a peacemaker and bridge-builder. You are destined to create harmony, foster cooperation, and develop deep meaningful relationships. Your mission is to cultivate sensitivity, diplomacy, and emotional intelligence. You must learn to value partnership over solo achievement and to develop your intuitive gifts. The challenge is to overcome fear of conflict and to assert yourself diplomatically, as 2s often suppress their needs to keep the peace. Your destiny asks you to be the glue that holds people and communities together. You are here to learn that true strength lies in cooperation, and that supporting others elevates the collective. Your sensitivity is not weakness—it is your superpower."
         },
         3: {
-            "meaning": "Creativity and Expression",
-            "traits": "The inspirer. People with Destiny Number 3 are creative, expressive, and enjoy engaging with others. You are multi-talented and should develop your communication/expression skills to inspire others. They are often artistic and have a talent for communication. They bring joy and enthusiasm to their interactions and are known for their optimism and charisma."
+            "meaning": "The Entertainer - Creativity and Self-Expression",
+            "traits": "Your life's calling is to express, inspire, and uplift through creativity and communication. You are destined to be a beacon of joy, bringing light and inspiration to the world through your talents in art, music, writing, or performance. Your mission is to develop your gifts of expression and use them to touch hearts. You must learn to channel your considerable creative energy into tangible outputs rather than scattering it. The challenge is to move from inspiration to completion, and to avoid superficiality or dissipation of your talents into distraction and escapism. Your destiny asks you to impact the world through authentic self-expression. You are here to learn that talent without discipline remains unrealized, and that your joy is meant to be shared as a gift to others."
         },
         4: {
-            "meaning": "Practicality and Stability",
-            "traits": "Individuals with Destiny Number 4 are hardworking, reliable, and grounded. They have a strong sense of responsibility and are adept at managing details and ensuring stability. They value structure and are often seen as dependable and practical."
+            "meaning": "The Builder - Stability and Foundation",
+            "traits": "Your life's calling is to build solid, lasting structures and leave a legacy of order and stability. You are destined to be the architect of systems, organizations, and enterprises that benefit society. Your mission is to develop discipline, responsibility, and mastery over material form. You must learn to value hard work, patience, and methodical progress. The challenge is to avoid rigidity and perfectionism, and to embrace flexibility when needed. 4s often struggle with the belief that only hard labor brings reward. Your destiny asks you to create something enduring that reflects your integrity and work ethic. You are here to learn that true success is built slowly, brick by brick, and that a solid foundation supports not just yourself but generations to come."
         },
         5: {
-            "meaning": "Adventure and Freedom",
-            "traits": "The change promoter or maker. Those with Destiny Number 5 are adventurous, energetic, and thrive on change. They value freedom and dislike routine. Their dynamic nature often leads them to explore new opportunities and experiences. They are versatile and adaptable, with a love for excitement."
+            "meaning": "The Explorer - Freedom and Change",
+            "traits": "Your life's calling is to explore, investigate, and bring dynamic change through adaptability and curiosity. You are destined to be a catalyst for transformation, seeking freedom and variety in all things. Your mission is to develop versatility, communication skills, and the ability to traverse multiple worlds and perspectives. You must learn to channel your restless energy into meaningful exploration and not dissipate it in shallow pursuits. The challenge is to commit and follow through, as 5s often leave projects incomplete in search of the next excitement. Your destiny asks you to use your flexible nature to bridge different worlds and inspire others to embrace change. You are here to learn that true freedom comes from mastering your environment, not escaping from it, and that your explorations can lead to wisdom when channeled with intention."
         },
         6: {
-            "meaning": "Nurturing and Responsibility",
-            "traits": "People with Destiny Number 6 are caring, responsible, and have a strong sense of duty. They are often drawn to roles where they can help others and create harmony in their environment. Their nurturing nature makes them excellent caregivers and support systems."
+            "meaning": "The Healer - Nurturing and Service",
+            "traits": "Your life's calling is to nurture, heal, and create harmony in your family and community. You are destined to be a caregiver, counselor, and bearer of responsibility. Your mission is to develop your capacity to love unconditionally and to balance service with self-care. You must learn to set boundaries so that your giving does not become self-sacrificing or enabling. The challenge is to avoid controlling others under the guise of helping them, and to remember that not all problems are yours to fix. Your destiny asks you to be the emotional anchor and healer in your relationships and communities. You are here to learn that true service means empowering others to care for themselves, and that your own well-being is essential to sustaining your ability to help."
         },
         7: {
-            "meaning": "Introspection and Wisdom",
-            "traits": "Individuals with Destiny Number 7 are introspective, analytical, and seek deeper understanding. They are often drawn to spiritual or intellectual pursuits and value solitude and reflection. Their wisdom and insight are valuable assets in their quest for knowledge."
+            "meaning": "The Seeker - Wisdom and Truth",
+            "traits": "Your life's calling is to seek truth, wisdom, and spiritual understanding. You are destined to be a scholar, analyst, and mystic who delves deeply into life's mysteries. Your mission is to develop your analytical mind, intuition, and connection to the spiritual realm. You must learn to trust your inner knowing and not dismiss your insights as mere intuition or fantasy. The challenge is to balance your need for solitude with meaningful connection, and to avoid becoming isolated or cynical. 7s often retreat from the world in search of answers. Your destiny asks you to bring back the wisdom you discover and share it with those ready to hear it. You are here to learn that inner work and outer service are complementary, and that true wisdom is meant to illuminate the path for others."
         },
         8: {
-            "meaning": "Power and Achievement",
-            "traits": "Those with Destiny Number 8 are ambitious, determined, and focused on achieving their goals. They have strong leadership qualities and are often drawn to positions of power and authority. Their drive for success and financial stability is a key aspect of their personality."
+            "meaning": "The Authority - Mastery and Abundance",
+            "traits": "Your life's calling is to achieve mastery in the material and spiritual realms, commanding resources and power with wisdom. You are destined to be an executive, visionary, and bearer of karmic consequence. Your mission is to develop financial acumen, executive ability, and a healthy relationship with power and authority. You must learn that money and power are tools for creating greater impact, not ends in themselves. The challenge is to avoid becoming materialistic, tyrannical, or attached to external validation of success. Your destiny asks you to wield power responsibly and to recognize the karmic cycles of abundance and loss. You are here to learn that true mastery comes from aligning material success with integrity and spiritual purpose. Your greatest power comes not from domination but from wise stewardship."
         },
         9: {
-            "meaning": "Compassion and Idealism",
-            "traits": "People with Destiny Number 9 are compassionate, idealistic, and have a strong sense of purpose and achievement. They are often involved in humanitarian efforts and are driven by a desire to make the world a better place. Their empathy and vision for the greater good are central to their identity."
+            "meaning": "The Visionary - Compassion and Completion",
+            "traits": "Your life's calling is to serve humanity and usher in cycles of completion and renewal. You are destined to be a humanitarian, teacher, and bearer of global consciousness. Your mission is to develop compassion, wisdom through experience, and a perspective that encompasses the whole of humanity. You must learn to release attachment to personal gain and to embrace a universal viewpoint. The challenge is to avoid becoming overwhelmed by world suffering, burnt out from helping, and to let go of what no longer serves. Your destiny asks you to complete cycles on a large scale and prepare for new beginnings. You are here to learn that you hold all the numbers within you and therefore understand all perspectives. Your greatest gift is your ability to see the interconnection of all life and to inspire others toward higher consciousness and unity."
+        },
+        11: {
+            "meaning": "The Illuminator - Spiritual Insight and Inspiration",
+            "traits": "Your life's calling is to be an illuminator and bridge between spiritual and material realms. You are destined to bring spiritual insight and revolutionary ideas that elevate collective consciousness. Your mission is to develop your psychic and intuitive abilities while grounding them in practical application. You must learn to overcome nervous tension and doubt about your gifts, and to trust the downloads and inspirations you receive. The challenge is avoiding escapism as a response to the intensity of your sensitivity, and learning to manage your highly charged energy. Your destiny asks you to inspire others through your illuminated vision and to be a beacon of higher truth. You are here to learn that your twin soul purpose is both internal illumination and external teaching. Your mission carries spiritual responsibility to use your gifts for the highest good of all."
+        },
+        22: {
+            "meaning": "The Master Builder - Manifestation and Legacy",
+            "traits": "Your life's calling is to manifest grand visions into tangible reality on a scale that impacts civilization. You are destined to be a master architect whose work endures for generations. Your mission is to develop the ability to organize complex systems and inspire others toward shared visionary goals. You must learn that your ambitious designs are not too grand but require patience, planning, and strategic execution. The challenge is managing self-doubt when faced with the enormity of your vision, and not becoming frustrated with the time required for manifestation. Your destiny asks you to leave a legacy that demonstrates the integration of spiritual vision with material excellence. You are here to learn that you have been given the tools to build something extraordinary, and that your greatest responsibility is ensuring your creations serve the evolution of humanity."
+        },
+        33: {
+            "meaning": "The Master Teacher - Love and Transformation",
+            "traits": "Your life's calling is to be a master teacher, healer, and transformer who operates through unconditional love. You are destined to lift humanity through compassionate wisdom and inspire others toward their highest potential. Your mission is to develop the capacity to hold space for others' transformation while maintaining your own integrity and boundaries. You must learn to give from a place of wholeness, not from depletion, and to guide without creating dependency. The challenge is managing compassion fatigue and ensuring your own cup is full so you can continue to serve. Your destiny asks you to be a conduit for healing and transcendence on a collective scale. You are here to learn that true mastery lies in service, and that your greatest teaching is the example of your own evolution. Your presence alone can catalyze transformation in those around you."
         }
     }
     
     const life_path_numbers = {
         1: {
-            "meaning": "Leadership and Independence",
-            "traits": "Individuals with Life Path Number 1 are natural leaders who are confident, ambitious, and self-reliant. They are driven to achieve and often have a pioneering spirit. Their confidence, determination, and originality are key attributes."
+            "meaning": "The Pioneer - The Path of Independence and Leadership",
+            "traits": "Your life path is one of independence, courage, and pioneering achievement. You are here to learn confidence, self-reliance, and the power of original thinking. Your journey involves breaking away from convention, taking initiative, and establishing your own authority. You must learn to trust yourself and your vision, even when others doubt. The challenge on your path is to avoid domination and arrogance, and to recognize that true leadership elevates others. You will encounter situations that demand you step up and take charge. Your purpose is to blaze new trails and show others that authentic power comes from inner conviction, not external validation. You are naturally competitive and ambitious—learn to channel this toward meaningful achievements that serve beyond yourself."
         },
         2: {
-            "meaning": "Cooperation and Sensitivity",
-            "traits": "Those with Life Path Number 2 are diplomatic, sensitive, and have a talent for creating harmony in their relationships. They are cooperative and have a natural ability to work well with others. Their intuitive and empathetic nature often guides them."
+            "meaning": "The Mediator - The Path of Partnership and Balance",
+            "traits": "Your life path is one of cooperation, diplomacy, and the development of deep sensitivity. You are here to learn the power of partnership and to discover that your greatest strength lies in your ability to create harmony. Your journey involves developing emotional intelligence, intuition, and the capacity to work collaboratively. You must learn to speak up for yourself while maintaining peaceful relationships. The challenge on your path is to overcome fear of conflict and to stop suppressing your needs to keep the peace. You will encounter relationships that teach you the difference between compromise and self-abandonment. Your purpose is to be a bridge between people and perspectives, showing others that true strength lies in cooperation and empathy. Your sensitivity is not weakness—it is your gift to the world."
         },
         3: {
-            "meaning": "Creativity and Expression",
-            "traits": "Your Life Path 3 needs you to be seen! The great communicators. Life Path Number 3s are the entertainers of the world and most of these people are truly gifted musicians, writers, actors, dancers, public speakers, and politicians. The Life Path 3 is one that is characterised by beauty, excitement, eccentricity, and fame. Its very important for those living out this vibration to find authentic ways to express their inner essence and be truly seen (behind the mask, and beyond the stage) and for many, this is the real challenge. Some threes stray from their path, giving up their dreams and talents and some even escape into drug abuse or promiscuity in a bid to silence their inner calling. For this reason, 3s must retain their sense of childlike wonder, play and relentlessly fuel their creativity."
+            "meaning": "The Entertainer - The Path of Creative Expression",
+            "traits": "Your life path is one of creativity, joy, and inspired self-expression. You are here to learn that your creative talents are meant to uplift and inspire others. Your journey involves developing your gifts of communication, artistry, and charisma, then sharing them authentically with the world. You must learn to channel your considerable energy into tangible creations rather than scattering it. The challenge on your path is to move from inspiration to completion, and to avoid escapism when faced with difficulty. You will encounter situations that call you to express your authentic self despite fear of judgment. Your purpose is to bring beauty, joy, and inspiration into a world that needs it. Your exuberance and optimism are meant to elevate the consciousness of those around you. Learn that discipline doesn't kill creativity—it actualizes it."
         },
         4: {
-            "meaning": "Practicality and Stability",
-            "traits": "Their purpose in life is to think positively, develop flexibility both mentally and physically, and break away from the trap of conventional thinking. They dislike idleness. They came into this lifetime to learn about limitations. Life Path Number 4s are often the pillars of their communities. These individuals are hard-working, practical and trustworthy, and as such, make fantastic marriage and business partners, teachers, mentors and advisors. Their resourceful nature means that they are able to create something out of nothing and are often called upon in a crisis! However, self-sacrificing fours often demand too much both of themselves and others and can develop reputations as martyrs or tyrants: Their will-power and tenacity being misinterpreted as greed and stubbornness. This completely baffles the confused Number 4 whose intentions are usually to benefit the good of all, so it is important for those living through this vibration to regularly release some of their perfectionist tendencies and practice kindness and compassion for both themselves and others."
+            "meaning": "The Builder - The Path of Stability and Foundation",
+            "traits": "Your life path is one of building solid structures, mastering practical skills, and creating lasting stability. You are here to learn discipline, responsibility, and the satisfaction of tangible accomplishment. Your journey involves developing a strong work ethic, organizational skills, and the ability to manifest ideas into concrete form. You must learn that hard work itself is not punishment but the doorway to mastery. The challenge on your path is to avoid rigidity and to embrace necessary flexibility when structures need updating. You will encounter limitations and obstacles designed to teach you resilience and creative problem-solving. Your purpose is to create systems and structures that serve communities and endure through time. Learn that your meticulous nature and practical wisdom are invaluable assets. The foundations you build become the ground upon which others stand."
         },
         5: {
-            "meaning": "Adventure and Freedom, unending talent",
-            "traits": "Your Life Path 5 needs you to be fearless and find freedom! Life Path Number 5s are highly inquisitive individuals who consider the hands-on experience to be the best teacher in life. Many people living out this vibration are deeply intelligent, philosophical and spiritually-minded, as well as being great communicators that make excellent social anthropologists, archaeologists, teachers, writers, and historians. However, Number 5s can tend towards being self-absorbed and unaware of the more widespread effects of their footloose and seemingly reckless actions. The avoidance of commitment of many fives can also prevent deep and loyal bonds forming between them and the people in their lives, so it is really important for these folk to find ways of experiencing freedom and variety, without running away from responsibility and hurting their families."
+            "meaning": "The Explorer - The Path of Freedom and Change",
+            "traits": "Your life path is one of exploration, adaptability, and dynamic transformation. You are here to learn that true freedom comes from understanding yourself deeply and navigating change with wisdom rather than impulsiveness. Your journey involves experiencing diverse perspectives, developing versatility, and discovering that your restless energy serves a purpose when channeled. You must learn to commit to meaningful pursuits even when the urge to move on calls. The challenge on your path is completing projects and relationships before moving to the next excitement. You will encounter situations that demand focus and follow-through. Your purpose is to be an agent of positive change and to bring fresh perspectives to situations that need new thinking. Your inquisitive mind and adaptability allow you to bridge different worlds. Learn that mastery comes from depth, not breadth, and that true freedom includes the freedom of commitment."
         },
         6: {
-            "meaning": "Nurturing and Responsibility",
-            "traits": "People with Life Path Number 6 are nurturing, responsible, and deeply concerned with their families and communities. They are natural caregivers and often find fulfillment in roles that involve supporting and helping others."
+            "meaning": "The Healer - The Path of Love and Service",
+            "traits": "Your life path is one of unconditional love, nurturing, and responsible service to family and community. You are here to learn the power of care, support, and creating harmony wherever you are. Your journey involves developing your capacity to love deeply while maintaining healthy boundaries. You must learn to serve without self-sacrifice and to help without enabling. The challenge on your path is setting boundaries around your giving and recognizing that you cannot fix everyone's problems. You will encounter relationships that teach you the difference between loving someone and being responsible for their happiness. Your purpose is to be a healer and anchor of stability in emotional and family systems. Your natural nurturing gifts make you indispensable to those you love. Learn that taking care of yourself is not selfish—it is essential to your ability to give authentically to others."
         },
         7: {
-            "meaning": "Introspection and Wisdom",
-            "traits": "Individuals with Life Path Number 7 are introspective, analytical, and seek deeper understanding. Here to seek the truth. They are often drawn to spiritual or intellectual pursuits and value solitude and contemplation. Their wisdom and insight are central to their personality."
+            "meaning": "The Seeker - The Path of Wisdom and Truth",
+            "traits": "Your life path is one of investigation, spiritual seeking, and the pursuit of deeper truth. You are here to learn that your questioning mind and introspective nature are gifts that lead to wisdom. Your journey involves developing analytical skills, trusting your intuition, and cultivating a genuine spiritual connection. You must learn to trust the inner knowing that comes through solitude and contemplation. The challenge on your path is balancing your need for solitude with meaningful connection, and avoiding cynicism or detachment from the world. You will encounter mysteries and questions designed to deepen your understanding. Your purpose is to seek truth and bring back wisdom that illuminates the path for others. Your penetrating insight allows you to see beneath surfaces to underlying realities. Learn that your spiritual journey is not an escape from life but a deepening of it, and find ways to share your understanding with those ready to hear it."
         },
         8: {
-            "meaning": "Power and Achievement",
-            "traits": "Those with Life Path Number 8 are ambitious, determined, and focused on achieving their goals. Here to master the art of success in the material world through patient endures and hard-work. They are often drawn to positions of authority and have strong leadership qualities. Their drive for success and financial stability is a defining aspect."
+            "meaning": "The Authority - The Path of Mastery and Abundance",
+            "traits": "Your life path is one of executive power, material mastery, and wise stewardship of resources and authority. You are here to learn that power, wealth, and influence are tools for creating greater impact and serving the collective. Your journey involves developing business acumen, recognizing karmic cycles, and using authority responsibly. You must learn that true power comes not from domination but from integrity and visionary leadership. The challenge on your path is avoiding materialism and attachment to status, and recognizing cycles of accumulation and loss as teaching. You will encounter situations that test your character and your relationship with power. Your purpose is to manifest abundance and create systems that generate prosperity for yourself and others. Your natural authority and strategic thinking make you a natural leader. Learn that your greatest power comes from aligning material success with spiritual purpose, and that what you build endures because it serves a higher good."
         },
         9: {
-            "meaning": "Compassion and Idealism",
-            "traits": "People with Life Path Number 9 are compassionate, idealistic, and driven by a desire to make a positive impact on the world. They are often involved in humanitarian efforts and possess a deep sense of empathy and vision. Challenges they must overcome are - Lack of concentration, they don't ask for support in their learning, struggling alone, Holding on to the past, not letting go, Too much attachment, which, in the end, gives misery."
+            "meaning": "The Visionary - The Path of Compassion and Completion",
+            "traits": "Your life path is one of global consciousness, humanitarian service, and wise completion of cycles. You are here to learn that you hold all the numbers within you and therefore can understand all human experiences. Your journey involves developing compassion while maintaining discernment, releasing attachment to outcomes, and embracing your role as a catalyst for collective transformation. You must learn to witness suffering without being overwhelmed and to take action without controlling results. The challenge on your path is letting go of what no longer serves and avoiding burnout from trying to fix the world's problems. You will encounter situations that teach you about impermanence and the necessity of closure. Your purpose is to inspire humanity toward higher consciousness and to help complete old cycles so new ones can begin. Your ability to see the big picture makes you invaluable as a guide. Learn that your greatest gift is showing others that all life is interconnected and that we are ultimately one. Your wisdom is meant to elevate collective consciousness."
         },
         11: {
-            "meaning": "Inspiration and Illumination",
-            "traits": "Individuals with Life Path Number 11 are highly intuitive, inspirational, and have a strong sense of purpose. They often possess a heightened spiritual awareness and a deep connection to their inner selves, guiding others through their wisdom and vision."
+            "meaning": "The Illuminator - The Path of Spiritual Awakening and Inspiration",
+            "traits": "Your life path is one of bringing spiritual light and intuitive wisdom to illuminate the path for others. You are here to learn that your heightened sensitivity and psychic impressions are not burdens but extraordinary gifts. Your journey involves developing your intuitive abilities, managing your highly charged nervous system, and trusting the downloads and insights you receive. You must learn to ground your spiritual experiences in practical reality and to use them for service. The challenge on your path is managing anxiety and nervous tension that comes with your sensitivity, and avoiding escapism as a response to intensity. You will encounter spiritual experiences and synchronicities designed to awaken your consciousness. Your purpose is to be an illuminator who bridges spiritual and material realms and inspires others toward higher consciousness. Your twin soul mission is both internal awakening and external teaching. Learn that your sensitivity is not weakness but attunement to higher frequencies, and that managing your energy is essential to fulfilling your spiritual purpose."
         },
         22: {
-            "meaning": "Master Builder and Visionary",
-            "traits": "Those with Life Path Number 22 are powerful visionaries with the ability to turn dreams into reality. They are practical and ambitious, with a strong drive to achieve great things. Their leadership and organizational skills enable them to create lasting impact."
+            "meaning": "The Master Builder - The Path of Visionary Manifestation and Legacy",
+            "traits": "Your life path is one of manifesting grand visions into tangible reality that impacts civilization. You are here to learn that your ambitious dreams are not too big but require patient, strategic execution. Your journey involves developing the capacity to organize complex systems, inspire collective effort, and translate inspiration into monumental achievement. You must learn that your worth is not determined by your accomplishments, and that the timeline for manifestation requires faith. The challenge on your path is managing self-doubt when faced with the enormity of your vision, and persisting through the years of methodical work required for realization. You will encounter both tremendous opportunities and significant obstacles designed to build your character. Your purpose is to leave a legacy—tangible creations that endure for generations and serve humanity's evolution. Your natural organizational brilliance and visionary thinking enable you to accomplish what others consider impossible. Learn that your greatest responsibility is ensuring your creations maintain integrity and serve the higher good."
         },
         33: {
-            "meaning": "Master Teacher and Compassion",
-            "traits": "People with Life Path Number 33 are often seen as master teachers and healers. They possess a deep sense of compassion and a strong desire to help others. Their ability to inspire and uplift those around them is a key aspect of their path."
+            "meaning": "The Master Teacher - The Path of Unconditional Love and Transformation",
+            "traits": "Your life path is one of compassionate teaching, healing transformation, and uplifting humanity through unconditional love. You are here to learn that you are a natural conduit for others' healing and awakening. Your journey involves developing the capacity to hold sacred space for transformation while maintaining your own integrity and wholeness. You must learn to give from a place of abundance, not depletion, and to guide without creating dependency. The challenge on your path is managing compassion fatigue, setting healthy boundaries around your giving, and ensuring your own cup remains full. You will encounter situations that call for your wisdom and presence to catalyze awakening in those around you. Your purpose is to be a master teacher and healer whose very presence inspires greater consciousness and healing. Your greatest teaching is the example of your own evolution and authenticity. Learn that true mastery lies in humble service, and that your ultimate gift is showing others the potential within themselves."
         }
     }
     
     const soul_urge_numbers = {
-        1: {
-            "meaning": "Independence and Ambition",
-            "traits": "Individuals with Soul Urge Number 1 have a deep desire for independence and self-expression. They are ambitious, driven, and often seek to assert their individuality. Their inner motivation is to lead and make their own path in life."
-        },
-        2: {
-            "meaning": "Harmony and Partnership",
-            "traits": "Those with Soul Urge Number 2 are driven by a need for harmony and balance in their relationships. They have a strong desire for partnership and are motivated by the need to create peace and cooperation with others. Their inner self craves connection and collaboration."
-        },
-        3: {
-            "meaning": "Creativity and Self-Expression",
-            "traits": "People with Soul Urge Number 3 are motivated by a desire for creative expression and joy. They seek to bring their artistic talents and vibrant energy into the world. Their inner urge is to communicate, inspire, and connect with others through their creativity."
-        },
-        4: {
-            "meaning": "Stability and Security",
-            "traits": "Individuals with Soul Urge Number 4 are driven by a need for stability, security, and order. They are motivated by the desire to build a solid foundation and create lasting structures in their lives. Their inner self seeks reliability and a sense of accomplishment through hard work."
-        },
-        5: {
-            "meaning": "Adventure and Freedom",
-            "traits": "Those with Soul Urge Number 5 have a deep inner desire for freedom and new experiences. They are motivated by the need for adventure, change, and exploration. Their soul craves excitement and variety, and they often seek to break free from routine and limitations."
-        },
-        6: {
-            "meaning": "Nurturing and Service",
-            "traits": "People with Soul Urge Number 6 are driven by a deep desire to nurture and care for others. They are motivated by a need to serve and create harmony within their family and community. Their inner self is focused on providing support and love, often finding fulfillment in caregiving roles."
-        },
-        7: {
-            "meaning": "Spiritual Growth and Wisdom",
-            "traits": "Individuals with Soul Urge Number 7 are motivated by a quest for spiritual growth and understanding. They seek wisdom and deeper knowledge, often valuing introspection and solitude. Their inner desire is to explore the mysteries of life and gain profound insights."
-        },
-        8: {
-            "meaning": "Achievement and Power",
-            "traits": "Those with Soul Urge Number 8 have a strong inner drive for achievement and success. They are motivated by the desire to attain power, authority, and financial security. Their soul urges them to take control and make a significant impact in their chosen field."
-        },
-        9: {
-            "meaning": "Compassion and Idealism",
-            "traits": "People with Soul Urge Number 9 are motivated by a deep sense of compassion and idealism. They are driven by the desire to make a positive difference in the world and help others. Their inner self is focused on humanitarian efforts and creating a better future for all."
-        },
-        11: {
-            "meaning": "Inspiration and Spiritual Insight",
-            "traits": "Individuals with Soul Urge Number 11 are driven by a profound sense of inspiration and spiritual insight. They are motivated by a desire to uplift and guide others through their wisdom and vision. Their inner self seeks to connect with higher realms and inspire change."
-        },
-        22: {
-            "meaning": "Mastery and Visionary Leadership",
-            "traits": "Those with Soul Urge Number 22 are motivated by a desire to achieve great things and manifest their visionary ideas. They have a strong drive for mastery and leadership, aiming to make a significant impact on the world. Their inner urge is to build and create lasting change."
-        },
-        33: {
-            "meaning": "Compassionate Teaching and Healing",
-            "traits": "People with Soul Urge Number 33 are driven by a deep desire to teach and heal. They are motivated by compassion and the need to serve others on a profound level. Their inner self is focused on uplifting and guiding others through their nurturing and transformative presence."
-        }
+    1: {
+        "meaning": "Independence and Ambition",
+        "traits": "Individuals with Soul Urge Number 1 possess a deep inner desire to lead, achieve, and stand apart from the crowd. They are motivated by independence, originality, and personal accomplishment. These individuals crave the freedom to make their own decisions and often feel fulfilled when pioneering new ideas or taking initiative. They are naturally ambitious, self-reliant, and determined to leave a lasting mark on the world. At their best, they inspire others through confidence, courage, and innovation. However, they may struggle with impatience, stubbornness, or an excessive need for control when their independence feels restricted."
+    },
+    2: {
+        "meaning": "Harmony and Partnership",
+        "traits": "Those with Soul Urge Number 2 are deeply driven by emotional connection, harmony, and meaningful relationships. Their inner motivation centers around cooperation, diplomacy, and creating peace in their environment. Sensitive and intuitive, they often act as mediators who seek balance and understanding between people. They thrive in supportive partnerships and value loyalty, affection, and emotional security. Their gentle and compassionate nature allows them to uplift others through empathy and kindness. However, they may become overly dependent on approval, avoid confrontation, or suppress their own needs to maintain peace."
+    },
+    3: {
+        "meaning": "Creativity and Self-Expression",
+        "traits": "People with Soul Urge Number 3 are internally motivated by creativity, joy, and the desire to express themselves freely. They are naturally imaginative, optimistic, and emotionally expressive individuals who often possess artistic or communicative talents. Their soul craves inspiration, social interaction, and opportunities to entertain or uplift others through words, art, humor, or performance. They bring enthusiasm and charisma wherever they go and are happiest when sharing their ideas with the world. In challenging moments, they may struggle with scattered energy, emotional sensitivity, or avoiding deeper responsibilities."
+    },
+    4: {
+        "meaning": "Stability and Security",
+        "traits": "Individuals with Soul Urge Number 4 seek structure, reliability, and long-term security in every aspect of life. Their inner drive is rooted in discipline, responsibility, and building solid foundations that stand the test of time. They are practical, hardworking, and dependable individuals who value honesty, consistency, and order. These people often feel fulfilled through dedication, organization, and tangible accomplishments. They are loyal and trustworthy, often serving as the steady support system for others. However, they may struggle with rigidity, resistance to change, or becoming overly focused on work and routine."
+    },
+    5: {
+        "meaning": "Adventure and Freedom",
+        "traits": "Those with Soul Urge Number 5 possess a powerful inner desire for freedom, exploration, and variety. They are motivated by change, excitement, and the pursuit of new experiences that expand their understanding of life. Naturally curious and energetic, they dislike feeling restricted or confined by routine. Their adventurous spirit drives them toward travel, social interaction, and unconventional paths. They thrive in dynamic environments where adaptability and spontaneity are valued. At their best, they inspire others through courage, versatility, and enthusiasm for life. However, they may struggle with impulsiveness, inconsistency, or difficulty committing to long-term responsibilities."
+    },
+    6: {
+        "meaning": "Nurturing and Service",
+        "traits": "People with Soul Urge Number 6 are deeply motivated by love, responsibility, and the desire to care for others. Their inner self seeks harmony within the family, community, and close relationships. Compassionate and protective, they naturally take on nurturing roles and often feel happiest when supporting or guiding those in need. They value beauty, stability, and emotional connection, striving to create peaceful and loving environments. Their strong sense of duty makes them dependable and generous companions. However, they may become overly self-sacrificing, controlling, or burdened by the responsibilities they willingly take on."
+    },
+    7: {
+        "meaning": "Spiritual Growth and Wisdom",
+        "traits": "Individuals with Soul Urge Number 7 are driven by a profound need for knowledge, spiritual understanding, and inner truth. Their soul seeks wisdom through introspection, study, and personal discovery. Analytical and intuitive, they are often drawn toward philosophy, spirituality, science, or mystical subjects that deepen their awareness of life’s mysteries. They value solitude and quiet reflection, preferring meaningful conversations over superficial interactions. At their best, they possess remarkable insight, intuition, and intellectual depth. However, they may struggle with isolation, skepticism, emotional distance, or overthinking."
+    },
+    8: {
+        "meaning": "Achievement and Power",
+        "traits": "Those with Soul Urge Number 8 are internally motivated by success, influence, and material accomplishment. They possess a strong desire to achieve financial security, authority, and recognition through determination and leadership. These individuals are ambitious, disciplined, and highly capable of managing large responsibilities or organizations. Their soul urges them to build wealth, create stability, and leave a legacy of success. At their highest expression, they combine power with wisdom and integrity to uplift others through leadership. However, they may struggle with workaholism, control issues, or placing too much importance on status and material gain."
+    },
+    9: {
+        "meaning": "Compassion and Idealism",
+        "traits": "People with Soul Urge Number 9 are motivated by compassion, humanitarian ideals, and the desire to make the world a better place. Their inner self is deeply empathetic and often drawn toward service, healing, or creative expression that benefits humanity. They possess wisdom, emotional depth, and a broad understanding of life that allows them to connect with people from all walks of life. Generous and idealistic, they are inspired by causes greater than themselves. At their best, they embody forgiveness, tolerance, and unconditional love. However, they may struggle with emotional overwhelm, disappointment, or difficulty letting go of the past."
+    },
+    11: {
+        "meaning": "Inspiration and Spiritual Insight",
+        "traits": "Individuals with Soul Urge Number 11 possess heightened intuition, spiritual sensitivity, and visionary insight. They are driven by a deep desire to inspire, enlighten, and elevate others through their wisdom and creativity. These individuals often feel connected to higher ideals and possess an almost magnetic emotional awareness. Their soul seeks meaningful purpose and spiritual fulfillment rather than purely material success. At their best, they act as teachers, visionaries, or inspirational leaders capable of awakening others. However, they may struggle with nervous tension, self-doubt, emotional intensity, or feeling misunderstood by those around them."
+    },
+    22: {
+        "meaning": "Mastery and Visionary Leadership",
+        "traits": "Those with Soul Urge Number 22 are driven by extraordinary ambition, practical vision, and the desire to create lasting impact on a large scale. Known as the Master Builder, they possess the rare ability to transform dreams into reality through discipline, organization, and leadership. Their soul seeks to build structures, systems, or movements that benefit society as a whole. They combine intuition with practicality, making them capable of achieving remarkable accomplishments. At their highest potential, they become powerful leaders who inspire progress and positive transformation. However, they may struggle with immense pressure, perfectionism, or fear of failing to fulfill their potential."
+    },
+    33: {
+        "meaning": "Compassionate Teaching and Healing",
+        "traits": "People with Soul Urge Number 33 are motivated by unconditional love, healing, and selfless service to humanity. Often called the Master Teacher, they possess deep compassion, emotional wisdom, and a natural ability to uplift and nurture others. Their soul desires to guide, heal, and inspire through kindness, creativity, and spiritual understanding. They are often drawn toward teaching, counseling, healing arts, or humanitarian work. At their best, they radiate warmth, wisdom, and emotional support that profoundly impacts those around them. However, they may struggle with emotional burdens, self-sacrifice, unrealistic expectations, or neglecting their own needs while caring for others."
     }
+};
     
     const growth_numbers = {
-        1: {
-            "meaning": "Leadership and Innovation",
-            "traits": "Individuals with Growth Number 1 are often driven to lead and innovate. They have a strong sense of individuality and are inclined to take initiative. Their path involves developing confidence and pursuing their unique vision with courage and creativity."
-        },
-        2: {
-            "meaning": "Collaboration and Sensitivity",
-            "traits": "Those with Growth Number 2 are focused on building strong relationships and fostering collaboration. They are naturally diplomatic and sensitive, thriving in environments where cooperation and understanding are key. Their growth involves mastering the art of partnership and empathy."
-        },
-        3: {
-            "meaning": "Creativity and Expression",
-            "traits": "People with Growth Number 3 are encouraged to embrace their creativity and express themselves. They are often drawn to artistic pursuits and have a natural ability to inspire others. Their growth involves using their talents to communicate and uplift those around them."
-        },
-        4: {
-            "meaning": "Stability and Practicality",
-            "traits": "Individuals with Growth Number 4 focus on creating stability and order in their lives. They are practical, reliable, and hardworking, with a strong drive to build solid foundations. Their growth involves developing discipline and embracing responsibility to achieve long-term goals."
-        },
-        5: {
-            "meaning": "Freedom and Adventure",
-            "traits": "Those with Growth Number 5 are driven by a desire for freedom and new experiences. They thrive on change and variety, seeking to explore different aspects of life. Their growth involves learning to balance their need for adventure with stability and responsibility."
-        },
-        6: {
-            "meaning": "Nurturing and Responsibility",
-            "traits": "People with Growth Number 6 are guided by a strong sense of duty and nurturing. They often find fulfillment in roles that involve caring for others and creating harmony. Their growth involves embracing their role as a caregiver while maintaining their own well-being."
-        },
-        7: {
-            "meaning": "Introspection and Wisdom",
-            "traits": "Individuals with Growth Number 7 are on a path of introspection and seeking wisdom. They are often drawn to spiritual or intellectual pursuits and value solitude. Their growth involves deepening their understanding and applying their insights in meaningful ways."
-        },
-        8: {
-            "meaning": "Achievement and Power",
-            "traits": "Those with Growth Number 8 are focused on achieving success and mastering their ambitions. They are often drawn to leadership and positions of power. Their growth involves learning to balance their drive for success with ethical considerations and personal relationships."
-        },
-        9: {
-            "meaning": "Compassion and Idealism",
-            "traits": "People with Growth Number 9 are motivated by a desire to make a positive impact on the world. They are compassionate, idealistic, and drawn to humanitarian efforts. Their growth involves channeling their ideals into practical actions and embracing their role in creating change."
-        },
-        11: {
-            "meaning": "Inspiration and Spiritual Awareness",
-            "traits": "Individuals with Growth Number 11 are guided by a profound sense of inspiration and spiritual awareness. They often have a strong desire to uplift and enlighten others. Their growth involves harnessing their intuitive and visionary abilities to inspire and lead with integrity."
-        },
-        22: {
-            "meaning": "Mastery and Visionary Achievement",
-            "traits": "Those with Growth Number 22 are focused on achieving mastery and realizing their visionary goals. They have the potential to make a significant impact through their leadership and organizational skills. Their growth involves applying their grand vision with practical and strategic actions."
-        },
-        33: {
-            "meaning": "Healing and Compassionate Leadership",
-            "traits": "People with Growth Number 33 are driven by a deep desire to heal and lead compassionately. They are often involved in teaching or healing professions and have a profound impact on others. Their growth involves embracing their role as a healer and guiding others with empathy and wisdom."
-        }
+    1: {
+        "meaning": "Leadership and Innovation",
+        "traits": "Individuals with Growth Number 1 are destined to develop strong leadership qualities, independence, and confidence throughout their life journey. They are naturally ambitious, original thinkers who thrive when pursuing their own vision and taking initiative. Their growth path encourages them to embrace individuality, trust their instincts, and step into positions of authority with courage and determination. These individuals are often pioneers who inspire others through innovation, resilience, and self-reliance. As they evolve, they learn to balance personal ambition with humility and cooperation. Challenges may include impatience, stubbornness, or difficulty accepting guidance from others."
+    },
+    2: {
+        "meaning": "Collaboration and Sensitivity",
+        "traits": "Those with Growth Number 2 are guided toward emotional intelligence, cooperation, and harmonious relationships. Their personal development centers around diplomacy, empathy, and learning the power of patience and partnership. Naturally sensitive and intuitive, they thrive in environments where understanding and collaboration are valued. Their growth journey teaches them how to support others while also honoring their own emotional needs and boundaries. These individuals often become peacemakers, counselors, or trusted companions who bring balance to difficult situations. However, they may struggle with self-doubt, emotional sensitivity, or avoiding conflict in order to maintain peace."
+    },
+    3: {
+        "meaning": "Creativity and Expression",
+        "traits": "People with Growth Number 3 are encouraged to fully embrace their creativity, communication skills, and joyful self-expression. Their life path involves discovering and sharing their unique voice through artistic, social, or inspirational pursuits. Naturally charismatic and imaginative, they possess the ability to uplift others through humor, storytelling, creativity, or performance. Their growth comes from developing confidence in their talents while learning discipline and emotional authenticity. These individuals thrive when they allow themselves to express emotions openly and inspire others with optimism and enthusiasm. Challenges may include scattered energy, superficiality, or difficulty maintaining focus on long-term goals."
+    },
+    4: {
+        "meaning": "Stability and Practicality",
+        "traits": "Individuals with Growth Number 4 are on a path centered around discipline, responsibility, and building strong foundations for the future. They are practical, dependable, and highly motivated to create order, security, and long-term success through hard work and persistence. Their growth involves learning patience, organization, and the value of steady progress over quick results. These individuals often become reliable leaders, providers, or builders within their communities and families. As they mature, they learn to combine structure with flexibility and avoid becoming overly rigid or resistant to change. Their greatest strength lies in their determination and unwavering sense of duty."
+    },
+    5: {
+        "meaning": "Freedom and Adventure",
+        "traits": "Those with Growth Number 5 are guided toward personal freedom, adaptability, and exploration. Their life journey is filled with opportunities for change, movement, and discovering new experiences that broaden their perspective. Naturally curious and energetic, they thrive in dynamic environments where they can express versatility and independence. Their growth involves learning how to balance spontaneity with responsibility while embracing life’s unpredictability with confidence. These individuals often inspire others through courage, charisma, and openness to new ideas and cultures. Challenges may include restlessness, impulsiveness, inconsistency, or difficulty committing to routines and long-term responsibilities."
+    },
+    6: {
+        "meaning": "Nurturing and Responsibility",
+        "traits": "People with Growth Number 6 are guided by a strong sense of compassion, service, and emotional responsibility toward others. Their growth path revolves around creating harmony within relationships, family, and community while learning the deeper meaning of unconditional love. Naturally caring and protective, they often feel called toward caregiving, healing, teaching, or supportive roles. Their personal development involves balancing the desire to help others with the need to care for themselves emotionally and spiritually. At their highest expression, they become dependable sources of comfort, wisdom, and guidance. However, they may struggle with over-sacrificing, perfectionism, or taking on too many responsibilities."
+    },
+    7: {
+        "meaning": "Introspection and Wisdom",
+        "traits": "Individuals with Growth Number 7 are on a journey of self-discovery, spiritual awakening, and intellectual depth. Their growth involves seeking truth, wisdom, and deeper understanding through study, reflection, and introspection. Naturally analytical and intuitive, they are often drawn toward philosophy, spirituality, science, or mystical subjects that challenge them to think beyond the surface. Solitude and contemplation are important for their emotional and spiritual well-being. As they evolve, they learn to trust both logic and intuition while sharing their insights with others in meaningful ways. Challenges may include emotional withdrawal, skepticism, overthinking, or difficulty opening up emotionally."
+    },
+    8: {
+        "meaning": "Achievement and Power",
+        "traits": "Those with Growth Number 8 are focused on mastering ambition, leadership, and material success. Their life path encourages them to develop confidence, discipline, and the ability to manage power and responsibility wisely. These individuals are often driven toward business, leadership, finance, or positions where they can influence systems and achieve tangible results. Their growth comes from learning to balance worldly success with integrity, compassion, and emotional awareness. At their best, they become influential leaders capable of creating lasting impact and financial stability for themselves and others. However, they may struggle with control issues, work-life imbalance, or attaching self-worth too strongly to status and achievement."
+    },
+    9: {
+        "meaning": "Compassion and Idealism",
+        "traits": "People with Growth Number 9 are guided toward humanitarianism, emotional wisdom, and service to humanity. Their path involves learning compassion, forgiveness, and the importance of contributing to causes greater than themselves. Naturally empathetic and idealistic, they often feel a strong desire to help others, heal emotional pain, or inspire positive social change. Their growth comes through understanding the balance between giving selflessly and protecting their own emotional well-being. These individuals often possess artistic sensitivity, spiritual awareness, and a broad perspective on life. Challenges may include emotional overwhelm, disappointment in others, or difficulty releasing past emotional wounds."
+    },
+    11: {
+        "meaning": "Inspiration and Spiritual Awareness",
+        "traits": "Individuals with Growth Number 11 are guided by heightened intuition, spiritual sensitivity, and visionary insight. Their personal growth centers around awakening their inner wisdom and using it to inspire, uplift, and guide others. They often possess natural psychic awareness, creativity, and emotional depth that sets them apart from others. Their life path encourages them to trust their intuition, embrace their unique gifts, and pursue a higher spiritual purpose. At their best, they become inspirational teachers, healers, artists, or visionaries capable of awakening others emotionally and spiritually. However, they may struggle with nervous tension, anxiety, self-doubt, or emotional overwhelm if they ignore their inner calling."
+    },
+    22: {
+        "meaning": "Mastery and Visionary Achievement",
+        "traits": "Those with Growth Number 22 are destined to achieve extraordinary accomplishments through discipline, vision, and practical leadership. Known as the Master Builder, they possess the rare ability to turn ambitious ideas into tangible results that benefit society on a large scale. Their growth journey involves balancing intuition with strategy while developing patience, responsibility, and confidence in their immense potential. These individuals are often drawn toward leadership, large-scale projects, entrepreneurship, or movements that create lasting impact. At their highest expression, they combine spiritual insight with practical action to build meaningful legacies. Challenges may include perfectionism, intense pressure, fear of failure, or becoming overwhelmed by the scale of their ambitions."
+    },
+    33: {
+        "meaning": "Healing and Compassionate Leadership",
+        "traits": "People with Growth Number 33 are guided toward selfless service, emotional healing, and compassionate leadership. Often called the Master Teacher, they possess profound empathy, spiritual awareness, and a natural desire to uplift humanity through love and wisdom. Their growth path encourages them to embrace their role as healers, mentors, caregivers, or inspirational leaders who support others emotionally and spiritually. They often radiate warmth, understanding, and emotional strength that deeply impacts those around them. At their highest expression, they lead through compassion, forgiveness, and unconditional love. However, they may struggle with emotional burdens, self-sacrifice, unrealistic expectations, or neglecting their own emotional needs while caring for others."
     }
+};
     const personality_numbers = {
+    1: {
+        "traits": "You radiate confidence, independence, and determination. Others see you as strong-willed, ambitious, and naturally capable of taking charge in difficult situations. Your presence often commands respect because you appear fearless, self-reliant, and highly motivated to succeed. People are drawn to your leadership qualities and your ability to remain focused under pressure. You value courage, personal achievement, and individuality, and these qualities are clearly reflected in the way you carry yourself. At times, however, you may appear intimidating, stubborn, or overly dominant to those who are more sensitive or passive."
+    },
+    2: {
+        "traits": "You appear gentle, approachable, and emotionally supportive. Others are naturally drawn to your calm energy, kindness, and ability to make people feel comfortable and understood. You come across as diplomatic, cooperative, and sensitive to the feelings of those around you. Your warm and peaceful nature often makes you the person others trust during emotional situations or conflicts. You value harmony and emotional connection, which gives you a soft and compassionate presence. However, some people may mistake your sensitivity for weakness or overlook the quiet strength that exists beneath your calm exterior."
+    },
+    3: {
+        "traits": "Your personality radiates charm, creativity, and enthusiasm for life. Others see you as uplifting, expressive, and socially engaging, with a natural ability to entertain and inspire people around you. Your sense of humor, optimism, and lively communication style make you enjoyable to be around, and you often become the center of attention in social environments. You project confidence through your creativity and emotional expressiveness, attracting people with your charisma and positive energy. However, at times you may appear scattered, overly dramatic, or unfocused if your energy is not grounded."
+    },
+    4: {
+        "traits": "You appear dependable, practical, and deeply grounded. Others see you as someone who values stability, responsibility, and hard work. Your personality projects consistency, discipline, and trustworthiness, making people feel secure in your presence. You are often viewed as a provider, protector, or reliable source of support for family, friends, or coworkers. Your calm and structured nature gives the impression that you can handle challenges with patience and determination. However, some may perceive you as overly serious, rigid, or resistant to change when routines and stability are disrupted."
+    },
+    5: {
+        "traits": "You project an exciting, adventurous, and charismatic personality. Others are drawn to your energetic communication style, quick wit, and openness to new experiences. You come across as adaptable, curious, and socially magnetic, often bringing excitement and spontaneity into conversations and gatherings. Your vibrant energy makes you appear fearless, independent, and difficult to predict, which many people find fascinating. You naturally inspire others to step outside of their comfort zones and embrace change. However, your restless nature may sometimes make you appear impulsive, inconsistent, or unwilling to settle down."
+    },
+    6: {
+        "traits": "You radiate warmth, compassion, and emotional understanding. Others perceive you as nurturing, trustworthy, and deeply caring toward the people in your life. Your personality gives off a calming and protective energy that naturally attracts those seeking comfort, guidance, or support. You are often viewed as responsible, fair-minded, and family-oriented, with a strong desire to help others feel safe and valued. Your kindness and generosity make you highly respected within relationships and communities. However, you may sometimes appear overly protective, self-sacrificing, or controlling when trying too hard to care for others."
+    },
+    7: {
+        "traits": "You appear intelligent, thoughtful, and somewhat mysterious. Others often see you as deeply analytical, introspective, and spiritually or intellectually aware. Your quiet confidence and independent nature create an aura of wisdom and self-sufficiency that naturally commands respect. People may feel intrigued by your reserved personality because you tend to reveal yourself slowly and selectively. You value knowledge, truth, and meaningful conversations, which gives you a serious and reflective presence. However, some people may perceive you as distant, overly private, or emotionally detached if they struggle to connect with your inner world."
+    },
+    8: {
+        "traits": "You project strength, authority, and confidence in nearly every environment you enter. Others see you as ambitious, capable, and highly driven toward success and achievement. Your personality naturally commands attention because you appear disciplined, powerful, and in control of your circumstances. People often respect your leadership abilities, determination, and practical approach to handling challenges or responsibilities. You give off an image of competence and resilience that attracts influential people and opportunities. However, your strong presence may sometimes come across as intimidating, overly controlling, or excessively focused on status and success."
+    },
+    9: {
+        "traits": "You carry yourself with dignity, compassion, and emotional depth. Others often perceive you as wise, sophisticated, and humanitarian in nature. Your personality projects kindness, understanding, and a broad perspective on life that makes people feel accepted and inspired around you. You appear emotionally mature, generous, and capable of seeing the bigger picture in difficult situations. There is often an artistic, spiritual, or idealistic quality in the way you express yourself and interact with others. However, some may see you as emotionally distant, overly idealistic, or difficult to fully understand because of your depth and complexity."
+    },
+    11: {
+        "traits": "You radiate sensitivity, intuition, and a unique spiritual presence that others immediately notice. People often perceive you as insightful, creative, and emotionally aware, even if you appear shy or reserved at first. Your personality carries an unusual depth and nervous energy that can make you seem both inspiring and mysterious. You are capable of deeply influencing others through your words, emotions, and intuitive understanding of situations. As you grow in confidence, you naturally become a source of inspiration and guidance for those around you. However, your heightened sensitivity may sometimes cause anxiety, self-doubt, or emotional overwhelm that others can sense."
+    },
+    22: {
+        "traits": "You project reliability, competence, and quiet authority. Others see you as disciplined, organized, and highly capable of managing large responsibilities or important tasks. Your personality gives the impression of someone who can turn ideas into reality through patience, strategy, and determination. People naturally trust your judgment because you appear stable, dependable, and practical in both personal and professional settings. You often become a cornerstone within organizations, families, or communities because of your strong sense of responsibility and leadership potential. However, you may sometimes appear overly serious, perfectionistic, or emotionally reserved due to your intense focus on achievement and structure."
+    },
+    33: {
+        "traits": "You radiate compassion, wisdom, and emotional warmth that deeply affects those around you. Others often see you as nurturing, inspirational, and naturally capable of bringing harmony into difficult situations. Your personality projects empathy, fairness, and a sincere desire to uplift and heal others emotionally or spiritually. People are drawn to your calming presence and your ability to listen without judgment while offering meaningful guidance. You often inspire trust and admiration because of your selflessness and strong sense of responsibility toward others. However, your tendency to sacrifice your own needs for the happiness of others may sometimes cause emotional exhaustion or lead people to take your generosity for granted."
+    }
+};
+    
+    const essence_numbers = {
         1: {
-            "traits": "You radiate with a dynamic and efficient energy. You appear controlled and capable. You value courage and effort in the face of difficulties and these qualities show. Others can sense that you will not be pushed around."
+            "meaning": "The Pioneering Year - New Beginnings and Personal Power",
+            "traits": "This essence year brings the vibration of new beginnings, independence, and the call to pioneer. The inner vibration is one of awakening personal power and stepping into leadership within your own life. Themes that emerge: initiating new projects, asserting yourself, trusting your vision, and building confidence in your ability to create change. This is a year to take charge of your direction and stop waiting for permission or external validation. You may feel called to start something new—a project, relationship, or way of living. The challenge is recognizing that independence doesn't mean going it alone; it means trusting yourself while remaining open to collaboration. This year asks you to be brave, to take calculated risks, and to establish yourself as an authority in your own life. The gift: discovering that you have the power within you to manifest your desires."
         },
         2: {
-            "traits": "You appear friendly and unpretentious. You have a soft and warm exterior. Others perceive you as gentle, safe harbor. People are drawn to you because, among other reasons, you appear warm and unthreatening."
+            "meaning": "The Partnership Year - Cooperation and Harmony",
+            "traits": "This essence year brings the vibration of partnership, diplomacy, and the sacred dance of relationship. The inner vibration is one of emotional opening and the development of deeper connections. Themes that emerge: building alliances, fostering cooperation, developing sensitivity, and creating balance in your interactions. This is a year to strengthen existing relationships and to develop new ones that matter. You may feel called to work closely with others, to mediate conflicts, or to create teams and communities. The challenge is maintaining your own needs and voice while supporting others—finding the sweet spot between independence and interdependence. This year asks you to trust intuition, to listen deeply, and to recognize that true strength lies in unity. The gift: discovering that together we are more powerful than alone, and that your sensitivity is a superpower for connection."
         },
         3: {
-            "traits": "Your vibration is full of life. You are uplifting, inspiring, and charming. You are a fun person to be around. Your wit and sparkling personality make you the life of a party."
+            "meaning": "The Creative Year - Expression and Joy",
+            "traits": "This essence year brings the vibration of creative expression, communication, and radiant joy. The inner vibration is one of awakening your creative gifts and sharing them with the world. Themes that emerge: artistic expression, clear communication, social engagement, and the magnetism of authentic self-expression. This is a year to create, to express, and to let your light shine. You may feel inspired to write, perform, teach, or simply express yourself more authentically in all areas of life. The challenge is moving from inspiration to completion, and ensuring your creative gifts serve a purpose beyond mere pleasure. This year asks you to be vulnerable, to share your truth, and to trust that your unique expression is needed. The gift: discovering that when you express authentically, you give others permission to do the same, and you become a catalyst for collective joy and inspiration."
         },
         4: {
-            "traits": "You are a family person. You love the intimacy, consistency, and the security a family provides. You are a good provider and protector. But family members may take your efforts for granted."
+            "meaning": "The Foundation Year - Stability and Structure",
+            "traits": "This essence year brings the vibration of building solid foundations, establishing order, and creating lasting structures. The inner vibration is one of grounding energy and methodical progress. Themes that emerge: practical work, organizing systems, establishing security, and doing things the right way. This is a year to build something tangible that will endure. You may feel called to establish routines, organize your environment, tackle practical projects, or strengthen the foundations of your life. The challenge is embracing the sometimes tedious work required for real progress, and avoiding rigidity when flexibility is needed. This year asks you to be patient, disciplined, and willing to do the work others avoid. The gift: discovering that solid foundations are not limitations—they are the ground upon which all your future dreams stand, and that mastery comes through steady, committed effort."
         },
         5: {
-            "traits": "You are a stimulating person. You brighten social gatherings with your fresh and original ideas. Your conversation tends to be sprinkled with novelty and wit. You have a quick tongue and charisma."
+            "meaning": "The Freedom Year - Change and Adventure",
+            "traits": "This essence year brings the vibration of freedom, change, and dynamic exploration. The inner vibration is one of liberation and the awakening of your adaptive nature. Themes that emerge: embracing change, seeking new experiences, developing flexibility, and expanding your horizons. This is a year of movement and possibility. You may feel restless and called to travel, change careers, experiment with new ways of living, or explore aspects of yourself you've kept hidden. The challenge is channeling your restless energy productively and completing what you start before moving to the next adventure. This year asks you to be flexible, curious, and willing to see situations from fresh perspectives. The gift: discovering that freedom is not escape—it is the ability to navigate change with grace and wisdom, and that your versatility allows you to adapt and thrive in any circumstance."
         },
         6: {
-            "traits": "You radiate understanding and compassion. People sense your warmth and fairness. For this reason, you attract many people who are in need of comfort, including the disadvantaged.."
+            "meaning": "The Love Year - Service and Family",
+            "traits": "This essence year brings the vibration of love, family, and nurturing service. The inner vibration is one of the heart opening and your capacity to care deepened. Themes that emerge: family harmony, giving service, creating beauty in your home, and deepening emotional bonds. This is a year when family and home become the focus and when your role as a caregiver or nurturer is activated. You may feel called to heal relationships, create a beautiful home, support those you love, or become involved in community service. The challenge is giving without self-abandonment and remembering that you cannot fix everyone's problems. This year asks you to love generously, to create harmony, and to remember that taking care of yourself makes you a better caregiver. The gift: discovering that when you lead with the heart and serve from wholeness, you create healing ripples that touch everyone around you, and that love is the most transformative force available."
         },
         7: {
-            "traits": "You seem mysterious and different. People see you as serious and studious. You are highly independent and self-sufficient. Your acceptional intelligence and wisdom are quickly noticed, people respect you."
+            "meaning": "The Wisdom Year - Introspection and Truth-Seeking",
+            "traits": "This essence year brings the vibration of introspection, spiritual seeking, and the pursuit of truth. The inner vibration is one of turning inward to access deeper wisdom and spiritual connection. Themes that emerge: solitude and reflection, investigating mysteries, developing intuition, and deepening spiritual practice. This is a year to go within and listen to the whispers of your soul. You may feel called to study, meditate, retreat from the social world, or explore spiritual practices that feed your soul. The challenge is balancing your need for solitude with meaningful engagement with the world, and avoiding cynicism or alienation. This year asks you to trust your inner knowing, to investigate what lies beneath surfaces, and to cultivate practices that deepen your spiritual connection. The gift: discovering that within the quiet of solitude lies profound wisdom, and that your questions are initiating you into deeper understanding of yourself and existence."
         },
         8: {
-            "traits": "You appear strong and powerful. You have an impressive personality and can influence and even intimidate through sheer force. You have natural authority. Your competence and enthusiasm attract people with resources."
+            "meaning": "The Mastery Year - Power and Manifestation",
+            "traits": "This essence year brings the vibration of power, manifestation, and material mastery. The inner vibration is one of stepping into your authority and manifesting abundance. Themes that emerge: achievement of goals, management of resources, demonstrating capability, and stepping into positions of power. This is a year of harvest and visible results. You may feel called to take on greater responsibility, pursue financial goals, step into leadership, or manifest something significant. The challenge is recognizing karmic cycles and understanding that what goes up must come down, so maintenance of integrity is essential. This year asks you to be strategic, confident, and willing to step into your power responsibly. The gift: discovering that when you align power with integrity and use it in service of the greater good, you create abundance that flows to all and that true mastery is the ability to lead yourself and others from wisdom."
         },
         9: {
-            "traits": "You have an impressive and aristocratic bearing. No matter how tall you are, you appear noble and upright. You are very much in control of the image you send out to others."
+            "meaning": "The Completion Year - Closure and Transformation",
+            "traits": "This essence year brings the vibration of completion, letting go, and preparing for rebirth. The inner vibration is one of wrapping up cycles and releasing what no longer serves. Themes that emerge: completion of projects, endings and closures, forgiveness and release, and preparation for new beginnings. This is a year of harvest and surrender. You may feel drawn to finish things left undone, to release relationships or situations that have run their course, or to gain perspective on a 9-year cycle. The challenge is surrendering to endings rather than clinging to the familiar, and trusting that closure makes space for new growth. This year asks you to be generous, to forgive, to let go with grace, and to honor what has completed. The gift: discovering that every ending births a new beginning, and that when you release with wisdom and compassion, you open yourself to receive what has always been meant for you."
         },
         11: {
-            "traits": "You have worked hard to gain confidence and overcome, at least to some extend, an in-born shyness. As a child, and into your early twenties, nervous energy may have caused you to bite your nails or express your nervousness in other ways."
+            "meaning": "The Illumination Year - Spiritual Awakening and Visionary Insight",
+            "traits": "This essence year brings the vibration of spiritual illumination, intuitive downloads, and visionary insight. The inner vibration is one of heightened spiritual awareness and the activation of your intuitive gifts. Themes that emerge: receiving mystical insight, being inspired toward higher purpose, accessing psychic information, and spiritual awakening. This is a year of profound inner transformation and vision. You may experience synchronicities, spiritual experiences, or downloads of inspiration that shift your understanding of reality. The challenge is managing the intensity of spiritual energy, grounding your insights into practical reality, and trusting what you receive even when it defies logic. This year asks you to be open, to listen to guidance beyond the five senses, and to honor your spiritual experiences as real. The gift: discovering that when you attune to higher frequencies, inspiration flows through you and you become a vessel for wisdom that serves the collective awakening."
         },
         22: {
-            "traits": "You radiate reliability and consistency. People trust you and feel secure with your judgment. You are seen as a cornerstone of a business and are relied upon to do your work efficiently and expertly."
+            "meaning": "The Manifestation Year - Building the Vision",
+            "traits": "This essence year brings the vibration of grand manifestation, building something of lasting significance, and creating tangible legacy. The inner vibration is one of harnessing your power to build something monumental. Themes that emerge: manifesting significant projects, organizing complex undertakings, building institutions or systems, and creating lasting impact. This is a year of ambitious accomplishment. You may feel called to undertake major projects, create something that will endure, or build systems that serve many. The challenge is managing the complexity and maintaining faith through the long building process, and remembering that mastery takes time. This year asks you to be visionary, strategic, and willing to do the work required to build something real. The gift: discovering that within you is the capacity to manifest dreams on a grand scale, and that when you build with integrity and serve the greater good, your legacy becomes immortal."
         },
         33: {
-            "traits": "You inspire confidence. You have a fine sense of justice. You do everything in your power to keep the harmony and are even willing to sacrifice your personal desires for the good of others. You can take this too far, however, sometimes playing the role of the martyr."
+            "meaning": "The Compassionate Teaching Year - Healing and Upliftment",
+            "traits": "This essence year brings the vibration of compassionate teaching, healing, and uplifting others. The inner vibration is one of your capacity to transform through love and to help others awaken. Themes that emerge: teaching and mentoring, being a healer, expressing unconditional love, and inspiring others' transformation. This is a year when your role as a teacher, guide, or healer is activated. You may feel called to mentor, teach, counsel, or simply be a healing presence for those around you. The challenge is maintaining your own energy and boundaries while giving deeply, and trusting that your presence alone has healing power. This year asks you to lead with the heart, to see others' highest potential, and to share your wisdom compassionately. The gift: discovering that when you hold space for others' transformation with unconditional love, you catalyze miracles and become an instrument of collective healing."
         }
     };
-    
+
     const birthday_numbers = {
         1: {
-            "meaning": "The Pioneer/Leader",
-            "traits": "You have a great ambition and a strong drive for success. You are highly independent and dislike the restrictions of having to work with others. You easily become frustrated with the routine."
+            "meaning": "The Pioneer - Independence and Initiative",
+            "traits": "You are born to lead and to set the tone for yourself and others. Your birthday vibration encourages self-reliance, courage, and the desire to be first. You thrive when you take initiative, create your own path, and assert your independence. The challenge is to temper ambition with patience and to avoid becoming overly self-centered or impatient with others."
         },
         2: {
-            "meaning": "The Peacemaker",
-            "traits": "You are warm and affectionate and need the same from your close friends and loved ones. You want to be hugged and cuddled. There is a tendency to fall into childhood patterns when giving and receiving affection."
+            "meaning": "The Diplomat - Cooperation and Sensitivity",
+            "traits": "You are born to bring harmony and balance into relationships. Your birthday vibration makes you intuitive, gentle, and attuned to others' feelings. You excel at mediation, partnership, and creating peaceful environments. The challenge is to assert your own needs without sacrificing them for the sake of peace."
         },
         3: {
-            "meaning": "The Creative Child",
-            "traits": "The leader and original thinker who values independence. Ones represent self consciousness, creativeness, and original thought. As a number of strength, they are always the first in the series, dominant, and very confident. On the positive side they are active and innovative. On the negative side they are bossy, hasty, and tactless. Ones have a unique style with outstanding will."
+            "meaning": "The Communicator - Creativity and Joy",
+            "traits": "You are born with a gift for self-expression, creativity, and social charm. Your birthday vibration encourages optimism, artistic talents, and the ability to uplift others with humor and warmth. The challenge is to stay grounded and complete your creative projects instead of scattering your energy."
         },
         4: {
-            "meaning": "The Salt of the Earth",
-            "traits": "You are precise and take great care in what you do. You are highly principled, disciplined, and responsible. You take your obligations very seriously."
+            "meaning": "The Builder - Stability and Practicality",
+            "traits": "You are born to create order, structure, and dependable systems. Your birthday vibration gives you a strong work ethic, reliability, and practical intelligence. You excel at planning, organizing, and making abstract ideas tangible. The challenge is to avoid rigidity and to remain open to change when it is needed."
         },
         5: {
-            "meaning": "The Freedom Lover",
-            "traits": "You are highly adaptable and need excitement. You relate well to others and have an easy way with words. In fact, you have a talent for promotion, public relations, and, for some, writing."
+            "meaning": "The Adventurer - Freedom and Change",
+            "traits": "You are born to explore, experiment, and embrace variety. Your birthday vibration gives you curiosity, adaptability, and a love of new experiences. You thrive on travel, communication, and dynamic activity. The challenge is to maintain focus and commitment when your restless nature tempts you to move on too soon."
         },
         6: {
-            "meaning": "Love and Sacrifice",
-            "traits": "Your focus is on relationships. You want to help others and have a talent as a healer and could make a profession of the healing arts, either as a nutritionist, alternative health therapist (acupuncture, massage, for example) or doctor."
+            "meaning": "The Nurturer - Responsibility and Care",
+            "traits": "You are born to support others, care for your household, and create harmony. Your birthday vibration encourages compassion, loyalty, and a strong sense of duty. You excel in roles that require service, teaching, or emotional support. The challenge is to set boundaries so your generosity does not become self-sacrifice."
         },
         7: {
-            "meaning": "Seeker of Wisdom",
-            "traits": "You should meditate and do some type of spiritual exercise in order to develop your intuitive talents. Once you have begun to trust your intuition, you will develop a sound faith."
+            "meaning": "The Seeker - Wisdom and Introspection",
+            "traits": "You are born to seek deeper truth and to understand life on a profound level. Your birthday vibration gives you analytical ability, intuition, and a love of solitude. You excel in study, research, and spiritual pursuits. The challenge is to balance withdrawal with engagement so you can share your insights with others."
         },
         8: {
-            "meaning": "Balance & Power",
-            "traits": "Your approach to business is original, creative, and daring. You have sound judgment and need the freedom to exercise it, lest you become bitter and tyrannical elsewhere in your life."
+            "meaning": "The Executive - Power and Achievement",
+            "traits": "You are born to master material success, leadership, and personal authority. Your birthday vibration gives you ambition, resilience, and the ability to manifest goals. You excel in business, management, and practical achievement. The challenge is to use your power responsibly and to avoid allowing ambition to overshadow compassion."
         },
         9: {
-            "meaning": "Global Awareness",
-            "traits": "You have a greater social role to play that will require a blend of the practical and the humanitarian. You must have a keen sense of what will work, but at the same time direct those efforts toward some greater good."
+            "meaning": "The Humanitarian - Completion and Compassion",
+            "traits": "You are born to serve, uplift, and complete cycles with compassion. Your birthday vibration gives you broad awareness, empathy, and a strong sense of justice. You excel in work that benefits the collective and in roles that encourage healing. The challenge is to avoid emotional overwhelm and to let go of what no longer serves you."
         },
         10: {
-            "meaning": "Taking Charge",
-            "traits": "Your test in life is to live according to your dream - that is, to have the courage and the stamina to overcome obstacles and win the independence you so deeply want."
+            "meaning": "The Self-Starter - Drive and Independence",
+            "traits": "You are born with strong leadership potential and the ability to launch new initiatives. Your birthday vibration supports independence, ambition, and the desire to succeed on your own terms. The challenge is to remain patient and to build your success with integrity rather than impulse."
         },
         11: {
-            "meaning": "The Intuitive",
-            "traits": "Your intuition is so keen, in fact, that you would make a fine counselor and/or healer. You seem to understand people before they reveal their inner being themselves."
+            "meaning": "The Intuitive - Insight and Inspiration",
+            "traits": "You are born with heightened intuition, sensitivity, and spiritual awareness. Your birthday vibration encourages visionary thinking and the ability to inspire others. You excel in roles that require empathy, mentoring, and spiritual guidance. The challenge is to ground your insights so they become practical and real."
         },
         12: {
-            "meaning": "Self Expression",
-            "traits": "Your artistic talent emerges in virtually everything you take seriously, your home, your cooking, the way you express yourself, and any artistic endeavor you commit to."
+            "meaning": "The Creative Communicator - Expression and Development",
+            "traits": "You are born to express yourself creatively and to communicate ideas with charm. Your birthday vibration encourages artistic growth, social skill, and the ability to inspire through words and actions. The challenge is to balance self-expression with humility and discipline."
         },
         13: {
-            "meaning": "The Rock",
-            "traits": "You love things that are solid and grounded in the practical. Yet, you possess a considerable amount of artistic talent that is searching for concrete forms of expression."
+            "meaning": "The Builder of Transformation - Practical Creativity",
+            "traits": "You are born to combine practical skill with creative intelligence. Your birthday vibration encourages steady growth and the ability to transform ideas into useful form. You excel at building strong foundations for personal and professional success. The challenge is to channel your energy constructively and to avoid frustration with slow progress."
         },
         14: {
-            "meaning": "The Adventurer",
-            "traits": "You are highly social and work well with others as long as there are not too many restrictions to bind you. You get restless easily, a characteristic that can make you change vocations or relationships much too quickly."
+            "meaning": "The Free Spirit - Adventure and Adaptability",
+            "traits": "You are born to embrace change, independence, and variety. Your birthday vibration encourages a lively spirit, mental agility, and the ability to navigate uncertainty. You excel in situations that require flexibility, communication, and courage. The challenge is to balance freedom with responsibility and avoid impulsive choices."
         },
         15: {
-            "meaning": "Mother-/Fatherhood",
-            "traits": "There is a yearning within you to ground within the family or community structure, but there is a hint of wanderlust, too, which makes grounding difficult. You want the best in your life, and you strive for it."
+            "meaning": "The Compassionate Leader - Emotional Responsibility",
+            "traits": "You are born to bring love, care, and emotional wisdom into your relationships and community. Your birthday vibration encourages nurturing, loyalty, and a strong sense of duty to others. You excel in roles that combine leadership with empathy. The challenge is to protect your own emotional needs while serving others."
         },
         16: {
-            "meaning": "Phoenix Rising",
-            "traits": "You have a fine analytical mind that is capable of penetrating beneath the surface of the subject at hand. You also have the capacity for excellent concentration."
+            "meaning": "The Visionary Thinker - Insight and Renewal",
+            "traits": "You are born to develop a deep understanding of life through personal growth and inner transformation. Your birthday vibration encourages insight, independence, and the courage to reinvent yourself. You excel when you trust your inner wisdom and embrace change. The challenge is to overcome fear of loss and to use your critical mind for constructive growth."
         },
         17: {
-            "meaning": "Success Through Detachment",
-            "traits": "Your approach to business is original, creative, and daring. You are an excellent manager and organizer. You are gifted with the ability to see the larger picture, and, remarkably, how the details come into play."
+            "meaning": "The Strategic Achiever - Success with Integrity",
+            "traits": "You are born to achieve success through clear vision, discipline, and wise planning. Your birthday vibration encourages leadership, ambition, and the ability to make things happen. You excel when you combine creativity with pragmatic action. The challenge is to maintain balance between ambition and compassion."
         },
         18: {
-            "meaning": "The World is Your Oyster",
-            "traits": "You are broadminded and should be educated in several different fields, particularly the arts. Many great artists are found under this number."
+            "meaning": "The Universal Messenger - Influence and Compassion",
+            "traits": "You are born to share your ideas, influence others, and connect personal success with service. Your birthday vibration encourages charisma, communication, and the ability to inspire. You excel when you use your talents to benefit others and to promote understanding. The challenge is to avoid ego-driven ambition and to stay aligned with higher purpose."
         },
         19: {
-            "meaning": "The Individualist",
-            "traits": "As the poet John Donne said: 'No man is an Island unto himself... We are all bits of the main.' This is a central lesson in your life: to learn the difference between the dream of independence and the reality of interdependence."
+            "meaning": "The Independent Visionary - Leadership and Self-Reliance",
+            "traits": "You are born to break free from limitation and create your own path. Your birthday vibration encourages personal courage, self-sufficiency, and the drive to pioneer. You excel when you trust your inner authority and rise above the opinions of others. The challenge is to balance independence with the need for meaningful connection."
         },
         20: {
-            "meaning": "Bringer of Harmony",
-            "traits": "You possess great awareness and can sense the feelings of others, even when they try to hide their inner thoughts. Consequently, you are easily influenced by your environment."
+            "meaning": "The Harmonizer - Diplomacy and Partnership",
+            "traits": "You are born to bring cooperation, sensitivity, and peace into your interactions. Your birthday vibration encourages intuition, tact, and the ability to work well with others. You excel in relationships and teamwork. The challenge is to maintain your own boundaries and not lose yourself in the desire to please."
         },
         21: {
-            "meaning": "Express & Create",
-            "traits": "Your imagination is highly charged. It reveals itself in everything you do, from your sparkling conversation to your most prized projects. You are quick-witted and can think on your feet."
+            "meaning": "The Creative Expressive - Joy and Communication",
+            "traits": "You are born to express yourself with creativity, charm, and enthusiasm. Your birthday vibration encourages optimism, quick thinking, and the ability to make a positive impression. You excel in social situations, creative projects, and leadership through inspiration. The challenge is to ground your energy and maintain focus."
         },
         22: {
-            "meaning": "The Master Builder",
-            "traits": "You are an organizer, or builder of an institution or business. You have a vision and the capability to realize it. You possess the capacity for great strength, but conversely you can be deeply afraid of the dimensions of your ambitions."
+            "meaning": "The Master Builder - Achievement and Vision",
+            "traits": "You are born to realize large-scale goals and to build something of lasting value. Your birthday vibration encourages discipline, organization, and visionary planning. You excel in leadership, construction, and strategic execution. The challenge is to overcome self-doubt and to believe in the power of your ambition."
         },
         23: {
-            "meaning": "Adaptable & Versatile",
-            "traits": "You are highly adaptable, which makes change a great deal easier for you than for others. You have an easy way with relationships and generally get along well with most people you meet."
+            "meaning": "The Versatile Communicator - Adaptability and Perception",
+            "traits": "You are born to connect with many people, adapt quickly, and see different perspectives. Your birthday vibration encourages curiosity, flexibility, and social ease. You excel in roles that require communication, negotiation, and creative problem solving. The challenge is to remain consistent while exploring many options."
         },
         24: {
-            "meaning": "Teacher & Healer",
-            "traits": "You are energetic, responsible, and helpful, but your sympathetic nature may cause you to interfere in relationships and get you into trouble. Know your limits."
+            "meaning": "The Caring Teacher - Service and Support",
+            "traits": "You are born to provide compassionate support, stability, and guidance. Your birthday vibration encourages responsibility, nurturing, and the ability to make others feel safe. You excel in caregiving, teaching, and community support. The challenge is to avoid taking on too much and to care for yourself as well as others."
         },
         25: {
-            "meaning": "Spiritual Growth",
-            "traits": "You are capable of investigating and researching subjects deeply. Your analytical skills force you to avoid taking anything at face value."
+            "meaning": "The Spiritual Researcher - Intuition and Discovery",
+            "traits": "You are born to explore spiritual truth and the deeper meaning behind life. Your birthday vibration encourages intuition, analysis, and a love of learning. You excel in study, meditation, and psychological or philosophical inquiry. The challenge is to balance inner exploration with practical action."
         },
         26: {
-            "meaning": "Between Matter & Spirit",
-            "traits": "Your challenge is to maintain a balance between your material goals and the fundamental human qualities of understanding, compassion, and love."
+            "meaning": "The Executive Diplomat - Power with Compassion",
+            "traits": "You are born to balance material success with caring leadership. Your birthday vibration encourages business ability, responsibility, and social awareness. You excel when you combine ambition with empathy and fairness. The challenge is to ensure your power is used to uplift others and not only yourself."
         },
         27: {
-            "meaning": "The People's Spirit",
-            "traits": "You are a bit of a late-bloomer. You need exposure to many different types of people before you find the area in which you will specialize. This is also the reason many change careers more than once."
+            "meaning": "The Inspirational Leader - Service and Vision",
+            "traits": "You are born to lead through inspiration and to serve others with vision. Your birthday vibration encourages idealism, compassion, and the ability to unite people around a purpose. You excel in roles that require leadership with heart. The challenge is to remain grounded and not become discouraged when others fail to match your ideals."
         },
         28: {
-            "meaning": "Self Empowerment",
-            "traits": "You are unconventional, idealistic, and independent. You are extremely ambitious. You possess much self-confidence but need much encouragement."
+            "meaning": "The Empowered Innovator - Independence and Purpose",
+            "traits": "You are born to use your independence and ambition to create meaningful change. Your birthday vibration encourages strong will, practical intelligence, and the ability to innovate. You excel when you take responsible risks and pursue goals that align with your values. The challenge is to avoid impatience and to build a solid plan for your ambitions."
         },
         29: {
-            "meaning": "The Psychic",
-            "traits": "You are so driven by spiritual pursuits that no matter what you do in life, the world of spirit and philosophy will be central to your daily behavior. You feel linked with the larger universal forces, and nothing will change that."
+            "meaning": "The Spiritual Diplomat - Intuition and Compassion",
+            "traits": "You are born to combine spiritual sensitivity with the ability to support and mediate others. Your birthday vibration encourages empathy, idealism, and an understanding of deeper emotional needs. You excel in healing, counseling, and spiritual mentoring. The challenge is to keep yourself emotionally grounded while caring deeply for others."
         },
         30: {
-            "meaning": "Perform & Express",
-            "traits": "You are an artist at heart. You could excel in writing, visual, or performing arts. If you are not professionally involved in one of these areas, you should consider taking up art as a hobby."
+            "meaning": "The Creative Leader - Expression and Achievement",
+            "traits": "You are born to lead through creative expression and inspiring communication. Your birthday vibration encourages artistic vision, confidence, and the ability to motivate others. You excel in roles that allow you to express your talents and build influence through creativity. The challenge is to align your self-expression with a clear purpose and to avoid ego-based performance."
         },
         31: {
-            "meaning": "Power of Work",
-            "traits": "You are the foundation of any enterprise you commit to, doing your work with determination and precision."
+            "meaning": "The Practical Achiever - Stability and Initiative",
+            "traits": "You are born to combine practical skills with strong personal initiative. Your birthday vibration encourages discipline, reliability, and the ability to get things done. You excel in building systems, leading teams, and making steady progress toward your goals. The challenge is to avoid overworking and to make space for creativity and rest."
         }
     };  
 
@@ -703,39 +770,37 @@ Pythagorean Influence: The Greek philosopher Pythagoras (c. 600 BC) is often cre
         return pythagoreanMapping[char.toUpperCase()] || 0;
     }
 
-    function calculateEssenceNumbers(firstName, middleName, lastName, age = 90) {
-
-        // Array to store the essence numbers
+    function calculateEssenceNumbers(firstName, middleName, lastName, birthYear, currentDate) {
+        // Calculate the full name sum (one-time calculation)
+        const fullName = (firstName + (middleName || "") + lastName).toUpperCase();
+        let nameSum = 0;
+        
+        for (let i = 0; i < fullName.length; i++) {
+            const char = fullName[i];
+            if (/[A-Z]/.test(char)) {
+                nameSum += getPythagoreanValue(char);
+            }
+        }
+        
+        // Reduce the name sum to a single digit
+        nameSum = reduceNumber(nameSum);
+        
+        // Extract current year from current date
+        const currentYear = parseInt(currentDate.split('-')[0]);
+        
+        // Array to store essence numbers for each year of life
         const essenceNumbers = [];
         
-        // Function to process a name and return the numeric values
-        function processName(name) {
-            const nameValues = [];
-            let count = 0;
-            while (count < age) {
-                for (let i = 0; i < name.length && count < age; i++) {
-                    const letter = name[i];
-                    if (/[a-zA-Z]/.test(letter)) {  // Check if the character is an alphabet letter
-                        const numeric = getPythagoreanValue(letter); // Get the Pythagorean value for the letter
-                        nameValues.push(...Array(numeric).fill(numeric)); // Add the numeric value to the array
-                    }
-                    count++;
-                }
-            }
-            return nameValues;
+        // Calculate essence number for each year from birth year to current year
+        for (let year = birthYear; year <= currentYear; year++) {
+            // Sum the digits of the year
+            let yearSum = reduceNumber(year);
+            
+            // Essence Number = Reduce(Name Sum + Year Sum)
+            const essence = reduceNumber(nameSum + yearSum);
+            essenceNumbers.push(essence);
         }
-    
-        // Process first, middle, and last names
-        const f_name = processName(firstName);
-        const m_name = middleName ? processName(middleName) : Array(age + 1).fill(0); // Handle empty middle name
-        const l_name = processName(lastName);
-    
-        // Loop through each year (0 to age) and calculate the essence numbers
-        for (let i = 0; i <= age; i++) {
-            const sum = (f_name[i] || 0) + (m_name[i] || 0) + (l_name[i] || 0);
-            essenceNumbers.push(reduceNumber(sum)); // Reduce and push the essence number
-        }
-    
+        
         return essenceNumbers;
     }
     
@@ -893,12 +958,16 @@ function getNorthNode(birthdate) {
       // Get current date value
       let currentDate = document.getElementById('current-date').value;
       let birthDate = document.getElementById('birthdate').value;
-      
+      // Parse the birthdate (YYYY-MM-DD) into month, day, year
+     let birthDateParts = birthDate.split('-');
+     let birthYear = parseInt(birthDateParts[0]); // Year
+     let birthMonth = parseInt(birthDateParts[1]); // Month (1-12)
+     let birthDay = parseInt(birthDateParts[2]); // Day (1-31)  
       // Create the result to display
-
+    
       //json output
       let name_numbers = calculateNumerology(first_name, middle_name, last_name);
-      let essence_numbers = calculateEssenceNumbers(first_name, middle_name, last_name);
+      let essence_numbers_array = calculateEssenceNumbers(first_name, middle_name, last_name, birthYear, currentDate);
       let numerologyValues = calculateNumerologyFromBirthdate(currentDate, birthDate);
       
       let destinyNumber = name_numbers['destinyNumber'];
@@ -946,11 +1015,7 @@ function getNorthNode(birthdate) {
      let currentMonth = parseInt(currentDateParts[1]); // Month (1-12)
      let currentDay = parseInt(currentDateParts[2]); // Day (1-31)
 
-     // Parse the birthdate (YYYY-MM-DD) into month, day, year
-     let birthDateParts = birthDate.split('-');
-     let birthYear = parseInt(birthDateParts[0]); // Year
-     let birthMonth = parseInt(birthDateParts[1]); // Month (1-12)
-     let birthDay = parseInt(birthDateParts[2]); // Day (1-31)
+     
 
      //pinnacle numbers todo
      let age_py1 = 36 - lifePathNumber;
@@ -963,8 +1028,12 @@ function getNorthNode(birthdate) {
      pc += `<br/><strong>Pinnacle cycle 4 Number: ${reduceNumber(birthMonth + birthYear)} and age: ${age_py3}+.</strong>`;
 
      let ec = `<strong>The Essence Number inner vibration number for the year ${currentYear}.</strong>`;
-     index = currentYear - birthYear + 1;
-     ec += `<br/><strong>Essence Number: ${essence_numbers[index]}.</strong>`;      
+     const essenceIndex = currentYear - birthYear;
+     const essenceNum = essenceIndex >= 0 && essenceIndex < essence_numbers_array.length ? essence_numbers_array[essenceIndex] : 0;
+     ec += `<br/><strong>Essence Number: ${essenceNum}.</strong>`;
+     if (essence_numbers[essenceNum]) {
+         ec += `<br/><strong>${essence_numbers[essenceNum]['meaning']}</strong><br/>${essence_numbers[essenceNum]['traits']}`;
+     }      
      
      let md =`<strong>The Maturity Number ${maturityNumber}</strong>.<br/>`;
      md += ` ${growth_numbers[maturityNumber]['traits']}`;
